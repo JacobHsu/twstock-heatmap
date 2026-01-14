@@ -1,0 +1,98 @@
+{
+  "status": "success",
+  "data": {
+    "all": [
+      {
+        "ticker": "8086",
+        "name": "宏捷科",
+        "change": "-3.97%"
+      },
+      {
+        "ticker": "6643",
+        "name": "M31",
+        "change": "-1.52%"
+      },
+      {
+        "ticker": "5483",
+        "name": "中美晶",
+        "change": "-1.70%"
+      }
+    ],
+    "otc-elec": [
+      {
+        "ticker": "3290",
+        "name": "東浦",
+        "change": "-5.20%"
+      },
+      {
+        "ticker": "1595",
+        "name": "川寶",
+        "change": "-5.17%"
+      },
+      {
+        "ticker": "3207",
+        "name": "耀勝",
+        "change": "-2.27%"
+      },
+      {
+        "ticker": "6203",
+        "name": "海韻電",
+        "change": "-2.26%"
+      },
+      {
+        "ticker": "8038",
+        "name": "長園科",
+        "change": "-1.94%"
+      }
+    ],
+    "otc-semi": [
+      {
+        "ticker": "6640",
+        "name": "均華",
+        "change": "-2.69%"
+      },
+      {
+        "ticker": "6643",
+        "name": "M31",
+        "change": "-1.52%"
+      },
+      {
+        "ticker": "4966",
+        "name": "譜瑞-KY",
+        "change": "-1.17%"
+      },
+      {
+        "ticker": "3265",
+        "name": "台星科",
+        "change": "-0.71%"
+      }
+    ],
+    "otc-construction": [
+      {
+        "ticker": "5514",
+        "name": "三豐",
+        "change": "-2.16%"
+      },
+      {
+        "ticker": "5543",
+        "name": "桓鼎-KY",
+        "change": "-1.73%"
+      },
+      {
+        "ticker": "5213",
+        "name": "亞昕",
+        "change": "-0.58%"
+      },
+      {
+        "ticker": "2596",
+        "name": "綠意",
+        "change": "-0.53%"
+      }
+    ]
+  },
+  "version": "2.0",
+  "market": "taiwan",
+  "source": "nstock.tw",
+  "last_updated": "2026-01-14T09:20:30.126808Z",
+  "generated_at": "2026-01-14T09:20:30.126808Z"
+}

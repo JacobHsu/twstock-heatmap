@@ -1,0 +1,218 @@
+name: Generate Taiwan Stock Heatmap
+
+on:
+  # Scheduled run: Taiwan market opens at 9:00 AM (UTC+8)
+  # Run at 9:30 AM Taiwan time = 1:30 AM UTC (30 mins after open)
+  schedule:
+    - cron: '30 1 * * 1-5'  # Weekdays at 1:30 AM UTC (9:30 AM Taiwan)
+  
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      skip_capture:
+        description: 'Skip screenshot capture (use existing twstock.png)'
+        required: false
+        default: 'false'
+        type: boolean
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  generate-heatmap:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright Pillow requests
+          playwright install chromium
+          playwright install-deps chromium
+      
+      - name: Capture Taiwan Stock Heatmaps
+        if: ${{ github.event.inputs.skip_capture != 'true' }}
+        run: |
+          echo "📊 Capturing nStock.tw heatmaps..."
+          
+          # 1. All Listed Stocks (Default)
+          echo "  - Capturing Listed Stocks..."
+          python skills/twstock-heatmap/scripts/capture_twstock.py -t all --no-html
+          
+          # 2. OTC Electronic Components
+          echo "  - Capturing OTC Electronic Components..."
+          python skills/twstock-heatmap/scripts/capture_twstock.py -t otc-elec --no-html
+          
+          # 3. OTC Semiconductors
+          echo "  - Capturing OTC Semiconductors..."
+          python skills/twstock-heatmap/scripts/capture_twstock.py -t otc-semi --no-html
+          
+          # 4. OTC Construction
+          echo "  - Capturing OTC Construction..."
+          python skills/twstock-heatmap/scripts/capture_twstock.py -t otc-construction --no-html
+          
+          # Verify screenshots
+          ls -la twstock*.png
+      
+      - name: Analyze Heatmaps with AI
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "🤖 Analyzing heatmaps with GitHub Models API..."
+          
+          python skills/twstock-heatmap/scripts/analyze_twstock.py \
+            -i all:twstock.png \
+               otc-elec:twstock_otc-elec.png \
+               otc-semi:twstock_otc-semi.png \
+               otc-construction:twstock_otc-construction.png \
+            -o api/twstock_top_losers.json
+          
+          # Verify JSON was created
+          if [ -f "api/twstock_top_losers.json" ]; then
+            echo "✅ Analysis complete"
+            echo "📄 API Response Preview:"
+            head -n 20 api/twstock_top_losers.json
+          else
+            echo "❌ Analysis failed"
+            exit 1
+          fi
+      
+      - name: Generate HTML viewer
+        run: |
+          # Create simple HTML viewer for the main heatmap
+          cat > twstock_index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="zh-TW">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Taiwan Stock Market Heatmap</title>
+              <style>
+                  * { margin: 0; padding: 0; box-sizing: border-box; }
+                  body {
+                      background-color: #1a1a2e;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      min-height: 100vh;
+                      padding: 20px;
+                      font-family: 'Noto Sans TC', sans-serif;
+                  }
+                  h1 { color: #fff; margin-bottom: 20px; }
+                  .timestamp { color: #888; margin-bottom: 20px; }
+                  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; width: 100%; max-width: 1200px; }
+                  .card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; }
+                  h2 { color: #4ecdc4; margin-bottom: 10px; font-size: 1.2em; text-align: center; }
+                  img {
+                      width: 100%;
+                      height: auto;
+                      border-radius: 4px;
+                  }
+                  .source { color: #666; margin-top: 20px; }
+                  a { color: #4ecdc4; }
+              </style>
+          </head>
+          <body>
+              <h1>Taiwan Stock Market Heatmaps</h1>
+              <p class="timestamp">Updated: <span id="time"></span></p>
+              
+              <div class="grid">
+                  <div class="card">
+                      <h2>Listed Stocks (上市)</h2>
+                      <img src="twstock.png" alt="Listed Stocks">
+                  </div>
+                  <div class="card">
+                      <h2>OTC Electronic (櫃買電子)</h2>
+                      <img src="twstock_otc-elec.png" alt="OTC Electronic">
+                  </div>
+                  <div class="card">
+                      <h2>OTC Semi (櫃買半導體)</h2>
+                      <img src="twstock_otc-semi.png" alt="OTC Semi">
+                  </div>
+                  <div class="card">
+                      <h2>OTC Construction (櫃買營建)</h2>
+                      <img src="twstock_otc-construction.png" alt="OTC Construction">
+                  </div>
+              </div>
+
+              <p class="source">Data: <a href="https://www.nstock.tw">nStock.tw</a></p>
+              <script>document.getElementById('time').textContent = new Date().toLocaleString('zh-TW');</script>
+          </body>
+          </html>
+          EOF
+          echo "✅ HTML viewer created"
+      
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Add all generated files (using wildcard for pngs)
+          git add twstock*.png twstock_index.html api/twstock_top_losers.json
+          
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update Taiwan stock heatmaps $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git push
+            echo "✅ Changes committed and pushed"
+          fi
+      
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+          exclude_assets: '.github,skills/**/*.py,README.md'
+      
+      - name: Summary
+        run: |
+          echo "## 📊 Taiwan Stock Heatmap Update Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Generated Files:" >> $GITHUB_STEP_SUMMARY
+          echo "- \`twstock.png\` - Listed Stocks Heatmap" >> $GITHUB_STEP_SUMMARY
+          echo "- \`twstock_otc-elec.png\` - OTC Electronic Heatmap" >> $GITHUB_STEP_SUMMARY
+          echo "- \`twstock_otc-semi.png\` - OTC Semiconductor Heatmap" >> $GITHUB_STEP_SUMMARY
+          echo "- \`twstock_otc-construction.png\` - OTC Construction Heatmap" >> $GITHUB_STEP_SUMMARY
+          echo "- \`api/twstock_top_losers.json\` - API data" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Top 5 Losers by Industry:" >> $GITHUB_STEP_SUMMARY
+          python -c "
+import json, sys
+try:
+    with open('api/twstock_top_losers.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    
+    industries = data.get('data', {})
+    industry_names = {
+        'all': '📈 Listed Stocks (上市)',
+        'otc-elec': '🔌 OTC Electronic (櫃買電子)',
+        'otc-semi': '💎 OTC Semiconductor (櫃買半導體)',
+        'otc-construction': '🏗️ OTC Construction (櫃買營建)'
+    }
+    
+    for key, name in industry_names.items():
+        if key in industries:
+            print(f'\n#### {name}')
+            losers = industries[key][:5]
+            for i, stock in enumerate(losers, 1):
+                ticker = stock.get('ticker', 'N/A')
+                name = stock.get('name', 'N/A')
+                change = stock.get('change', 'N/A')
+                print(f'{i}. **{ticker}** {name}: {change}')
+except Exception as e:
+    print(f'Error parsing API data: {e}', file=sys.stderr)
+" >> $GITHUB_STEP_SUMMARY

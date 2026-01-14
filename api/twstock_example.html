@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台股跌幅排行 API Demo - nStock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        .stock-list {
+            list-style: none;
+        }
+
+        .stock-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid #ff6b6b;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stock-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .stock-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .rank {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .stock-ticker {
+            font-weight: bold;
+            font-size: 1.3em;
+            color: #4ecdc4;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+
+        .stock-name {
+            color: #aaa;
+            font-size: 0.95em;
+        }
+
+        .stock-change {
+            font-size: 1.4em;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 1.2em;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #4ecdc4;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .meta-label {
+            font-weight: bold;
+            color: #aaa;
+        }
+
+        .error {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .api-url {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.85em;
+            color: #4ecdc4;
+            word-break: break-all;
+            margin-top: 15px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #4ecdc4, #44b3aa);
+            color: #1a1a2e;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(78, 205, 196, 0.3);
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.2);
+            color: #4ecdc4;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .stock-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .stock-change {
+                align-self: flex-end;
+            }
+            
+            .meta-info {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <span class="header-badge">Taiwan Stock Market</span>
+            <h1>台股今日跌幅排行</h1>
+            <p class="subtitle">即時資料來自 nStock.tw 市場熱力圖</p>
+
+            <div id="content">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    載入中...
+                </div>
+            </div>
+
+            <button class="btn" onclick="loadData()">刷新資料</button>
+
+            <div class="api-url">
+                <strong>API 端點:</strong><br>
+                <span id="api-url">loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dynamically detect GitHub Pages URL
+        const getApiUrl = () => {
+            const baseUrl = window.location.origin + window.location.pathname.replace('/api/twstock_example.html', '');
+            return `${baseUrl}/api/twstock_top_losers.json`;
+        };
+
+        const loadData = async () => {
+            const contentDiv = document.getElementById('content');
+            const apiUrlSpan = document.getElementById('api-url');
+
+            const apiUrl = getApiUrl();
+            apiUrlSpan.textContent = apiUrl;
+
+            try {
+                contentDiv.innerHTML = `
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        載入中...
+                    </div>
+                `;
+
+                const response = await fetch(apiUrl);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                const data = result.data || result;
+                
+                // Helper function to render a list
+                const renderList = (title, items) => {
+                    if (!items || items.length === 0) return '';
+                    
+                    let html = `<h2 style="margin-top:20px; color:#4ecdc4; border-bottom:1px solid #333; padding-bottom:10px;">${title}</h2>`;
+                    html += '<ul class="stock-list">';
+                    
+                    items.forEach((stock, index) => {
+                        const name = stock.name ? `<span class="stock-name">${stock.name}</span>` : '';
+                        html += `
+                            <li class="stock-item">
+                                <div class="stock-info">
+                                    <span class="rank">${index + 1}</span>
+                                    <div>
+                                        <span class="stock-ticker">${stock.ticker || ''}</span>
+                                        ${name}
+                                    </div>
+                                </div>
+                                <span class="stock-change">${stock.change}</span>
+                            </li>
+                        `;
+                    });
+                    
+                    html += '</ul>';
+                    return html;
+                };
+
+                let content = '';
+                
+                // Render different sections
+                if (data.all) content += renderList('上市總覽 (Listed)', data.all);
+                if (data['otc-elec']) content += renderList('櫃買電子 (OTC Elec)', data['otc-elec']);
+                if (data['otc-semi']) content += renderList('櫃買半導體 (OTC Semi)', data['otc-semi']);
+                
+                // Fallback for old format
+                if (data.top_losers) content += renderList('跌幅排行', data.top_losers);
+
+                // Add metadata
+                content += `
+                    <div class="meta-info">
+                        <div>
+                            <span class="meta-label">市場:</span> ${data.market === 'taiwan' ? '台灣股市' : data.market || '台灣'}
+                        </div>
+                        <div>
+                            <span class="meta-label">資料來源:</span> ${data.source || 'nstock'}
+                        </div>
+                        <div>
+                            <span class="meta-label">更新時間:</span> ${new Date(data.generated_at).toLocaleString('zh-TW')}
+                        </div>
+                    </div>
+                `;
+
+                contentDiv.innerHTML = content;
+
+            } catch (error) {
+                contentDiv.innerHTML = `
+                    <div class="error">
+                        <strong>載入失敗</strong><br>
+                        ${error.message}<br>
+                        <small>請檢查 API 端點是否正確，或稍後再試。</small>
+                    </div>
+                `;
+                console.error('Error loading data:', error);
+            }
+        };
+
+        // Load data on page load
+        loadData();
+
+        // Auto-refresh every 5 minutes
+        setInterval(loadData, 5 * 60 * 1000);
+    </script>
+</body>
+</html>
