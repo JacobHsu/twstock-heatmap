@@ -18,6 +18,10 @@ on:
 env:
   PYTHON_VERSION: '3.11'
 
+permissions:
+  contents: write  # 允許提交和推送
+  models: read     # 允許訪問 GitHub Models API
+
 jobs:
   generate-heatmap:
     runs-on: ubuntu-latest
@@ -44,45 +48,36 @@ jobs:
       - name: Capture Taiwan Stock Heatmaps
         if: ${{ github.event.inputs.skip_capture != 'true' }}
         run: |
-          echo "📊 Capturing nStock.tw heatmaps..."
+          echo "📊 Capturing all 12 nStock.tw heatmaps..."
+          echo "Output directory: heatmaps/"
+          echo ""
           
-          # 1. All Listed Stocks (Default)
-          echo "  - Capturing Listed Stocks..."
-          python skills/twstock-heatmap/scripts/capture_twstock.py -t all --no-html
+          # Use the simplified 'all' mode to capture all categories
+          python skills/twstock-heatmap/scripts/capture_twstock.py
           
-          # 2. OTC Electronic Components
-          echo "  - Capturing OTC Electronic Components..."
-          python skills/twstock-heatmap/scripts/capture_twstock.py -t otc-elec --no-html
-          
-          # 3. OTC Semiconductors
-          echo "  - Capturing OTC Semiconductors..."
-          python skills/twstock-heatmap/scripts/capture_twstock.py -t otc-semi --no-html
-          
-          # 4. OTC Construction
-          echo "  - Capturing OTC Construction..."
-          python skills/twstock-heatmap/scripts/capture_twstock.py -t otc-construction --no-html
-          
-          # Verify screenshots
-          ls -la twstock*.png
+          # Verify screenshots in heatmaps directory
+          echo ""
+          echo "Verifying captured heatmaps:"
+          ls -lh heatmaps/*.png
       
       - name: Analyze Heatmaps with AI
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "🤖 Analyzing heatmaps with GitHub Models API..."
+          echo "Using auto-scan mode with automatic 10s delay between API calls"
+          echo ""
           
-          python skills/twstock-heatmap/scripts/analyze_twstock.py \
-            -i all:twstock.png \
-               otc-elec:twstock_otc-elec.png \
-               otc-semi:twstock_otc-semi.png \
-               otc-construction:twstock_otc-construction.png \
-            -o api/twstock_top_losers.json
+          # Use --auto mode to automatically scan all heatmaps
+          # The script will automatically add 10s delays between API calls to avoid rate limits
+          python skills/twstock-heatmap/scripts/analyze_twstock.py --auto
           
           # Verify JSON was created
           if [ -f "api/twstock_top_losers.json" ]; then
+            echo ""
             echo "✅ Analysis complete"
             echo "📄 API Response Preview:"
-            head -n 20 api/twstock_top_losers.json
+            head -n 30 api/twstock_top_losers.json
           else
             echo "❌ Analysis failed"
             exit 1
@@ -129,8 +124,12 @@ jobs:
               
               <div class="grid">
                   <div class="card">
-                      <h2>Listed Stocks (上市)</h2>
-                      <img src="twstock.png" alt="Listed Stocks">
+                      <h2>TSE Overview (上市總覽)</h2>
+                      <img src="twstock.png" alt="TSE Overview">
+                  </div>
+                  <div class="card">
+                      <h2>OTC Overview (上櫃總覽)</h2>
+                      <img src="twstock_otc.png" alt="OTC Overview">
                   </div>
                   <div class="card">
                       <h2>OTC Electronic (櫃買電子)</h2>
@@ -143,6 +142,18 @@ jobs:
                   <div class="card">
                       <h2>OTC Construction (櫃買營建)</h2>
                       <img src="twstock_otc-construction.png" alt="OTC Construction">
+                  </div>
+                  <div class="card">
+                      <h2>TSE Green Energy (上市綠能環保)</h2>
+                      <img src="twstock_tse-green.png" alt="TSE Green Energy">
+                  </div>
+                  <div class="card">
+                      <h2>OTC Tourism (上櫃觀光)</h2>
+                      <img src="twstock_otc-tourism.png" alt="OTC Tourism">
+                  </div>
+                  <div class="card">
+                      <h2>OTC Green Energy (上櫃綠能環保)</h2>
+                      <img src="twstock_otc-green.png" alt="OTC Green Energy">
                   </div>
               </div>
 
@@ -183,10 +194,14 @@ jobs:
           echo "## 📊 Taiwan Stock Heatmap Update Complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Generated Files:" >> $GITHUB_STEP_SUMMARY
-          echo "- \`twstock.png\` - Listed Stocks Heatmap" >> $GITHUB_STEP_SUMMARY
+          echo "- \`twstock.png\` - TSE Overview Heatmap" >> $GITHUB_STEP_SUMMARY
+          echo "- \`twstock_otc.png\` - OTC Overview Heatmap" >> $GITHUB_STEP_SUMMARY
           echo "- \`twstock_otc-elec.png\` - OTC Electronic Heatmap" >> $GITHUB_STEP_SUMMARY
           echo "- \`twstock_otc-semi.png\` - OTC Semiconductor Heatmap" >> $GITHUB_STEP_SUMMARY
           echo "- \`twstock_otc-construction.png\` - OTC Construction Heatmap" >> $GITHUB_STEP_SUMMARY
+          echo "- \`twstock_tse-green.png\` - TSE Green Energy Heatmap" >> $GITHUB_STEP_SUMMARY
+          echo "- \`twstock_otc-tourism.png\` - OTC Tourism Heatmap" >> $GITHUB_STEP_SUMMARY
+          echo "- \`twstock_otc-green.png\` - OTC Green Energy Heatmap" >> $GITHUB_STEP_SUMMARY
           echo "- \`api/twstock_top_losers.json\` - API data" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Top 5 Losers by Industry:" >> $GITHUB_STEP_SUMMARY
@@ -198,10 +213,14 @@ try:
     
     industries = data.get('data', {})
     industry_names = {
-        'all': '📈 Listed Stocks (上市)',
+        'tse': '📈 TSE Overview (上市總覽)',
+        'otc': '📊 OTC Overview (上櫃總覽)',
         'otc-elec': '🔌 OTC Electronic (櫃買電子)',
         'otc-semi': '💎 OTC Semiconductor (櫃買半導體)',
-        'otc-construction': '🏗️ OTC Construction (櫃買營建)'
+        'otc-construction': '🏗️ OTC Construction (櫃買營建)',
+        'tse-green': '🌱 TSE Green Energy (上市綠能環保)',
+        'otc-tourism': '✈️ OTC Tourism (上櫃觀光)',
+        'otc-green': '♻️ OTC Green Energy (上櫃綠能環保)'
     }
     
     for key, name in industry_names.items():

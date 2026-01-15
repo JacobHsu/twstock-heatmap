@@ -225,12 +225,23 @@ def main():
     )
     # Allow multiple inputs in format "type:path"
     # Example: -i all:twstock.png otc-elec:twstock_otc_elec.png
+    # Or use --auto to automatically scan heatmaps/ directory
     parser.add_argument(
         "-i",
         "--inputs",
         nargs="+",
-        help="Input images in format 'type:path' (e.g. all:twstock.png)",
-        required=True,
+        help="Input images in format 'type:path' (e.g. tse:heatmaps/twstock.png)",
+        required=False,
+    )
+    parser.add_argument(
+        "--auto",
+        action="store_true",
+        help="Automatically scan and analyze all PNGs in heatmaps/ directory",
+    )
+    parser.add_argument(
+        "--batch",
+        choices=["tse", "otc"],
+        help="Batch mode: analyze only TSE or OTC categories (useful to avoid API rate limits)",
     )
     parser.add_argument(
         "-o", "--output", default="api/twstock_top_losers.json", help="Output JSON path"
@@ -238,6 +249,14 @@ def main():
     parser.add_argument("--token", help="GitHub Models API token")
 
     args = parser.parse_args()
+    
+    # Validate arguments
+    if not args.inputs and not args.auto:
+        print("Error: Either --inputs or --auto must be specified")
+        print("Examples:")
+        print("  Auto mode:   python analyze_twstock.py --auto")
+        print("  Manual mode: python analyze_twstock.py -i tse:heatmaps/twstock.png")
+        sys.exit(1)
 
     # Get API token (priority: --token argument > environment variable)
     api_token = args.token or os.environ.get("GITHUB_TOKEN")
@@ -246,10 +265,63 @@ def main():
         sys.exit(1)
 
     script_dir = Path(__file__).parent.parent.parent.parent
+    heatmaps_dir = script_dir / "heatmaps"
     results = {}
+    
+    # Auto-scan mode: detect all PNGs in heatmaps/ directory
+    if args.auto:
+        print("🔍 Auto-scanning heatmaps directory...", flush=True)
+        
+        if not heatmaps_dir.exists():
+            print(f"Error: Heatmaps directory not found: {heatmaps_dir}")
+            sys.exit(1)
+        
+        # Find all PNG files
+        png_files = list(heatmaps_dir.glob("*.png"))
+        
+        if not png_files:
+            print(f"Error: No PNG files found in {heatmaps_dir}")
+            sys.exit(1)
+        
+        # Category to market mapping
+        category_market = {
+            'tse': 'tse', 'otc': 'otc',
+            'tse-semi': 'tse', 'tse-elec': 'tse', 'tse-computer': 'tse', 'tse-plastic': 'tse', 'tse-green': 'tse',
+            'otc-elec': 'otc', 'otc-semi': 'otc', 'otc-construction': 'otc', 'otc-tourism': 'otc', 'otc-green': 'otc'
+        }
+        
+        print(f"Found {len(png_files)} heatmap(s):", flush=True)
+        
+        # Auto-detect category from filename
+        inputs_list = []
+        for png_file in sorted(png_files):
+            filename = png_file.name
+            
+            # Detect category from filename
+            if filename == "twstock.png":
+                category = "tse"
+            elif filename.startswith("twstock_"):
+                # Extract category from filename (e.g., twstock_otc.png -> otc)
+                category = filename.replace("twstock_", "").replace(".png", "")
+            else:
+                category = filename.replace(".png", "")
+            
+            # Filter by batch if specified
+            if args.batch:
+                market = category_market.get(category)
+                if market != args.batch:
+                    continue
+            
+            inputs_list.append(f"{category}:{png_file}")
+            print(f"  - {category}: {png_file.name}", flush=True)
+        
+        # Use detected inputs
+        args.inputs = inputs_list
+        print()
 
     # Process each input image
-    for input_arg in args.inputs:
+    total_inputs = len(args.inputs)
+    for idx, input_arg in enumerate(args.inputs, 1):
         try:
             if ":" in input_arg:
                 industry_type, filename = input_arg.split(":", 1)
@@ -258,19 +330,33 @@ def main():
                 filename = input_arg
 
             image_path = script_dir / filename
+            
+            # If path doesn't exist, try as absolute path
+            if not image_path.exists():
+                image_path = Path(filename)
 
             if not image_path.exists():
-                print(f"Warning: Image not found: {image_path}")
+                print(f"Warning: Image not found: {filename}")
                 continue
 
+            print(f"Analyzing {industry_type} from {image_path.name}...", flush=True)
+            
             # Analyze image with stock mapping
             analysis = analyze_single_image(
                 str(image_path), api_token, industry_type, stock_mapping
             )
             results[industry_type] = analysis["top_losers"]
+            
+            # Add delay between API calls to avoid rate limits (except for last one)
+            if idx < total_inputs:
+                import time
+                delay_seconds = 10
+                print(f"⏳ Waiting {delay_seconds}s before next analysis to avoid API rate limits...", flush=True)
+                time.sleep(delay_seconds)
 
         except Exception as e:
-            print(f"Failed to process {input_arg}: {e}")
+            print(f"Error analyzing {industry_type}: {e}", flush=True)
+            results[industry_type] = []
 
     # Save combined results
     output_path = script_dir / args.output

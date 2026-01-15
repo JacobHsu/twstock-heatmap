@@ -79,37 +79,98 @@ cp .env.example .env
 
 ## 📖 使用方式
 
-### 1. 擷取熱力圖
+### 完整流程（本地端執行）
 
+**步驟 1：擷取所有熱力圖**
 ```bash
 python skills/twstock-heatmap/scripts/capture_twstock.py
 ```
 
-**輸出**：
-- `twstock.png` - 熱力圖截圖
-- `index.html` - 本地檢視器
+這會自動擷取所有 8 個類別並儲存到 `heatmaps/` 資料夾：
+- 📈 TSE Overview (上市總覽)
+- 📊 OTC Overview (上櫃總覽)
+- 🔌 OTC Electronic (櫃買電子)
+- 💎 OTC Semiconductor (櫃買半導體)
+- 🏗️ OTC Construction (櫃買營建)
+- 🌱 TSE Green Energy (上市綠能環保)
+- ✈️ OTC Tourism (上櫃觀光)
+- ♻️ OTC Green Energy (上櫃綠能環保)
 
-### 2. AI 分析（生成 API）
+**執行結果**：
+```
+📊 Capturing all 8 heatmap categories...
+Output directory: D:\15-stock\twstock-heatmap\heatmaps
 
-```bash
-python skills/twstock-heatmap/scripts/analyze_twstock.py -i all:twstock.png
+============================================================
+[1/8] Capturing: tse
+============================================================
+...
+✅ Successfully captured tse
+
+============================================================
+📊 SUMMARY
+============================================================
+✅ Successful: 8/8
+⏱️  Total time: 3m 25s
+
+🎉 All heatmaps captured successfully!
 ```
 
-**輸出**：
-- `api/twstock_top_losers.json` - 包含 ticker 的 JSON API
+**步驟 2：AI 分析生成 API**
+```bash
+python skills/twstock-heatmap/scripts/analyze_twstock.py --auto
+```
+
+使用 `--auto` 模式會自動掃描 `heatmaps/` 資料夾並分析所有 PNG：
+
+```
+🔍 Auto-scanning heatmaps directory...
+Found 8 heatmap(s):
+  - tse: twstock.png
+  - otc: twstock_otc.png
+  - otc-elec: twstock_otc-elec.png
+  ...
+
+Analyzing tse from heatmaps/twstock.png...
+✓ Loaded 1,971 stock mappings from StockMapping.csv
+...
+
+JSON API saved: api/twstock_top_losers.json
+Analysis complete!
+```
+
+**輸出檔案**：
+- `heatmaps/*.png` - 8 個熱力圖截圖
+- `api/twstock_top_losers.json` - 包含所有類別的 JSON API
+- `index.html` - 本地檢視器
+
+---
 
 ### 進階用法
 
+**只擷取特定類別**：
 ```bash
-# 分析多個產業
-python skills/twstock-heatmap/scripts/analyze_twstock.py \
-  -i all:twstock.png \
-     otc-elec:twstock_otc-elec.png \
-     otc-semi:twstock_otc-semi.png
+# 只擷取上市總覽
+python skills/twstock-heatmap/scripts/capture_twstock.py -t tse
 
-# 自訂輸出路徑
+# 只擷取上櫃總覽
+python skills/twstock-heatmap/scripts/capture_twstock.py -t otc
+
+# 只擷取特定產業
+python skills/twstock-heatmap/scripts/capture_twstock.py -t tse-green
+```
+
+**手動指定要分析的檔案**：
+```bash
 python skills/twstock-heatmap/scripts/analyze_twstock.py \
-  -i all:twstock.png \
+  -i tse:heatmaps/twstock.png \
+     otc:heatmaps/twstock_otc.png
+```
+
+**自訂輸出路徑**：
+```bash
+python skills/twstock-heatmap/scripts/analyze_twstock.py \
+  --auto \
   -o custom/output.json
 ```
 

@@ -11,6 +11,7 @@ import time
 import os
 import io
 from pathlib import Path
+import time
 
 # Fix Windows console encoding issues
 if sys.platform == "win32":
@@ -102,25 +103,34 @@ def capture_twstock_heatmap(map_type="all", output_path="twstock.png", headless=
     from PIL import Image
     import io as iolib
 
-    # nStock heatmap URL base
-    # t1=1: listed stocks
+    # nStock heatmap URL configuration
+    # t1: 0=TSE (上市), 1=OTC (上櫃)
     # t2=0: otc filter
     # t3=0: additional filter
     # t4=1: display mode
     # t5=0: additional option
-    base_url = "https://www.nstock.tw/market_index/heatmap?t1=1&t2=0&t3=0&t4=1&t5=0&"
-
-    # Industry map parameters
+    # iid: industry ID
+    
+    # Industry map parameters: (t1_value, iid_value)
     industry_params = {
-        "all": "iid&nh=0",  # 上市總覽 (Default)
-        "otc-elec": "iid=28&nh=0",  # 櫃買電子組件
-        "otc-semi": "iid=24&nh=0",  # 櫃買半導體
-        "otc-construction": "iid=14&nh=0",  # 櫃買營建
+        "tse": (0, ""),  # 上市總覽 (Default)
+        "otc": (1, ""),  # 上櫃總覽
+        "tse-semi": (0, "24"),  # 上市半導體
+        "tse-elec": (0, "28"),  # 上市電子組件
+        "tse-computer": (0, "25"),  # 上市電腦週邊
+        "tse-plastic": (0, "3"),  # 上市塑膠
+        "otc-elec": (1, "28"),  # 上櫃電子組件
+        "otc-semi": (1, "24"),  # 上櫃半導體
+        "otc-construction": (1, "14"),  # 上櫃營建
+        "tse-green": (0, "35"),  # 上市綠能環保
+        "otc-tourism": (1, "16"),  # 上櫃觀光
+        "otc-green": (1, "35"),  # 上櫃綠能環保
     }
 
     # Construct full URL
-    params = industry_params.get(map_type, industry_params["all"])
-    url = f"{base_url}{params}"
+    t1_value, iid_value = industry_params.get(map_type, industry_params["tse"])
+    iid_param = f"iid={iid_value}" if iid_value else "iid"
+    url = f"https://www.nstock.tw/market_index/heatmap?t1={t1_value}&t2=0&t3=0&t4=1&t5=0&{iid_param}&nh=0"
 
     print(f"Taiwan Stock Heatmap Screenshot (Playwright)")
     print(f"Type: {map_type}")
@@ -380,8 +390,8 @@ def main():
         "-t",
         "--type",
         default="all",
-        choices=["all", "otc-elec", "otc-semi", "otc-construction"],
-        help="Industry type (all, otc-elec, otc-semi, otc-construction)",
+        choices=["all", "tse", "otc", "tse-semi", "tse-elec", "tse-computer", "tse-plastic", "otc-elec", "otc-semi", "otc-construction", "tse-green", "otc-tourism", "otc-green"],
+        help="Industry type (default: all - captures all categories)",
     )
     parser.add_argument(
         "--no-html",
@@ -402,25 +412,86 @@ def main():
 
     args = parser.parse_args()
 
-    # Output paths - root directory
+    # Output paths - heatmaps directory
     script_dir = Path(__file__).parent.parent.parent.parent
+    heatmaps_dir = script_dir / "heatmaps"
+    
+    # Create heatmaps directory if it doesn't exist
+    heatmaps_dir.mkdir(exist_ok=True)
 
+    # If 'all' is specified, capture all categories
+    if args.type == "all":
+        all_categories = ["tse", "otc", "tse-semi", "tse-elec", "tse-computer", "tse-plastic", "otc-elec", "otc-semi", "otc-construction", "tse-green", "otc-tourism", "otc-green"]
+        
+        print(f"📊 Capturing all {len(all_categories)} heatmap categories...", flush=True)
+        print(f"Output directory: {heatmaps_dir}\n", flush=True)
+        
+        start_time = time.time()
+        headless = not args.no_headless
+        failed_categories = []
+        
+        for i, category in enumerate(all_categories, 1):
+            print(f"\n{'='*60}", flush=True)
+            print(f"[{i}/{len(all_categories)}] Capturing: {category}", flush=True)
+            print(f"{'='*60}", flush=True)
+            
+            # Determine filename
+            png_filename = f"twstock_{category}.png" if category not in ["tse"] else "twstock.png"
+            png_path = heatmaps_dir / png_filename
+            
+            # Capture heatmap
+            success = capture_twstock_heatmap(category, str(png_path), headless=headless)
+            
+            if not success:
+                print(f"❌ Failed to capture {category}", flush=True)
+                failed_categories.append(category)
+            else:
+                print(f"✅ Successfully captured {category}", flush=True)
+        
+        # Summary
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        minutes = int(elapsed_time // 60)
+        seconds = int(elapsed_time % 60)
+        
+        print(f"\n{'='*60}", flush=True)
+        print(f"📊 SUMMARY", flush=True)
+        print(f"{'='*60}", flush=True)
+        print(f"✅ Successful: {len(all_categories) - len(failed_categories)}/{len(all_categories)}", flush=True)
+        if failed_categories:
+            print(f"❌ Failed: {', '.join(failed_categories)}", flush=True)
+        print(f"⏱️  Total time: {minutes}m {seconds}s", flush=True)
+        
+        # Create main HTML viewer if not disabled
+        if not args.no_html:
+            print(f"\n📄 Creating HTML viewer...", flush=True)
+            html_path = script_dir / "index.html"
+            create_html(str(html_path), "twstock.png")
+            print(f"HTML: {html_path}", flush=True)
+        
+        if failed_categories:
+            sys.exit(1)
+        else:
+            print(f"\n🎉 All heatmaps captured successfully!", flush=True)
+            sys.exit(0)
+    
+    # Single category capture (original behavior)
     # Determine filename
     if args.output:
         png_filename = args.output
     else:
         png_filename = (
-            f"twstock_{args.type}.png" if args.type != "all" else "twstock.png"
+            f"twstock_{args.type}.png" if args.type not in ["tse", "all"] else "twstock.png"
         )
 
-    png_path = script_dir / png_filename
+    png_path = heatmaps_dir / png_filename
     html_path = (
         script_dir / f"twstock_{args.type}.html"
-        if args.type != "all"
+        if args.type not in ["tse", "all"]
         else script_dir / "index.html"
     )
 
-    print(f"Output directory: {script_dir}\n")
+    print(f"Output directory: {heatmaps_dir}\n")
 
     # Capture heatmap screenshot
     headless = not args.no_headless
@@ -442,6 +513,7 @@ def main():
         print(f"\nOpen {html_path} in your browser to view the heatmap.")
 
     sys.exit(0)
+
 
 
 if __name__ == "__main__":

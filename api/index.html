@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台股跌幅排行 - Taiwan Stock Top Losers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', 'Noto Sans TC', -apple-system, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #8B2635 0%, #A52A2A 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .header .subtitle {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        /* Market Toggle */
+        .market-toggle {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .toggle-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .toggle-btn {
+            padding: 10px 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+        .toggle-btn:hover {
+            border-color: #A52A2A;
+            color: #A52A2A;
+        }
+
+        .toggle-btn.active {
+            background: #A52A2A;
+            border-color: #A52A2A;
+            color: white;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stat-label {
+            font-weight: 600;
+        }
+
+        .stat-value {
+            color: #A52A2A;
+            font-weight: bold;
+        }
+
+        /* Market Section */
+        .market-section {
+            margin-bottom: 30px;
+        }
+
+        .market-section.hidden {
+            display: none;
+        }
+
+        .market-header {
+            background: white;
+            border-radius: 8px 8px 0 0;
+            padding: 15px 20px;
+            border-bottom: 2px solid #f0f0f0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .market-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #A52A2A;
+        }
+
+        /* Category Grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0;
+            background: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .category-section {
+            border-right: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .category-section:nth-child(6n) {
+            border-right: none;
+        }
+
+        .category-header {
+            background: #fafafa;
+            padding: 12px 15px;
+            border-bottom: 2px solid #e0e0e0;
+            font-weight: 600;
+            font-size: 0.95em;
+            color: #555;
+            cursor: help;
+            position: relative;
+            transition: background 0.2s;
+        }
+
+        .category-header:hover {
+            background: #f0f0f0;
+        }
+
+        /* Tooltip */
+        .category-header .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: fixed;
+            z-index: 1000;
+            background: white;
+            border: 2px solid #A52A2A;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: opacity 0.3s, visibility 0.3s;
+            pointer-events: none;
+            min-width: 400px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow: auto;
+        }
+
+        .category-header:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .tooltip img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .tooltip-title {
+            font-size: 0.9em;
+            color: #A52A2A;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        /* Stock List */
+        .stock-list {
+            list-style: none;
+        }
+
+        .stock-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid #f5f5f5;
+            transition: background 0.2s;
+        }
+
+        .stock-item:last-child {
+            border-bottom: none;
+        }
+
+        .stock-item:hover {
+            background: #f9f9f9;
+        }
+
+        .stock-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stock-ticker {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #f0f0f0;
+            border: 1px solid #e0e0e0;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #555;
+            transition: all 0.2s;
+        }
+
+        .stock-ticker-link {
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .stock-ticker-link:hover .stock-ticker {
+            background: #4ecdc4;
+            border-color: #4ecdc4;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(78, 205, 196, 0.3);
+        }
+
+        .stock-name {
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        .stock-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .stock-change {
+            font-size: 0.9em;
+            color: #00a854;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+
+        .stock-price {
+            background: #00a854;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .spinner {
+            border: 3px solid #f0f0f0;
+            border-top: 3px solid #A52A2A;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .footer-label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .api-link {
+            color: #A52A2A;
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+        }
+
+        .api-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Error */
+        .error {
+            background: #fff3f3;
+            border: 1px solid #ffcdd2;
+            border-left: 4px solid #f44336;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px;
+            color: #d32f2f;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .category-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .category-section:nth-child(6n) {
+                border-right: 1px solid #f0f0f0;
+            }
+            
+            .category-section:nth-child(4n) {
+                border-right: none;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .category-section:nth-child(4n) {
+                border-right: 1px solid #f0f0f0;
+            }
+            
+            .category-section:nth-child(3n) {
+                border-right: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .category-section {
+                border-right: 1px solid #f0f0f0;
+            }
+            
+            .category-section:nth-child(3n) {
+                border-right: 1px solid #f0f0f0;
+            }
+            
+            .category-section:nth-child(2n) {
+                border-right: none;
+            }
+
+            .market-toggle {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-section {
+                border-right: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <h1>台股跌幅排行</h1>
+            <p class="subtitle">Taiwan Stock Market Top Losers - 即時資料來自 nStock.tw</p>
+        </div>
+    </div>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Market Toggle -->
+        <div class="market-toggle">
+            <div class="toggle-buttons">
+                <button class="toggle-btn active" onclick="showMarket('all')">全部顯示</button>
+                <button class="toggle-btn" onclick="showMarket('tse')">上市 TSE</button>
+                <button class="toggle-btn" onclick="showMarket('otc')">上櫃 OTC</button>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-label">分析類別:</span>
+                    <span class="stat-value" id="category-count">-</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">追蹤股票:</span>
+                    <span class="stat-value" id="stock-count">-</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">更新:</span>
+                    <span class="stat-value" id="update-time">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div id="content">
+            <div class="loading">
+                <div class="spinner"></div>
+                載入資料中...
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div>資料來源：nStock.tw 市場熱力圖 AI 分析</div>
+            <div class="footer-info">
+                <div>
+                    <span class="footer-label">API:</span>
+                    <a href="#" class="api-link" id="api-url">loading...</a>
+                </div>
+                <div>
+                    <span class="footer-label">版本:</span>
+                    <span id="api-version">-</span>
+                </div>
+                <div>
+                    <span class="footer-label">狀態:</span>
+                    <span id="api-status">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Category display names and icons
+        const categoryInfo = {
+            'tse': { name: '上市總覽', market: 'tse', order: 1, image: 'twstock.png' },
+            'otc': { name: '上櫃總覽', market: 'otc', order: 1, image: 'twstock_otc.png' },
+            'tse-semi': { name: '上市半導體', market: 'tse', order: 2, image: 'twstock_tse-semi.png' },
+            'tse-elec': { name: '上市電子組件', market: 'tse', order: 3, image: 'twstock_tse-elec.png' },
+            'tse-computer': { name: '上市電腦週邊', market: 'tse', order: 4, image: 'twstock_tse-computer.png' },
+            'tse-plastic': { name: '上市塑膠', market: 'tse', order: 5, image: 'twstock_tse-plastic.png' },
+            'otc-elec': { name: '上櫃電子', market: 'otc', order: 2, image: 'twstock_otc-elec.png' },
+            'otc-semi': { name: '上櫃半導體', market: 'otc', order: 3, image: 'twstock_otc-semi.png' },
+            'otc-construction': { name: '上櫃營建', market: 'otc', order: 4, image: 'twstock_otc-construction.png' },
+            'tse-green': { name: '上市綠能環保', market: 'tse', order: 6, image: 'twstock_tse-green.png' },
+            'otc-tourism': { name: '上櫃觀光', market: 'otc', order: 5, image: 'twstock_otc-tourism.png' },
+            'otc-green': { name: '上櫃綠能環保', market: 'otc', order: 6, image: 'twstock_otc-green.png' }
+        };
+
+        let allData = {};
+        let currentMarket = 'all';
+
+        // Get API URL
+        const getApiUrl = () => {
+            const baseUrl = window.location.origin + window.location.pathname.replace('/api/index.html', '');
+            return `${baseUrl}/api/twstock_top_losers.json`;
+        };
+
+        // Show market
+        const showMarket = (market) => {
+            currentMarket = market;
+            
+            // Update buttons
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Show/hide sections
+            document.querySelectorAll('.market-section').forEach(section => {
+                const sectionMarket = section.dataset.market;
+                if (market === 'all' || market === sectionMarket) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+        };
+
+        // Render stock list
+        const renderStockList = (stocks) => {
+            if (!stocks || stocks.length === 0) {
+                return '<div class="loading">暫無資料</div>';
+            }
+
+            let html = '<ul class="stock-list">';
+            
+            stocks.forEach((stock) => {
+                const ticker = stock.ticker || 'N/A';
+                const name = stock.name || '';
+                const change = stock.change || 'N/A';
+                
+                // Create Yahoo Finance link
+                const yahooUrl = `https://tw.stock.yahoo.com/quote/${ticker}.TW/technical-analysis`;
+                
+                html += `
+                    <li class="stock-item">
+                        <div class="stock-left">
+                            <a href="${yahooUrl}" target="_blank" class="stock-ticker-link">
+                                <span class="stock-ticker">${ticker}</span>
+                            </a>
+                            <span class="stock-name">${name}</span>
+                        </div>
+                        <div class="stock-right">
+                            <div class="stock-change">${change}</div>
+                        </div>
+                    </li>
+                `;
+            });
+            
+            html += '</ul>';
+            return html;
+        };
+
+        // Load data
+        const loadData = async () => {
+            const contentDiv = document.getElementById('content');
+            const apiUrlSpan = document.getElementById('api-url');
+
+            const apiUrl = getApiUrl();
+            apiUrlSpan.textContent = apiUrl;
+            apiUrlSpan.href = apiUrl;
+
+            try {
+                const response = await fetch(apiUrl);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                allData = result.data || result;
+                
+                // Group by market
+                const tseCategories = {};
+                const otcCategories = {};
+                let totalStocks = 0;
+                let categoryCount = 0;
+                
+                for (const [categoryKey, stocks] of Object.entries(allData)) {
+                    if (!stocks || !Array.isArray(stocks) || stocks.length === 0) continue;
+                    
+                    categoryCount++;
+                    totalStocks += stocks.length;
+                    
+                    const info = categoryInfo[categoryKey];
+                    if (info) {
+                        if (info.market === 'tse') {
+                            tseCategories[categoryKey] = { name: info.name, stocks, order: info.order, image: info.image };
+                        } else {
+                            otcCategories[categoryKey] = { name: info.name, stocks, order: info.order, image: info.image };
+                        }
+                    }
+                }
+                
+                // Sort categories by order (overview first)
+                const sortByOrder = (a, b) => a[1].order - b[1].order;
+                const sortedTse = Object.entries(tseCategories).sort(sortByOrder);
+                const sortedOtc = Object.entries(otcCategories).sort(sortByOrder);
+                
+                // Render sections
+                let html = '';
+                
+                // TSE Section
+                if (sortedTse.length > 0) {
+                    html += `
+                        <div class="market-section" data-market="tse">
+                            <div class="market-header">
+                                <div class="market-title">上市 (TSE)</div>
+                            </div>
+                            <div class="category-grid">
+                    `;
+                    
+                    for (const [key, data] of sortedTse) {
+                        const imagePath = `../heatmaps/${data.image}`;
+                        html += `
+                            <div class="category-section">
+                                <div class="category-header">
+                                    ${data.name}
+                                    <div class="tooltip">
+                                        <div class="tooltip-title">${data.name} 熱力圖</div>
+                                        <img src="${imagePath}" alt="${data.name}" loading="lazy">
+                                    </div>
+                                </div>
+                                ${renderStockList(data.stocks)}
+                            </div>
+                        `;
+                    }
+                    
+                    html += `
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                // OTC Section
+                if (sortedOtc.length > 0) {
+                    html += `
+                        <div class="market-section" data-market="otc">
+                            <div class="market-header">
+                                <div class="market-title">上櫃 (OTC)</div>
+                            </div>
+                            <div class="category-grid">
+                    `;
+                    
+                    for (const [key, data] of sortedOtc) {
+                        const imagePath = `../heatmaps/${data.image}`;
+                        html += `
+                            <div class="category-section">
+                                <div class="category-header">
+                                    ${data.name}
+                                    <div class="tooltip">
+                                        <div class="tooltip-title">${data.name} 熱力圖</div>
+                                        <img src="${imagePath}" alt="${data.name}" loading="lazy">
+                                    </div>
+                                </div>
+                                ${renderStockList(data.stocks)}
+                            </div>
+                        `;
+                    }
+                    
+                    html += `
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                contentDiv.innerHTML = html;
+
+                // Update stats
+                document.getElementById('category-count').textContent = categoryCount;
+                document.getElementById('stock-count').textContent = totalStocks;
+                
+                const updateTime = result.last_updated || result.generated_at;
+                if (updateTime) {
+                    const date = new Date(updateTime);
+                    document.getElementById('update-time').textContent = 
+                        `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+                }
+
+                // Update footer
+                document.getElementById('api-version').textContent = result.version || 'N/A';
+                document.getElementById('api-status').textContent = 
+                    result.status === 'success' ? '✅ 正常' : '❌ 異常';
+
+            } catch (error) {
+                contentDiv.innerHTML = `<div class="error">載入失敗: ${error.message}</div>`;
+                console.error('Error loading data:', error);
+            }
+        };
+
+        // Load data on page load
+        loadData();
+
+        // Auto-refresh every 1 hour
+        setInterval(loadData, 60 * 60 * 1000);
+        
+        // Tooltip positioning
+        document.addEventListener('mousemove', (e) => {
+            const hoveredHeader = e.target.closest('.category-header');
+            if (hoveredHeader) {
+                const tooltip = hoveredHeader.querySelector('.tooltip');
+                if (tooltip) {
+                    const rect = hoveredHeader.getBoundingClientRect();
+                    const tooltipRect = tooltip.getBoundingClientRect();
+                    
+                    // Position below the header by default
+                    let top = rect.bottom + 10;
+                    let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+                    
+                    // Adjust if tooltip goes off right edge
+                    if (left + tooltipRect.width > window.innerWidth - 20) {
+                        left = window.innerWidth - tooltipRect.width - 20;
+                    }
+                    
+                    // Adjust if tooltip goes off left edge
+                    if (left < 20) {
+                        left = 20;
+                    }
+                    
+                    // Adjust if tooltip goes off bottom edge
+                    if (top + tooltipRect.height > window.innerHeight - 20) {
+                        top = rect.top - tooltipRect.height - 10;
+                    }
+                    
+                    tooltip.style.top = `${top}px`;
+                    tooltip.style.left = `${left}px`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
