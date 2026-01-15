@@ -204,34 +204,5 @@ jobs:
           echo "- \`twstock_otc-green.png\` - OTC Green Energy Heatmap" >> $GITHUB_STEP_SUMMARY
           echo "- \`api/twstock_top_losers.json\` - API data" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Top 5 Losers by Industry:" >> $GITHUB_STEP_SUMMARY
-          python -c "
-import json, sys
-try:
-    with open('api/twstock_top_losers.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    
-    industries = data.get('data', {})
-    industry_names = {
-        'tse': '📈 TSE Overview (上市總覽)',
-        'otc': '📊 OTC Overview (上櫃總覽)',
-        'otc-elec': '🔌 OTC Electronic (櫃買電子)',
-        'otc-semi': '💎 OTC Semiconductor (櫃買半導體)',
-        'otc-construction': '🏗️ OTC Construction (櫃買營建)',
-        'tse-green': '🌱 TSE Green Energy (上市綠能環保)',
-        'otc-tourism': '✈️ OTC Tourism (上櫃觀光)',
-        'otc-green': '♻️ OTC Green Energy (上櫃綠能環保)'
-    }
-    
-    for key, name in industry_names.items():
-        if key in industries:
-            print(f'\n#### {name}')
-            losers = industries[key][:5]
-            for i, stock in enumerate(losers, 1):
-                ticker = stock.get('ticker', 'N/A')
-                name = stock.get('name', 'N/A')
-                change = stock.get('change', 'N/A')
-                print(f'{i}. **{ticker}** {name}: {change}')
-except Exception as e:
-    print(f'Error parsing API data: {e}', file=sys.stderr)
-" >> $GITHUB_STEP_SUMMARY
+          echo "### ✅ Workflow Complete" >> $GITHUB_STEP_SUMMARY
+          echo "All heatmaps captured and analyzed successfully." >> $GITHUB_STEP_SUMMARY
