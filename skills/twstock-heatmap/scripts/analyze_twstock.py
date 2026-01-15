@@ -307,7 +307,7 @@ def main():
         # Category to market mapping
         category_market = {
             'tse': 'tse', 'otc': 'otc',
-            'tse-semi': 'tse', 'tse-elec': 'tse', 'tse-computer': 'tse', 'tse-plastic': 'tse', 'tse-electrical': 'tse', 'tse-construction': 'tse', 'tse-green': 'tse',
+            'tse-semi': 'tse', 'tse-elec': 'tse', 'tse-computer': 'tse', 'tse-plastic': 'tse', 'tse-electrical': 'tse', 'tse-construction': 'tse', 'tse-channel': 'tse', 'tse-green': 'tse',
             'otc-elec': 'otc', 'otc-semi': 'otc', 'otc-computer': 'otc', 'otc-construction': 'otc', 'otc-other': 'otc', 'otc-info': 'otc', 'otc-tourism': 'otc', 'otc-green': 'otc'
         }
         
