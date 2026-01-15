@@ -119,9 +119,13 @@ def capture_twstock_heatmap(map_type="all", output_path="twstock.png", headless=
         "tse-elec": (0, "28"),  # 上市電子組件
         "tse-computer": (0, "25"),  # 上市電腦週邊
         "tse-plastic": (0, "3"),  # 上市塑膠
+        "tse-electrical": (0, "5"),  # 上市電機
+        "tse-construction": (0, "14"),  # 上市營建
         "otc-elec": (1, "28"),  # 上櫃電子組件
         "otc-semi": (1, "24"),  # 上櫃半導體
         "otc-construction": (1, "14"),  # 上櫃營建
+        "otc-other": (1, "20"),  # 上櫃其他
+        "otc-info": (1, "30"),  # 上櫃資訊服務
         "tse-green": (0, "35"),  # 上市綠能環保
         "otc-tourism": (1, "16"),  # 上櫃觀光
         "otc-green": (1, "35"),  # 上櫃綠能環保
@@ -390,7 +394,7 @@ def main():
         "-t",
         "--type",
         default="all",
-        choices=["all", "tse", "otc", "tse-semi", "tse-elec", "tse-computer", "tse-plastic", "otc-elec", "otc-semi", "otc-construction", "tse-green", "otc-tourism", "otc-green"],
+        choices=["all", "tse", "otc", "tse-semi", "tse-elec", "tse-computer", "tse-plastic", "tse-electrical", "tse-construction", "otc-elec", "otc-semi", "otc-construction", "otc-other", "otc-info", "tse-green", "otc-tourism", "otc-green"],
         help="Industry type (default: all - captures all categories)",
     )
     parser.add_argument(
@@ -421,7 +425,7 @@ def main():
 
     # If 'all' is specified, capture all categories
     if args.type == "all":
-        all_categories = ["tse", "otc", "tse-semi", "tse-elec", "tse-computer", "tse-plastic", "otc-elec", "otc-semi", "otc-construction", "tse-green", "otc-tourism", "otc-green"]
+        all_categories = ["tse", "otc", "tse-semi", "tse-elec", "tse-computer", "tse-plastic", "tse-electrical", "tse-construction", "otc-elec", "otc-semi", "otc-construction", "otc-other", "otc-info", "tse-green", "otc-tourism", "otc-green"]
         
         print(f"📊 Capturing all {len(all_categories)} heatmap categories...", flush=True)
         print(f"Output directory: {heatmaps_dir}\n", flush=True)

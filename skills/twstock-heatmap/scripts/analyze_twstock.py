@@ -150,12 +150,16 @@ def analyze_single_image(image_path, api_token, industry_name="all", stock_mappi
         
         # Add ticker symbols to each stock if mapping is provided
         # Only include stocks with valid tickers (filter out AI misidentifications)
+        # AND filter stocks with decline > 3%
         if stock_mapping and "top_losers" in data:
             reordered_losers = []
             skipped_count = 0
+            filtered_by_decline = 0
             
             for stock in data["top_losers"]:
                 stock_name = stock.get("name", "")
+                change_str = stock.get("change", "")
+                
                 # Look up ticker in mapping
                 ticker = stock_mapping.get(stock_name, "")
                 
@@ -164,11 +168,26 @@ def analyze_single_image(image_path, api_token, industry_name="all", stock_mappi
                     skipped_count += 1
                     continue  # Skip this stock entirely
                 
+                # Filter by decline percentage (> 3%)
+                try:
+                    # Extract percentage value from string like "-5.23%" or "-2.5%"
+                    decline_value = float(change_str.replace("%", "").replace("+", ""))
+                    
+                    # Only include if decline is greater than 3% (decline_value < -3)
+                    if decline_value > -3.0:
+                        filtered_by_decline += 1
+                        continue
+                except (ValueError, AttributeError):
+                    # If we can't parse the percentage, skip this stock
+                    print(f"  ⚠ Invalid change format for {stock_name}: {change_str} - SKIPPED")
+                    skipped_count += 1
+                    continue
+                
                 # Create new ordered dict with ticker first
                 reordered_stock = {
                     "ticker": ticker,
                     "name": stock_name,
-                    "change": stock.get("change", "")
+                    "change": change_str
                 }
                 reordered_losers.append(reordered_stock)
             
@@ -176,6 +195,8 @@ def analyze_single_image(image_path, api_token, industry_name="all", stock_mappi
             
             if skipped_count > 0:
                 print(f"  ℹ️ Filtered out {skipped_count} stock(s) without valid ticker")
+            if filtered_by_decline > 0:
+                print(f"  ℹ️ Filtered out {filtered_by_decline} stock(s) with decline ≤ 3%")
         
         return data
 
@@ -286,8 +307,8 @@ def main():
         # Category to market mapping
         category_market = {
             'tse': 'tse', 'otc': 'otc',
-            'tse-semi': 'tse', 'tse-elec': 'tse', 'tse-computer': 'tse', 'tse-plastic': 'tse', 'tse-green': 'tse',
-            'otc-elec': 'otc', 'otc-semi': 'otc', 'otc-construction': 'otc', 'otc-tourism': 'otc', 'otc-green': 'otc'
+            'tse-semi': 'tse', 'tse-elec': 'tse', 'tse-computer': 'tse', 'tse-plastic': 'tse', 'tse-electrical': 'tse', 'tse-construction': 'tse', 'tse-green': 'tse',
+            'otc-elec': 'otc', 'otc-semi': 'otc', 'otc-construction': 'otc', 'otc-other': 'otc', 'otc-info': 'otc', 'otc-tourism': 'otc', 'otc-green': 'otc'
         }
         
         print(f"Found {len(png_files)} heatmap(s):", flush=True)
