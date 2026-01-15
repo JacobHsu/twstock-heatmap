@@ -168,8 +168,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Add all generated files (using wildcard for pngs)
-          git add twstock*.png twstock_index.html api/twstock_top_losers.json
+          # Add all generated files (heatmaps are now in heatmaps/ directory)
+          git add heatmaps/*.png twstock_index.html api/twstock_top_losers.json
           
           # Check if there are changes to commit
           if git diff --staged --quiet; then
