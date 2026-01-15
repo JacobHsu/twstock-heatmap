@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taiwan Stock Market Heatmap</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        h1 { color: #fff; margin-bottom: 20px; }
+        .timestamp { color: #888; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; width: 100%; max-width: 1200px; }
+        .card { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; }
+        h2 { color: #4ecdc4; margin-bottom: 10px; font-size: 1.2em; text-align: center; }
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        .source { color: #666; margin-top: 20px; }
+        a { color: #4ecdc4; }
+    </style>
+</head>
+<body>
+    <h1>Taiwan Stock Market Heatmaps</h1>
+    <p class="timestamp">Updated: <span id="time"></span></p>
+    
+    <div class="grid">
+        <div class="card">
+            <h2>TSE Overview (上市總覽)</h2>
+            <img src="twstock.png" alt="TSE Overview">
+        </div>
+        <div class="card">
+            <h2>OTC Overview (上櫃總覽)</h2>
+            <img src="twstock_otc.png" alt="OTC Overview">
+        </div>
+        <div class="card">
+            <h2>OTC Electronic (櫃買電子)</h2>
+            <img src="twstock_otc-elec.png" alt="OTC Electronic">
+        </div>
+        <div class="card">
+            <h2>OTC Semi (櫃買半導體)</h2>
+            <img src="twstock_otc-semi.png" alt="OTC Semi">
+        </div>
+        <div class="card">
+            <h2>OTC Construction (櫃買營建)</h2>
+            <img src="twstock_otc-construction.png" alt="OTC Construction">
+        </div>
+        <div class="card">
+            <h2>TSE Green Energy (上市綠能環保)</h2>
+            <img src="twstock_tse-green.png" alt="TSE Green Energy">
+        </div>
+        <div class="card">
+            <h2>OTC Tourism (上櫃觀光)</h2>
+            <img src="twstock_otc-tourism.png" alt="OTC Tourism">
+        </div>
+        <div class="card">
+            <h2>OTC Green Energy (上櫃綠能環保)</h2>
+            <img src="twstock_otc-green.png" alt="OTC Green Energy">
+        </div>
+    </div>
+
+    <p class="source">Data: <a href="https://www.nstock.tw">nStock.tw</a></p>
+    <script>document.getElementById('time').textContent = new Date().toLocaleString('zh-TW');</script>
+</body>
+</html>

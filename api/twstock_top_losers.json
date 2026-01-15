@@ -3,43 +3,29 @@
   "data": {
     "tse": [
       {
-        "ticker": "2383",
-        "name": "台光電",
-        "change": "-5.89%"
-      },
-      {
-        "ticker": "6176",
-        "name": "瑞儀",
-        "change": "-3.57%"
-      },
-      {
         "ticker": "3661",
         "name": "世芯-KY",
         "change": "-4.04%"
-      }
-    ],
-    "otc-construction": [
-      {
-        "ticker": "5457",
-        "name": "宣德",
-        "change": "-8.30%"
       },
       {
-        "ticker": "5543",
-        "name": "桓鼎-KY",
-        "change": "-5.45%"
+        "ticker": "2379",
+        "name": "瑞昱",
+        "change": "-3.57%"
       }
     ],
+    "otc-computer": [
+      {
+        "ticker": "3693",
+        "name": "營邦",
+        "change": "-3.63%"
+      }
+    ],
+    "otc-construction": [],
     "otc-elec": [
       {
         "ticker": "6127",
         "name": "九豪",
         "change": "-3.33%"
-      },
-      {
-        "ticker": "6173",
-        "name": "信昌電",
-        "change": "-3.13%"
       }
     ],
     "otc-green": [
@@ -64,6 +50,18 @@
         "change": "-3.10%"
       }
     ],
+    "otc-info": [
+      {
+        "ticker": "6791",
+        "name": "虎門科技",
+        "change": "-3.05%"
+      },
+      {
+        "ticker": "6884",
+        "name": "海柏特",
+        "change": "-3.27%"
+      }
+    ],
     "otc-other": [],
     "otc-semi": [
       {
@@ -80,15 +78,15 @@
         "ticker": "6640",
         "name": "均華",
         "change": "-3.53%"
+      },
+      {
+        "ticker": "1524",
+        "name": "耿鼎",
+        "change": "-3.42%"
       }
     ],
     "otc-tourism": [],
     "otc": [
-      {
-        "ticker": "6561",
-        "name": "是方",
-        "change": "-7.10%"
-      },
       {
         "ticker": "6488",
         "name": "環球晶",
@@ -105,6 +103,13 @@
         "ticker": "8210",
         "name": "勤誠",
         "change": "-4.69%"
+      }
+    ],
+    "tse-construction": [
+      {
+        "ticker": "5521",
+        "name": "工信",
+        "change": "-4.20%"
       }
     ],
     "tse-elec": [
@@ -138,6 +143,11 @@
     ],
     "tse-green": [
       {
+        "ticker": "8422",
+        "name": "可寧衛*",
+        "change": "-9.92%"
+      },
+      {
         "ticker": "9955",
         "name": "佳龍",
         "change": "-9.12%"
@@ -170,6 +180,6 @@
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-01-15T14:00:52.494849Z",
-  "generated_at": "2026-01-15T14:00:52.494849Z"
+  "last_updated": "2026-01-15T15:12:34.509320Z",
+  "generated_at": "2026-01-15T15:12:34.509320Z"
 }
