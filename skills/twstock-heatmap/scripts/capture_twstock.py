@@ -113,22 +113,27 @@ def capture_twstock_heatmap(map_type="all", output_path="twstock.png", headless=
     
     # Industry map parameters: (t1_value, iid_value)
     industry_params = {
+        # === TSE (上市) Categories ===
         "tse": (0, ""),  # 上市總覽 (Default)
-        "otc": (1, ""),  # 上櫃總覽
         "tse-semi": (0, "24"),  # 上市半導體
+        "tse-network": (0, "27"),  # 上市網通
         "tse-elec": (0, "28"),  # 上市電子組件
         "tse-computer": (0, "25"),  # 上市電腦週邊
+        "tse-channel": (0, "29"),  # 上市電子通路
         "tse-plastic": (0, "3"),  # 上市塑膠
         "tse-electrical": (0, "5"),  # 上市電機
         "tse-construction": (0, "14"),  # 上市營建
-        "tse-channel": (0, "29"),  # 上市電子通路
-        "otc-elec": (1, "28"),  # 上櫃電子組件
+        "tse-green": (0, "35"),  # 上市綠能環保
+        
+        # === OTC (上櫃) Categories ===
+        "otc": (1, ""),  # 上櫃總覽
         "otc-semi": (1, "24"),  # 上櫃半導體
+        "otc-network": (1, "27"),  # 上櫃網通
+        "otc-elec": (1, "28"),  # 上櫃電子組件
         "otc-computer": (1, "25"),  # 上櫃電腦週邊
         "otc-construction": (1, "14"),  # 上櫃營建
         "otc-other": (1, "20"),  # 上櫃其他
         "otc-info": (1, "30"),  # 上櫃資訊服務
-        "tse-green": (0, "35"),  # 上市綠能環保
         "otc-tourism": (1, "16"),  # 上櫃觀光
         "otc-green": (1, "35"),  # 上櫃綠能環保
     }
@@ -396,7 +401,7 @@ def main():
         "-t",
         "--type",
         default="all",
-        choices=["all", "tse", "otc", "tse-semi", "tse-elec", "tse-computer", "tse-plastic", "tse-electrical", "tse-construction", "tse-channel", "otc-elec", "otc-semi", "otc-computer", "otc-construction", "otc-other", "otc-info", "tse-green", "otc-tourism", "otc-green"],
+        choices=["all", "tse", "otc", "tse-semi", "tse-network", "tse-elec", "tse-computer", "tse-plastic", "tse-electrical", "tse-construction", "tse-channel", "otc-elec", "otc-semi", "otc-network", "otc-computer", "otc-construction", "otc-other", "otc-info", "tse-green", "otc-tourism", "otc-green"],
         help="Industry type (default: all - captures all categories)",
     )
     parser.add_argument(
@@ -427,7 +432,7 @@ def main():
 
     # If 'all' is specified, capture all categories
     if args.type == "all":
-        all_categories = ["tse", "otc", "tse-semi", "tse-elec", "tse-computer", "tse-plastic", "tse-electrical", "tse-construction", "tse-channel", "otc-elec", "otc-semi", "otc-computer", "otc-construction", "otc-other", "otc-info", "tse-green", "otc-tourism", "otc-green"]
+        all_categories = ["tse", "otc", "tse-semi", "tse-network", "tse-elec", "tse-computer", "tse-plastic", "tse-electrical", "tse-construction", "tse-channel", "otc-elec", "otc-semi", "otc-network", "otc-computer", "otc-construction", "otc-other", "otc-info", "tse-green", "otc-tourism", "otc-green"]
         
         print(f"📊 Capturing all {len(all_categories)} heatmap categories...", flush=True)
         print(f"Output directory: {heatmaps_dir}\n", flush=True)
