@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>台股跌幅排行 - Taiwan Stock Top Losers</title>
+    <title>台股產業熱力圖跌幅 - Taiwan Stock Top Losers</title>
     <style>
         * {
             margin: 0;
@@ -435,7 +435,7 @@
     <!-- Header -->
     <div class="header">
         <div class="header-content">
-            <h1>台股跌幅排行</h1>
+            <h1>台股產業熱力圖跌幅榜</h1>
             <p class="subtitle">Taiwan Stock Market Top Losers - 即時資料來自 nStock.tw</p>
         </div>
     </div>
@@ -445,9 +445,9 @@
         <!-- Market Toggle -->
         <div class="market-toggle">
             <div class="toggle-buttons">
-                <button class="toggle-btn active" onclick="showMarket('all')">全部顯示</button>
-                <button class="toggle-btn" onclick="showMarket('tse')">上市 TSE</button>
-                <button class="toggle-btn" onclick="showMarket('otc')">上櫃 OTC</button>
+                <button class="toggle-btn active" onclick="showMarket('all', this)">全部顯示</button>
+                <button class="toggle-btn" onclick="showMarket('tse', this)">上市 TSE</button>
+                <button class="toggle-btn" onclick="showMarket('otc', this)">上櫃 OTC</button>
             </div>
             <div class="stats">
                 <div class="stat-item">
@@ -494,6 +494,15 @@
     </div>
 
     <script>
+        // Configuration constants
+        const CONFIG = {
+            REFRESH_INTERVAL: 60 * 60 * 1000, // 1 hour
+            FETCH_TIMEOUT: 10000, // 10 seconds
+            TOOLTIP_OFFSET: 10,
+            TOOLTIP_EDGE_MARGIN: 20,
+            THROTTLE_DELAY: 100 // milliseconds
+        };
+
         // Category display names and icons
         const categoryInfo = {
             'tse': { name: '上市總覽', market: 'tse', order: 1, image: 'twstock.png' },
@@ -519,6 +528,36 @@
         let allData = {};
         let currentMarket = 'all';
 
+        // Cache DOM elements
+        const elements = {
+            content: null,
+            apiUrl: null,
+            categoryCount: null,
+            stockCount: null,
+            updateTime: null,
+            apiVersion: null,
+            apiStatus: null
+        };
+
+        // Utility: Escape HTML to prevent XSS
+        const escapeHtml = (text) => {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        };
+
+        // Utility: Throttle function
+        const throttle = (func, delay) => {
+            let lastCall = 0;
+            return function(...args) {
+                const now = Date.now();
+                if (now - lastCall >= delay) {
+                    lastCall = now;
+                    func.apply(this, args);
+                }
+            };
+        };
+
         // Get API URL
         const getApiUrl = () => {
             const baseUrl = window.location.origin + window.location.pathname.replace('/index.html', '');
@@ -526,14 +565,14 @@
         };
 
         // Show market
-        const showMarket = (market) => {
+        const showMarket = (market, clickedButton) => {
             currentMarket = market;
             
             // Update buttons
             document.querySelectorAll('.toggle-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            clickedButton.classList.add('active');
 
             // Show/hide sections
             document.querySelectorAll('.market-section').forEach(section => {
@@ -555,11 +594,11 @@
             let html = '<ul class="stock-list">';
             
             stocks.forEach((stock) => {
-                const ticker = stock.ticker || 'N/A';
-                const name = stock.name || '';
-                const change = stock.change || 'N/A';
+                const ticker = escapeHtml(stock.ticker || 'N/A');
+                const name = escapeHtml(stock.name || '');
+                const change = escapeHtml(stock.change || 'N/A');
                 
-                // Create Yahoo Finance link
+                // Create Yahoo Finance link (ticker already escaped)
                 const yahooUrl = `https://tw.stock.yahoo.com/quote/${ticker}.TW/technical-analysis`;
                 
                 html += `
@@ -581,17 +620,97 @@
             return html;
         };
 
+        // Group data by market
+        const groupDataByMarket = (data) => {
+            const tseCategories = {};
+            const otcCategories = {};
+            let totalStocks = 0;
+            let categoryCount = 0;
+            
+            for (const [categoryKey, stocks] of Object.entries(data)) {
+                if (!stocks || !Array.isArray(stocks) || stocks.length === 0) continue;
+                
+                categoryCount++;
+                totalStocks += stocks.length;
+                
+                const info = categoryInfo[categoryKey];
+                if (info) {
+                    if (info.market === 'tse') {
+                        tseCategories[categoryKey] = { name: info.name, stocks, order: info.order, image: info.image };
+                    } else {
+                        otcCategories[categoryKey] = { name: info.name, stocks, order: info.order, image: info.image };
+                    }
+                }
+            }
+            
+            return { tseCategories, otcCategories, totalStocks, categoryCount };
+        };
+
+        // Render market section
+        const renderMarketSection = (marketType, categories) => {
+            const marketTitle = marketType === 'tse' ? '上市 (TSE)' : '上櫃 (OTC)';
+            const sortByOrder = (a, b) => a[1].order - b[1].order;
+            const sortedCategories = Object.entries(categories).sort(sortByOrder);
+            
+            if (sortedCategories.length === 0) return '';
+            
+            let html = `
+                <div class="market-section" data-market="${marketType}">
+                    <div class="market-header">
+                        <div class="market-title">${marketTitle}</div>
+                    </div>
+                    <div class="category-grid">
+            `;
+            
+            for (const [key, data] of sortedCategories) {
+                const imagePath = `../heatmaps/${data.image}`;
+                html += `
+                    <div class="category-section">
+                        <div class="category-header">
+                            ${escapeHtml(data.name)}
+                            <div class="tooltip">
+                                <div class="tooltip-title">${escapeHtml(data.name)} 熱力圖</div>
+                                <img src="${imagePath}" alt="${escapeHtml(data.name)}" loading="lazy">
+                            </div>
+                        </div>
+                        ${renderStockList(data.stocks)}
+                    </div>
+                `;
+            }
+            
+            html += `
+                    </div>
+                </div>
+            `;
+            
+            return html;
+        };
+
+        // Update UI stats
+        const updateStats = (categoryCount, totalStocks, updateTime) => {
+            elements.categoryCount.textContent = categoryCount;
+            elements.stockCount.textContent = totalStocks;
+            
+            if (updateTime) {
+                const date = new Date(updateTime);
+                elements.updateTime.textContent = 
+                    `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+            }
+        };
+
         // Load data
         const loadData = async () => {
-            const contentDiv = document.getElementById('content');
-            const apiUrlSpan = document.getElementById('api-url');
-
             const apiUrl = getApiUrl();
-            apiUrlSpan.textContent = apiUrl;
-            apiUrlSpan.href = apiUrl;
+            elements.apiUrl.textContent = apiUrl;
+            elements.apiUrl.href = apiUrl;
+
+            // Setup timeout
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), CONFIG.FETCH_TIMEOUT);
 
             try {
-                const response = await fetch(apiUrl);
+                const response = await fetch(apiUrl, { signal: controller.signal });
+                clearTimeout(timeoutId);
 
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -600,132 +719,31 @@
                 const result = await response.json();
                 allData = result.data || result;
                 
-                // Group by market
-                const tseCategories = {};
-                const otcCategories = {};
-                let totalStocks = 0;
-                let categoryCount = 0;
+                // Group and render data
+                const { tseCategories, otcCategories, totalStocks, categoryCount } = groupDataByMarket(allData);
                 
-                for (const [categoryKey, stocks] of Object.entries(allData)) {
-                    if (!stocks || !Array.isArray(stocks) || stocks.length === 0) continue;
-                    
-                    categoryCount++;
-                    totalStocks += stocks.length;
-                    
-                    const info = categoryInfo[categoryKey];
-                    if (info) {
-                        if (info.market === 'tse') {
-                            tseCategories[categoryKey] = { name: info.name, stocks, order: info.order, image: info.image };
-                        } else {
-                            otcCategories[categoryKey] = { name: info.name, stocks, order: info.order, image: info.image };
-                        }
-                    }
-                }
-                
-                // Sort categories by order (overview first)
-                const sortByOrder = (a, b) => a[1].order - b[1].order;
-                const sortedTse = Object.entries(tseCategories).sort(sortByOrder);
-                const sortedOtc = Object.entries(otcCategories).sort(sortByOrder);
-                
-                // Render sections
-                let html = '';
-                
-                // TSE Section
-                if (sortedTse.length > 0) {
-                    html += `
-                        <div class="market-section" data-market="tse">
-                            <div class="market-header">
-                                <div class="market-title">上市 (TSE)</div>
-                            </div>
-                            <div class="category-grid">
-                    `;
-                    
-                    for (const [key, data] of sortedTse) {
-                        const imagePath = `../heatmaps/${data.image}`;
-                        html += `
-                            <div class="category-section">
-                                <div class="category-header">
-                                    ${data.name}
-                                    <div class="tooltip">
-                                        <div class="tooltip-title">${data.name} 熱力圖</div>
-                                        <img src="${imagePath}" alt="${data.name}" loading="lazy">
-                                    </div>
-                                </div>
-                                ${renderStockList(data.stocks)}
-                            </div>
-                        `;
-                    }
-                    
-                    html += `
-                            </div>
-                        </div>
-                    `;
-                }
-                
-                // OTC Section
-                if (sortedOtc.length > 0) {
-                    html += `
-                        <div class="market-section" data-market="otc">
-                            <div class="market-header">
-                                <div class="market-title">上櫃 (OTC)</div>
-                            </div>
-                            <div class="category-grid">
-                    `;
-                    
-                    for (const [key, data] of sortedOtc) {
-                        const imagePath = `../heatmaps/${data.image}`;
-                        html += `
-                            <div class="category-section">
-                                <div class="category-header">
-                                    ${data.name}
-                                    <div class="tooltip">
-                                        <div class="tooltip-title">${data.name} 熱力圖</div>
-                                        <img src="${imagePath}" alt="${data.name}" loading="lazy">
-                                    </div>
-                                </div>
-                                ${renderStockList(data.stocks)}
-                            </div>
-                        `;
-                    }
-                    
-                    html += `
-                            </div>
-                        </div>
-                    `;
-                }
-                
-                contentDiv.innerHTML = html;
+                const html = renderMarketSection('tse', tseCategories) + renderMarketSection('otc', otcCategories);
+                elements.content.innerHTML = html;
 
                 // Update stats
-                document.getElementById('category-count').textContent = categoryCount;
-                document.getElementById('stock-count').textContent = totalStocks;
-                
-                const updateTime = result.last_updated || result.generated_at;
-                if (updateTime) {
-                    const date = new Date(updateTime);
-                    document.getElementById('update-time').textContent = 
-                        `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-                }
+                updateStats(categoryCount, totalStocks, result.last_updated || result.generated_at);
 
                 // Update footer
-                document.getElementById('api-version').textContent = result.version || 'N/A';
-                document.getElementById('api-status').textContent = 
-                    result.status === 'success' ? '✅ 正常' : '❌ 異常';
+                elements.apiVersion.textContent = result.version || 'N/A';
+                elements.apiStatus.textContent = result.status === 'success' ? '✅ 正常' : '❌ 異常';
 
             } catch (error) {
-                contentDiv.innerHTML = `<div class="error">載入失敗: ${error.message}</div>`;
+                if (error.name === 'AbortError') {
+                    elements.content.innerHTML = `<div class="error">請求超時，請稍後再試</div>`;
+                } else {
+                    elements.content.innerHTML = `<div class="error">載入失敗: ${escapeHtml(error.message)}</div>`;
+                }
                 console.error('Error loading data:', error);
             }
         };
 
-        // Load data on page load
-        loadData();
-
-        // Auto-refresh every 1 hour
-        setInterval(loadData, 60 * 60 * 1000);
-        
-        // Tooltip positioning
-        document.addEventListener('mousemove', (e) => {
+        // Tooltip positioning (throttled)
+        const handleTooltipPosition = throttle((e) => {
             const hoveredHeader = e.target.closest('.category-header');
             if (hoveredHeader) {
                 const tooltip = hoveredHeader.querySelector('.tooltip');
@@ -734,28 +752,49 @@
                     const tooltipRect = tooltip.getBoundingClientRect();
                     
                     // Position below the header by default
-                    let top = rect.bottom + 10;
+                    let top = rect.bottom + CONFIG.TOOLTIP_OFFSET;
                     let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
                     
                     // Adjust if tooltip goes off right edge
-                    if (left + tooltipRect.width > window.innerWidth - 20) {
-                        left = window.innerWidth - tooltipRect.width - 20;
+                    if (left + tooltipRect.width > window.innerWidth - CONFIG.TOOLTIP_EDGE_MARGIN) {
+                        left = window.innerWidth - tooltipRect.width - CONFIG.TOOLTIP_EDGE_MARGIN;
                     }
                     
                     // Adjust if tooltip goes off left edge
-                    if (left < 20) {
-                        left = 20;
+                    if (left < CONFIG.TOOLTIP_EDGE_MARGIN) {
+                        left = CONFIG.TOOLTIP_EDGE_MARGIN;
                     }
                     
                     // Adjust if tooltip goes off bottom edge
-                    if (top + tooltipRect.height > window.innerHeight - 20) {
-                        top = rect.top - tooltipRect.height - 10;
+                    if (top + tooltipRect.height > window.innerHeight - CONFIG.TOOLTIP_EDGE_MARGIN) {
+                        top = rect.top - tooltipRect.height - CONFIG.TOOLTIP_OFFSET;
                     }
                     
                     tooltip.style.top = `${top}px`;
                     tooltip.style.left = `${left}px`;
                 }
             }
+        }, CONFIG.THROTTLE_DELAY);
+
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cache DOM elements
+            elements.content = document.getElementById('content');
+            elements.apiUrl = document.getElementById('api-url');
+            elements.categoryCount = document.getElementById('category-count');
+            elements.stockCount = document.getElementById('stock-count');
+            elements.updateTime = document.getElementById('update-time');
+            elements.apiVersion = document.getElementById('api-version');
+            elements.apiStatus = document.getElementById('api-status');
+
+            // Load initial data
+            loadData();
+
+            // Setup auto-refresh
+            setInterval(loadData, CONFIG.REFRESH_INTERVAL);
+            
+            // Setup tooltip positioning
+            document.addEventListener('mousemove', handleTooltipPosition);
         });
     </script>
 </body>
