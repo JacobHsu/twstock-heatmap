@@ -504,13 +504,14 @@
             'tse-plastic': { name: '上市塑膠', market: 'tse', order: 5, image: 'twstock_tse-plastic.png' },
             'tse-electrical': { name: '上市電機', market: 'tse', order: 6, image: 'twstock_tse-electrical.png' },
             'tse-construction': { name: '上市營建', market: 'tse', order: 7, image: 'twstock_tse-construction.png' },
+            'tse-channel': { name: '上市電子通路', market: 'tse', order: 8, image: 'twstock_tse-channel.png' },
             'otc-elec': { name: '上櫃電子', market: 'otc', order: 2, image: 'twstock_otc-elec.png' },
             'otc-semi': { name: '上櫃半導體', market: 'otc', order: 3, image: 'twstock_otc-semi.png' },
             'otc-computer': { name: '上櫃電腦週邊', market: 'otc', order: 4, image: 'twstock_otc-computer.png' },
             'otc-construction': { name: '上櫃營建', market: 'otc', order: 5, image: 'twstock_otc-construction.png' },
             'otc-other': { name: '上櫃其他', market: 'otc', order: 6, image: 'twstock_otc-other.png' },
             'otc-info': { name: '上櫃資訊服務', market: 'otc', order: 7, image: 'twstock_otc-info.png' },
-            'tse-green': { name: '上市綠能環保', market: 'tse', order: 8, image: 'twstock_tse-green.png' },
+            'tse-green': { name: '上市綠能環保', market: 'tse', order: 9, image: 'twstock_tse-green.png' },
             'otc-tourism': { name: '上櫃觀光', market: 'otc', order: 8, image: 'twstock_otc-tourism.png' },
             'otc-green': { name: '上櫃綠能環保', market: 'otc', order: 9, image: 'twstock_otc-green.png' }
         };
@@ -520,8 +521,8 @@
 
         // Get API URL
         const getApiUrl = () => {
-            const baseUrl = window.location.origin + window.location.pathname.replace('/api/index.html', '');
-            return `${baseUrl}/api/twstock_top_losers.json`;
+            const baseUrl = window.location.origin + window.location.pathname.replace('/index.html', '');
+            return `${baseUrl}/twstock_top_losers.json`;
         };
 
         // Show market
