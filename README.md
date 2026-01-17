@@ -1,6 +1,6 @@
 # 台股熱力圖 AI 分析工具
 
-> 自動擷取台股熱力圖並使用 AI 分析跌幅排行，生成結構化 JSON API
+> 自動擷取台股熱力圖並使用 AI 分析跌幅排行,生成結構化 JSON API 與互動式熱力圖視覺化
 
 [![GitHub Actions](https://img.shields.io/badge/automation-GitHub%20Actions-blue)](https://github.com/features/actions)
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
@@ -12,11 +12,12 @@
 
 ### 核心功能
 
-- 🖼️ **自動截圖**：無頭瀏覽器擷取高解析度熱力圖
-- 🤖 **AI 視覺分析**：GPT-4o 識別深綠色區塊（跌幅股）
-- � **股票代號映射**：自動從 1,971 筆資料庫查找 ticker
-- 📡 **JSON API**：輸出標準化資料供其他應用使用
-- ⏰ **自動排程**：GitHub Actions 每日開盤後更新
+- 🖼️ **自動截圖**:無頭瀏覽器擷取高解析度熱力圖
+- 🤖 **AI 視覺分析**:GPT-4o 識別深綠色區塊(跌幅股)
+- 🔍 **股票代號映射**:自動從 1,971 筆資料庫查找 ticker
+- 📡 **JSON API**:輸出標準化資料供其他應用使用
+- 📊 **互動式熱力圖**:D3.js Treemap 視覺化,左右並排顯示上市/上櫃
+- ⏰ **自動排程**:GitHub Actions 每日開盤後更新
 
 ---
 
@@ -46,7 +47,7 @@ curl https://jacobhsu.github.io/twstock-heatmap/api/twstock_top_losers.json
 }
 ```
 
-📌 [查看完整 API 文件](api/README.md) | [線上展示頁面](https://jacobhsu.github.io/twstock-heatmap/api/twstock_example.html)
+📌 [查看完整 API 文件](api/README.md) | [線上熱力圖展示頁面](https://jacobhsu.github.io/twstock-heatmap) | [線上跌幅榜展示頁面](https://jacobhsu.github.io/twstock-heatmap/api)
 
 ---
 
@@ -139,10 +140,11 @@ JSON API saved: api/twstock_top_losers.json
 Analysis complete!
 ```
 
-**輸出檔案**：
+**輸出檔案**:
 - `heatmaps/*.png` - 8 個熱力圖截圖
 - `api/twstock_top_losers.json` - 包含所有類別的 JSON API
-- `index.html` - 本地檢視器
+- `index.html` - 互動式熱力圖視覺化頁面 (D3.js Treemap)
+- `api/index.html` - 跌幅榜列表展示頁面
 
 ---
 
@@ -185,9 +187,12 @@ twstock-heatmap/
 │   └── analyze_twstock.py      # AI 分析腳本
 ├── data/
 │   └── StockMapping.csv        # 股票代號資料庫 (1,971 筆)
+├── heatmaps/
+│   └── *.png                   # 產業熱力圖截圖
 ├── api/
 │   ├── twstock_top_losers.json # 生成的 API 檔案
-│   └── twstock_example.html    # API 展示頁面
+│   └── index.html              # 跌幅榜列表展示頁面
+├── index.html                  # 互動式熱力圖視覺化 (主頁)
 └── .github/workflows/
     └── generate-twstock-map.yml # 自動化排程
 ```

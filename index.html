@@ -3,61 +3,550 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taiwan Stock Market Heatmap</title>
+    <title>股價漲跌即時熱力圖</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            background-color: #1a1a2e;
+            font-family: 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .update-time {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .heatmap-wrapper {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .heatmap-panel {
+            flex: 1;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
         }
-        h1 {
-            color: #fff;
-            margin-bottom: 20px;
-            font-size: 1.5em;
+
+        .panel-header {
+            padding: 12px 15px;
+            background: #fafafa;
+            border-bottom: 2px solid #e0e0e0;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
         }
-        .timestamp {
-            color: #888;
-            margin-bottom: 20px;
-            font-size: 0.9em;
+
+        .panel-content {
+            flex: 1;
+            position: relative;
+            min-height: 600px;
         }
-        img {
-            max-width: 100%;
+
+        .stock-cell {
+            cursor: pointer;
+            transition: opacity 0.2s;
+            stroke: white;
+            stroke-width: 1;
+        }
+
+        .stock-cell:hover {
+            opacity: 0.85;
+            stroke-width: 2;
+        }
+
+        .stock-text {
+            pointer-events: none;
+            fill: white;
+            font-weight: 600;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .category-label {
+            fill: #666;
+            font-size: 14px;
+            font-weight: 600;
+            text-anchor: start;
+            cursor: help;
+        }
+
+        .category-label:hover {
+            fill: #333;
+        }
+
+        /* Tooltip for stock info */
+        .stock-tooltip {
+            position: fixed;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 4px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            font-size: 0.85em;
+            z-index: 1000;
+            white-space: nowrap;
+        }
+
+        /* Tooltip for category images */
+        .category-tooltip {
+            position: fixed;
+            background: white;
+            border: 2px solid #666;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1001;
+            min-width: 400px;
+            max-width: 600px;
+        }
+
+        .category-tooltip.visible {
+            opacity: 1;
+        }
+
+        .category-tooltip img {
+            width: 100%;
             height: auto;
             display: block;
-            border-radius: 8px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
         }
-        .source {
+
+        .category-tooltip-title {
+            font-size: 0.9em;
             color: #666;
-            margin-top: 20px;
-            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-align: center;
         }
-        a {
-            color: #4ecdc4;
-            text-decoration: none;
+
+        /* nStock 風格的深淺說明條 */
+        .panel-footer {
+            padding: 15px;
+            background: #fafafa;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: flex-end;
         }
-        a:hover {
-            text-decoration: underline;
+
+        .legend-bar {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            text-align: center;
+            font-size: 11px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .legend-item {
+            padding: 8px 12px;
+            color: white;
+            font-weight: 500;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #999;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 1200px) {
+            .heatmap-wrapper {
+                flex-direction: column;
+            }
+            
+            .panel-content {
+                min-height: 500px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Taiwan Stock Market Heatmap</h1>
-    <p class="timestamp">Generated: <span id="time"></span></p>
-    <img src="heatmaps/twstock.png" alt="Taiwan Stock Market Heatmap">
-    <p class="source">Data source: <a href="https://www.nstock.tw" target="_blank">nStock.tw</a></p>
+    <div class="header">
+        <h1>股價漲跌即時熱力圖</h1>
+        <div class="update-time" id="update-time">載入中...</div>
+    </div>
+
+    <div class="heatmap-wrapper">
+        <!-- TSE Panel -->
+        <div class="heatmap-panel">
+            <div class="panel-header">上市 (TSE)</div>
+            <div class="panel-content" id="tse-container">
+                <div class="loading">正在載入數據...</div>
+            </div>
+            <div class="panel-footer">
+                <div class="legend-bar">
+                    <div class="legend-item" style="background-color: #c2c4cd;">0%</div>
+                    <div class="legend-item" style="background-color: #43bc7f;">-3%</div>
+                    <div class="legend-item" style="background-color: #05994f;">-6%</div>
+                    <div class="legend-item" style="background-color: #096537;">-9%</div>
+                    <div class="legend-item" style="background-color: #086231;">-10%</div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- OTC Panel -->
+        <div class="heatmap-panel">
+            <div class="panel-header">上櫃 (OTC)</div>
+            <div class="panel-content" id="otc-container">
+                <div class="loading">正在載入數據...</div>
+            </div>
+            <div class="panel-footer">
+                <div class="legend-bar">
+                    <div class="legend-item" style="background-color: #c2c4cd;">0%</div>
+                    <div class="legend-item" style="background-color: #43bc7f;">-3%</div>
+                    <div class="legend-item" style="background-color: #05994f;">-6%</div>
+                    <div class="legend-item" style="background-color: #096537;">-9%</div>
+                    <div class="legend-item" style="background-color: #086231;">-10%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stock-tooltip" id="stock-tooltip"></div>
+    <div class="category-tooltip" id="category-tooltip">
+        <div class="category-tooltip-title" id="tooltip-title"></div>
+        <img id="tooltip-image" src="" alt="">
+    </div>
+
     <script>
-        document.getElementById('time').textContent = new Date().toLocaleString('zh-TW');
+        // 類別名稱映射和順序
+        const categoryInfo = {
+            'tse': [
+                { key: 'tse-semi', name: '半導體', image: 'twstock_tse-semi.png' },
+                { key: 'tse-computer', name: '電腦週邊', image: 'twstock_tse-computer.png' },
+                { key: 'tse-elec', name: '電子組件', image: 'twstock_tse-elec.png' },
+                { key: 'tse-electrical', name: '電機', image: 'twstock_tse-electrical.png' },
+                { key: 'tse-plastic', name: '塑膠', image: 'twstock_tse-plastic.png' },
+                { key: 'tse-green', name: '綠能環保', image: 'twstock_tse-green.png' },
+                { key: 'tse-construction', name: '營建', image: 'twstock_tse-construction.png' },
+                { key: 'tse-channel', name: '通路', image: 'twstock_tse-channel.png' }
+            ],
+            'otc': [
+                { key: 'otc-semi', name: '半導體', image: 'twstock_otc-semi.png' },
+                { key: 'otc-computer', name: '電腦週邊', image: 'twstock_otc-computer.png' },
+                { key: 'otc-elec', name: '電子組件', image: 'twstock_otc-elec.png' },
+                { key: 'otc-green', name: '綠能環保', image: 'twstock_otc-green.png' },
+                { key: 'otc-construction', name: '營建', image: 'twstock_otc-construction.png' },
+                { key: 'otc-info', name: '資訊服務', image: 'twstock_otc-info.png' },
+                { key: 'otc-tourism', name: '觀光餐旅', image: 'twstock_otc-tourism.png' },
+                { key: 'otc-other', name: '其他', image: 'twstock_otc-other.png' }
+            ]
+        };
+
+        let allData = null;
+
+        // 根據跌幅返回綠色系顏色 (使用 nStock 的綠色)
+        function getColor(changePercent) {
+            const value = Math.abs(parseFloat(changePercent));
+            if (value < 3) return '#43bc7f';
+            if (value < 6) return '#05994f';
+            if (value < 9) return '#096537';
+            if (value < 10) return '#086231';
+            return '#053d1f';
+        }
+
+        // 載入數據
+        async function loadData() {
+            try {
+                const response = await fetch('api/twstock_top_losers.json');
+                const jsonData = await response.json();
+                allData = jsonData;
+                
+                // 更新時間
+                if (jsonData.last_updated) {
+                    const date = new Date(jsonData.last_updated);
+                    document.getElementById('update-time').textContent = 
+                        `更新時間: ${date.toLocaleString('zh-TW', {
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        })}`;
+                }
+                
+                // 顯示兩張熱力圖
+                renderHeatmap('tse', 'tse-container');
+                renderHeatmap('otc', 'otc-container');
+            } catch (error) {
+                console.error('載入數據失敗:', error);
+                document.getElementById('tse-container').innerHTML = 
+                    '<div class="loading">❌ 載入數據失敗</div>';
+                document.getElementById('otc-container').innerHTML = 
+                    '<div class="loading">❌ 載入數據失敗</div>';
+            }
+        }
+
+        // 渲染熱力圖
+        function renderHeatmap(market, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            // 按順序獲取有數據的類別
+            const orderedCategories = categoryInfo[market]
+                .filter(cat => allData.data[cat.key] && allData.data[cat.key].length > 0)
+                .map(cat => ({
+                    name: cat.name,
+                    key: cat.key,
+                    image: cat.image,
+                    stocks: allData.data[cat.key]
+                }));
+            
+            if (orderedCategories.length === 0) {
+                container.innerHTML = '<div class="loading">此市場暫無數據</div>';
+                return;
+            }
+            
+            // 設置尺寸
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            
+            // 創建 SVG
+            const svg = d3.select(`#${containerId}`)
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height);
+            
+            // 準備 treemap 數據結構
+            const hierarchyData = {
+                name: 'root',
+                children: orderedCategories.map(cat => ({
+                    name: cat.name,
+                    key: cat.key,
+                    image: cat.image,
+                    children: cat.stocks.map(stock => ({
+                        ...stock,
+                        value: Math.abs(parseFloat(stock.change)),
+                        categoryName: cat.name,
+                        categoryKey: cat.key,
+                        categoryImage: cat.image
+                    }))
+                }))
+            };
+            
+            // 創建層次結構
+            const root = d3.hierarchy(hierarchyData)
+                .sum(d => d.value || 0);
+            
+            // 創建 treemap 布局
+            d3.treemap()
+                .size([width, height])
+                .paddingOuter(3)
+                .paddingTop(20)
+                .paddingInner(1)
+                .round(true)
+                (root);
+            
+            // 為每個類別組創建 group
+            const categories = svg.selectAll('.category')
+                .data(root.children)
+                .enter()
+                .append('g')
+                .attr('class', 'category');
+            
+            // 添加類別標籤 (灰色且字型大,可懸停顯示圖片)
+            categories.append('text')
+                .attr('class', 'category-label')
+                .attr('x', d => d.x0 + 5)
+                .attr('y', d => d.y0 + 15)
+                .text(d => d.data.name)
+                .on('mouseenter', function(event, d) {
+                    showCategoryTooltip(event, d.data.name, d.data.image);
+                })
+                .on('mousemove', updateCategoryTooltipPosition)
+                .on('mouseleave', hideCategoryTooltip);
+            
+            // 為每個股票創建格子
+            const stocks = categories.selectAll('.stock')
+                .data(d => d.children || [])
+                .enter()
+                .append('g')
+                .attr('class', 'stock');
+            
+            // 繪製矩形
+            stocks.append('rect')
+                .attr('class', 'stock-cell')
+                .attr('x', d => d.x0)
+                .attr('y', d => d.y0)
+                .attr('width', d => Math.max(0, d.x1 - d.x0))
+                .attr('height', d => Math.max(0, d.y1 - d.y0))
+                .attr('fill', d => getColor(d.data.change))
+                .on('click', (event, d) => {
+                    // 跳轉到 Yahoo 技術分析頁面
+                    window.open(`https://tw.stock.yahoo.com/quote/${d.data.ticker}.TW/technical-analysis`, '_blank');
+                })
+                .on('mouseover', function(event, d) {
+                    const tooltip = document.getElementById('stock-tooltip');
+                    tooltip.style.opacity = '1';
+                    tooltip.innerHTML = `
+                        <strong>${d.data.ticker} ${d.data.name}</strong><br>
+                        跌幅: <strong>${d.data.change}</strong><br>
+                        類別: ${d.data.categoryName}
+                    `;
+                    updateStockTooltipPosition(event);
+                })
+                .on('mousemove', updateStockTooltipPosition)
+                .on('mouseout', function() {
+                    document.getElementById('stock-tooltip').style.opacity = '0';
+                });
+            
+            // 添加文字 (股號、名稱、跌幅上下排列,優化間距)
+            stocks.each(function(d) {
+                const stock = d3.select(this);
+                const cellWidth = d.x1 - d.x0;
+                const cellHeight = d.y1 - d.y0;
+                const centerX = (d.x0 + d.x1) / 2;
+                const centerY = (d.y0 + d.y1) / 2;
+                
+                // 根據格子大小決定顯示內容
+                if (cellWidth > 70 && cellHeight > 60) {
+                    // 大格子:股號、名稱、跌幅三行,間距均勻
+                    stock.append('text')
+                        .attr('class', 'stock-text')
+                        .attr('x', centerX)
+                        .attr('y', centerY - 18)
+                        .style('font-size', '15px')
+                        .style('font-weight', '600')
+                        .text(d.data.ticker);
+                    
+                    stock.append('text')
+                        .attr('class', 'stock-text')
+                        .attr('x', centerX)
+                        .attr('y', centerY - 2)
+                        .style('font-size', '15px')
+                        .style('font-weight', '600')
+                        .text(d.data.name);
+                    
+                    stock.append('text')
+                        .attr('class', 'stock-text')
+                        .attr('x', centerX)
+                        .attr('y', centerY + 18)
+                        .style('font-size', '17px')
+                        .style('font-weight', '700')
+                        .text(d.data.change);
+                } else if (cellWidth > 50 && cellHeight > 45) {
+                    // 中格子:股號和跌幅兩行,間距適中
+                    stock.append('text')
+                        .attr('class', 'stock-text')
+                        .attr('x', centerX)
+                        .attr('y', centerY - 10)
+                        .style('font-size', '14px')
+                        .style('font-weight', '600')
+                        .text(d.data.ticker);
+                    
+                    stock.append('text')
+                        .attr('class', 'stock-text')
+                        .attr('x', centerX)
+                        .attr('y', centerY + 12)
+                        .style('font-size', '16px')
+                        .style('font-weight', '700')
+                        .text(d.data.change);
+                } else if (cellWidth > 35 && cellHeight > 30) {
+                    // 小格子:只顯示跌幅
+                    stock.append('text')
+                        .attr('class', 'stock-text')
+                        .attr('x', centerX)
+                        .attr('y', centerY)
+                        .style('font-size', '14px')
+                        .style('font-weight', '700')
+                        .text(d.data.change);
+                }
+            });
+        }
+
+        // 顯示類別圖片 tooltip
+        function showCategoryTooltip(event, categoryName, imagePath) {
+            const tooltip = document.getElementById('category-tooltip');
+            const title = document.getElementById('tooltip-title');
+            const image = document.getElementById('tooltip-image');
+            
+            title.textContent = `${categoryName} 熱力圖`;
+            image.src = `heatmaps/${imagePath}`;
+            image.alt = categoryName;
+            
+            tooltip.classList.add('visible');
+            updateCategoryTooltipPosition(event);
+        }
+
+        // 更新類別 tooltip 位置
+        function updateCategoryTooltipPosition(event) {
+            const tooltip = document.getElementById('category-tooltip');
+            const margin = 20;
+            const tooltipRect = tooltip.getBoundingClientRect();
+            
+            let left = event.clientX + 10;
+            let top = event.clientY + 10;
+            
+            // 防止超出右邊界
+            if (left + tooltipRect.width > window.innerWidth - margin) {
+                left = window.innerWidth - tooltipRect.width - margin;
+            }
+            
+            // 防止超出下邊界
+            if (top + tooltipRect.height > window.innerHeight - margin) {
+                top = event.clientY - tooltipRect.height - 10;
+            }
+            
+            tooltip.style.left = left + 'px';
+            tooltip.style.top = top + 'px';
+        }
+
+        // 隱藏類別 tooltip
+        function hideCategoryTooltip() {
+            document.getElementById('category-tooltip').classList.remove('visible');
+        }
+
+        // 更新股票 tooltip 位置
+        function updateStockTooltipPosition(e) {
+            const tooltip = document.getElementById('stock-tooltip');
+            tooltip.style.left = (e.clientX + 10) + 'px';
+            tooltip.style.top = (e.clientY - 10) + 'px';
+        }
+
+        // 響應式調整
+        window.addEventListener('resize', () => {
+            if (allData) {
+                renderHeatmap('tse', 'tse-container');
+                renderHeatmap('otc', 'otc-container');
+            }
+        });
+
+        // 初始化
+        loadData();
     </script>
 </body>
 </html>

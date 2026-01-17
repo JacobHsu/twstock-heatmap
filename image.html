@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taiwan Stock Market Heatmap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        h1 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        .timestamp {
+            color: #888;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        .source {
+            color: #666;
+            margin-top: 20px;
+            font-size: 0.8em;
+        }
+        a {
+            color: #4ecdc4;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Taiwan Stock Market Heatmap</h1>
+    <p class="timestamp">Generated: <span id="time"></span></p>
+    <img src="heatmaps/twstock.png" alt="Taiwan Stock Market Heatmap">
+    <p class="source">Data source: <a href="https://www.nstock.tw" target="_blank">nStock.tw</a></p>
+    <script>
+        document.getElementById('time').textContent = new Date().toLocaleString('zh-TW');
+    </script>
+</body>
+</html>
