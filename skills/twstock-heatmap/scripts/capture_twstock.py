@@ -123,6 +123,7 @@ def capture_twstock_heatmap(map_type="all", output_path="twstock.png", headless=
         "tse-plastic": (0, "3"),  # 上市塑膠
         "tse-electrical": (0, "5"),  # 上市電機
         "tse-construction": (0, "14"),  # 上市營建
+        "tse-shipping": (0, "15"),  # 上市航運
         "tse-green": (0, "35"),  # 上市綠能環保
         
         # === OTC (上櫃) Categories ===
@@ -401,7 +402,7 @@ def main():
         "-t",
         "--type",
         default="all",
-        choices=["all", "tse", "otc", "tse-semi", "tse-network", "tse-elec", "tse-computer", "tse-plastic", "tse-electrical", "tse-construction", "tse-channel", "otc-elec", "otc-semi", "otc-network", "otc-computer", "otc-construction", "otc-other", "otc-info", "tse-green", "otc-tourism", "otc-green"],
+        choices=["all", "tse", "otc", "tse-semi", "tse-network", "tse-elec", "tse-computer", "tse-plastic", "tse-electrical", "tse-construction", "tse-shipping", "tse-channel", "otc-elec", "otc-semi", "otc-network", "otc-computer", "otc-construction", "otc-other", "otc-info", "tse-green", "otc-tourism", "otc-green"],
         help="Industry type (default: all - captures all categories)",
     )
     parser.add_argument(
@@ -432,7 +433,7 @@ def main():
 
     # If 'all' is specified, capture all categories
     if args.type == "all":
-        all_categories = ["tse", "otc", "tse-semi", "tse-network", "tse-elec", "tse-computer", "tse-plastic", "tse-electrical", "tse-construction", "tse-channel", "otc-elec", "otc-semi", "otc-network", "otc-computer", "otc-construction", "otc-other", "otc-info", "tse-green", "otc-tourism", "otc-green"]
+        all_categories = ["tse", "otc", "tse-semi", "tse-network", "tse-elec", "tse-computer", "tse-plastic", "tse-electrical", "tse-construction", "tse-shipping", "tse-channel", "otc-elec", "otc-semi", "otc-network", "otc-computer", "otc-construction", "otc-other", "otc-info", "tse-green", "otc-tourism", "otc-green"]
         
         print(f"📊 Capturing all {len(all_categories)} heatmap categories...", flush=True)
         print(f"Output directory: {heatmaps_dir}\n", flush=True)
