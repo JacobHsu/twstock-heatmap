@@ -2,9 +2,9 @@ name: Generate Taiwan Stock Heatmap
 
 on:
   # Scheduled run: Taiwan market opens at 9:00 AM (UTC+8)
-  # Run at 9:30 AM Taiwan time = 1:30 AM UTC (30 mins after open)
+  # Run at 9:15 AM Taiwan time = 1:15 AM UTC (15 mins after open)
   schedule:
-    - cron: '30 1 * * 1-5'  # Weekdays at 1:30 AM UTC (9:30 AM Taiwan)
+    - cron: '15 1 * * 1-5'  # Weekdays at 1:15 AM UTC (9:15 AM Taiwan)
   
   # Manual trigger
   workflow_dispatch:
