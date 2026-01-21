@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>股價漲跌即時熱力圖</title>
+    <title>股價漲跌即時熱力圖</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
         * {
@@ -199,6 +201,8 @@
         <div class="update-time" id="update-time">載入中...</div>
     </div>
 
+
+
     <div class="heatmap-wrapper">
         <!-- TSE Panel -->
         <div class="heatmap-panel">
@@ -242,7 +246,30 @@
         <img id="tooltip-image" src="" alt="">
     </div>
 
+    <!-- 股票多網站查詢模組 -->
+    <div class="fixed bottom-5 left-5 z-[2000] flex items-stretch shadow-md">
+        <div class="relative group">
+            <input 
+                type="text" 
+                id="stock-query-input" 
+                class="w-32 px-3 py-2 border rounded-l-md border-r-0 border-gray-300 text-sm focus:outline-none focus:ring-0 focus:border-blue-500 transition-colors" 
+                placeholder="輸入代號"
+                maxlength="6"
+            >
+            <!-- 提示氣泡 (Message Bubble) -->
+            <div id="stock-query-message" class="absolute bottom-full left-0 mb-2 whitespace-nowrap px-3 py-1.5 rounded text-xs text-white opacity-0 transition-opacity pointer-events-none shadow-sm"></div>
+        </div>
+        <button id="stock-query-btn" class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-r-md border border-blue-600 hover:bg-blue-700 active:bg-blue-800 transition-colors">
+            查詢
+        </button>
+    </div>
+
+    <!-- 引入股票查詢功能 -->
+    <script src="tpex-stocks.js"></script>
+    <script src="stock-query.js"></script>
+
     <script>
+
         // 類別名稱映射和順序
         const categoryInfo = {
             'tse': [
