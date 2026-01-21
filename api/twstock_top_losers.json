@@ -3,113 +3,176 @@
   "data": {
     "tse": [
       {
-        "ticker": "2408",
-        "name": "南亞科",
-        "change": "-7.45%"
-      },
-      {
         "ticker": "2344",
         "name": "華邦電",
-        "change": "-5.57%"
-      }
-    ],
-    "otc-computer": [],
-    "otc-construction": [
+        "change": "-3.98%"
+      },
       {
-        "ticker": "8080",
-        "name": "泰霖",
-        "change": "-8.46%"
+        "ticker": "6770",
+        "name": "力積電",
+        "change": "-3.37%"
       }
     ],
+    "otc-computer": [
+      {
+        "ticker": "3693",
+        "name": "營邦",
+        "change": "-3.71%"
+      }
+    ],
+    "otc-construction": [],
     "otc-elec": [
       {
-        "ticker": "4939",
-        "name": "亞電",
-        "change": "-9.92%"
+        "ticker": "5328",
+        "name": "華容",
+        "change": "-4.01%"
       },
       {
-        "ticker": "6284",
-        "name": "佳邦",
-        "change": "-3.01%"
-      },
-      {
-        "ticker": "6173",
-        "name": "信昌電",
-        "change": "-3.07%"
+        "ticker": "6275",
+        "name": "元山",
+        "change": "-3.19%"
       }
     ],
-    "otc-green": [],
-    "otc-info": [],
-    "otc-network": [],
-    "otc-other": [],
-    "otc-semi": [
+    "otc-green": [
       {
-        "ticker": "3260",
-        "name": "威剛",
-        "change": "-6.10%"
+        "ticker": "6894",
+        "name": "衛司特",
+        "change": "-3.63%"
+      }
+    ],
+    "otc-info": [],
+    "otc-network": [
+      {
+        "ticker": "8097",
+        "name": "常珵",
+        "change": "-5.24%"
+      }
+    ],
+    "otc-other": [
+      {
+        "ticker": "8444",
+        "name": "綠河-KY",
+        "change": "-5.06%"
       },
+      {
+        "ticker": "5481",
+        "name": "新華",
+        "change": "-3.00%"
+      }
+    ],
+    "otc-semi": [
       {
         "ticker": "5351",
         "name": "鈺創",
-        "change": "-4.11%"
+        "change": "-5.94%"
       },
       {
-        "ticker": "6104",
-        "name": "創惟",
-        "change": "-3.44%"
-      }
-    ],
-    "otc-tourism": [
-      {
-        "ticker": "4419",
-        "name": "皇家美食",
-        "change": "-7.40%"
-      }
-    ],
-    "otc": [
+        "ticker": "3529",
+        "name": "力旺",
+        "change": "-4.98%"
+      },
       {
         "ticker": "3260",
         "name": "威剛",
-        "change": "-7.04%"
-      }
-    ],
-    "tse-channel": [
-      {
-        "ticker": "8112",
-        "name": "至上",
-        "change": "-7.06%"
+        "change": "-3.52%"
       },
       {
-        "ticker": "3028",
-        "name": "增你強",
-        "change": "-3.34%"
+        "ticker": "3264",
+        "name": "欣銓",
+        "change": "-3.33%"
       }
     ],
+    "otc-tourism": [],
+    "otc": [
+      {
+        "ticker": "3529",
+        "name": "力旺",
+        "change": "-5.60%"
+      },
+      {
+        "ticker": "5483",
+        "name": "中美晶",
+        "change": "-4.63%"
+      },
+      {
+        "ticker": "5536",
+        "name": "聖暉*",
+        "change": "-3.24%"
+      },
+      {
+        "ticker": "3260",
+        "name": "威剛",
+        "change": "-3.35%"
+      },
+      {
+        "ticker": "3264",
+        "name": "欣銓",
+        "change": "-3.03%"
+      }
+    ],
+    "tse-channel": [],
     "tse-computer": [],
     "tse-construction": [],
     "tse-elec": [
       {
-        "ticker": "3376",
-        "name": "新日興",
-        "change": "-7.25%"
-      }
-    ],
-    "tse-electrical": [],
-    "tse-green": [
+        "ticker": "3533",
+        "name": "嘉澤",
+        "change": "-5.96%"
+      },
       {
-        "ticker": "6873",
-        "name": "泓德能源",
-        "change": "-3.22%"
+        "ticker": "3653",
+        "name": "健策",
+        "change": "-4.26%"
+      },
+      {
+        "ticker": "6781",
+        "name": "AES-KY",
+        "change": "-3.36%"
       }
     ],
-    "tse-network": [],
+    "tse-electrical": [
+      {
+        "ticker": "4540",
+        "name": "全球傳動",
+        "change": "-9.92%"
+      },
+      {
+        "ticker": "1514",
+        "name": "亞力",
+        "change": "-9.84%"
+      }
+    ],
+    "tse-green": [],
+    "tse-network": [
+      {
+        "ticker": "3704",
+        "name": "合勤控",
+        "change": "-9.70%"
+      }
+    ],
     "tse-plastic": [],
-    "tse-semi": [],
+    "tse-semi": [
+      {
+        "ticker": "2344",
+        "name": "華邦電",
+        "change": "-4.42%"
+      },
+      {
+        "ticker": "6770",
+        "name": "力積電",
+        "change": "-4.39%"
+      },
+      {
+        "ticker": "6239",
+        "name": "力成",
+        "change": "-3.37%"
+      }
+    ],
     "tse-shipping": []
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-01-20T02:35:08.031758Z",
-  "generated_at": "2026-01-20T02:35:08.031758Z"
+  "last_updated": "2026-01-21T02:14:22.055330Z",
+  "generated_at": "2026-01-21T02:14:22.055330Z"
 }
