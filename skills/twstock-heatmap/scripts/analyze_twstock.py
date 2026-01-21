@@ -62,6 +62,64 @@ def load_stock_mapping():
     return stock_mapping
 
 
+def verify_stock_decline_yahoo(ticker):
+    """
+    Verify if a stock is currently declining using Yahoo Finance API
+    
+    Args:
+        ticker: Taiwan stock ticker (e.g., "2344")
+    
+    Returns:
+        True if stock is declining (negative change), False otherwise
+        Returns True on API errors to avoid false negatives
+    """
+    try:
+        import yfinance as yf
+        
+        # Determine if TSE or OTC based on ticker
+        # TSE tickers are typically 4 digits starting with 1-9
+        # OTC tickers are typically 4 digits starting with specific ranges
+        # For simplicity, we'll try .TW first, then .TWO if that fails
+        
+        ticker_tw = f"{ticker}.TW"
+        ticker_two = f"{ticker}.TWO"
+        
+        # Try TSE first
+        stock = yf.Ticker(ticker_tw)
+        try:
+            info = stock.info
+            if info and 'regularMarketChangePercent' in info:
+                change_percent = info['regularMarketChangePercent']
+                is_declining = change_percent < 0
+                print(f"  📊 Yahoo Finance: {ticker}.TW change = {change_percent:.2f}% → {'✓ Declining' if is_declining else '✗ Not declining'}")
+                return is_declining
+        except:
+            pass
+        
+        # Try OTC if TSE failed
+        stock = yf.Ticker(ticker_two)
+        try:
+            info = stock.info
+            if info and 'regularMarketChangePercent' in info:
+                change_percent = info['regularMarketChangePercent']
+                is_declining = change_percent < 0
+                print(f"  📊 Yahoo Finance: {ticker}.TWO change = {change_percent:.2f}% → {'✓ Declining' if is_declining else '✗ Not declining'}")
+                return is_declining
+        except:
+            pass
+        
+        # If both failed, log warning and return True to avoid false negatives
+        print(f"  ⚠ Yahoo Finance: Could not fetch data for {ticker} - including by default")
+        return True
+        
+    except ImportError:
+        print(f"  ⚠ yfinance not installed - skipping Yahoo verification for {ticker}")
+        return True
+    except Exception as e:
+        print(f"  ⚠ Yahoo Finance error for {ticker}: {e} - including by default")
+        return True
+
+
 
 
 def encode_image(image_path):
@@ -160,10 +218,12 @@ def analyze_single_image(image_path, api_token, industry_name="all", stock_mappi
         # Add ticker symbols to each stock if mapping is provided
         # Only include stocks with valid tickers (filter out AI misidentifications)
         # AND filter stocks with decline > 3%
+        # AND verify with Yahoo Finance API that stock is currently declining
         if stock_mapping and "top_losers" in data:
             reordered_losers = []
             skipped_count = 0
             filtered_by_decline = 0
+            filtered_by_yahoo = 0
             
             for stock in data["top_losers"]:
                 stock_name = stock.get("name", "")
@@ -198,6 +258,12 @@ def analyze_single_image(image_path, api_token, industry_name="all", stock_mappi
                     skipped_count += 1
                     continue
                 
+                # NEW: Verify with Yahoo Finance API that stock is currently declining
+                if not verify_stock_decline_yahoo(ticker):
+                    print(f"  ⚠ SKIPPED {stock_name} ({ticker}) - Yahoo Finance shows NOT declining")
+                    filtered_by_yahoo += 1
+                    continue
+                
                 # Create new ordered dict with ticker first
                 reordered_stock = {
                     "ticker": ticker,
@@ -212,6 +278,9 @@ def analyze_single_image(image_path, api_token, industry_name="all", stock_mappi
                 print(f"  ℹ️ Filtered out {skipped_count} stock(s) without valid ticker")
             if filtered_by_decline > 0:
                 print(f"  ℹ️ Filtered out {filtered_by_decline} stock(s) with decline ≤ 3%")
+            if filtered_by_yahoo > 0:
+                print(f"  ℹ️ Filtered out {filtered_by_yahoo} stock(s) by Yahoo Finance verification")
+
         
         return data
 
