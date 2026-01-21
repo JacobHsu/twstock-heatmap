@@ -92,18 +92,26 @@ def analyze_single_image(image_path, api_token, industry_name="all", stock_mappi
     prompt = f"""分析這張台股市場熱力圖截圖 ({industry_name})。
 
 這是一個台灣股票市場熱力圖：
-- 紅色 = 上漲
-- 綠色 = 下跌 (顏色越深綠，跌幅越大)
-- 灰色 = 平盤
+- 紅色/粉紅色 = 上漲 (正數百分比，例如 +2.48%, +1.14%)
+- 綠色 = 下跌 (負數百分比，例如 -2.36%, -1.65%)
+- 灰色 = 平盤 (0.00%)
 - 每個方塊包含：公司名稱、漲跌幅百分比
 
 任務：找出「跌幅百分比最大」（數值最負）的 5 檔股票。
 
 ⚠️ 關鍵要求 (CRITICAL):
-1. 【忽略方塊大小】：不要只看大方塊！跌幅大的股票通常在「小型方塊」中（例如 -5% 的小方塊比 -0.5% 的大方塊更重要）。
-2. 【搜尋深綠色】：優先掃描顏色最深的綠色區塊，無論它多小。
-3. 【精確排序】：必須嚴格按照百分比數值排序（例如 -5.42% 排在 -2.74% 前面）。
-4. 【完整掃描】：請仔細檢查圖片右側和下方的邊緣區域，那裡常有跌幅重的小型股。
+1. 【只選綠色方塊】：只能選擇綠色的方塊！紅色/粉紅色方塊是上漲，不是下跌！
+2. 【只選負數百分比】：跌幅必須是負數（例如 -2.36%），絕對不能是正數（例如 +2.48%）！
+3. 【忽略方塊大小】：不要只看大方塊！跌幅大的股票通常在「小型方塊」中（例如 -5% 的小方塊比 -0.5% 的大方塊更重要）。
+4. 【搜尋深綠色】：優先掃描顏色最深的綠色區塊，無論它多小。
+5. 【精確排序】：必須嚴格按照百分比數值排序（例如 -5.42% 排在 -2.74% 前面）。
+6. 【完整掃描】：請仔細檢查圖片右側和下方的邊緣區域，那裡常有跌幅重的小型股。
+7. 【驗證顏色】：在回報之前，再次確認你選擇的方塊是綠色，不是紅色！
+
+⚠️ 常見錯誤 (請避免):
+- ❌ 錯誤：選擇深紅色方塊（那是漲停，不是跌停！）
+- ❌ 錯誤：回報正數百分比（例如 +9.92%）
+- ✅ 正確：只選擇綠色方塊，只回報負數百分比（例如 -2.36%）
 
 請返回 JSON 格式：
 {{
@@ -114,6 +122,7 @@ def analyze_single_image(image_path, api_token, industry_name="all", stock_mappi
   "market": "taiwan",
   "industry": "{industry_name}"
 }}"""
+
 
     payload = {
         "model": "gpt-4o",
@@ -168,10 +177,16 @@ def analyze_single_image(image_path, api_token, industry_name="all", stock_mappi
                     skipped_count += 1
                     continue  # Skip this stock entirely
                 
-                # Filter by decline percentage (> 3%)
+                # Filter by decline percentage (must be negative AND > 3%)
                 try:
-                    # Extract percentage value from string like "-5.23%" or "-2.5%"
+                    # Extract percentage value from string like "-5.23%" or "+2.5%"
                     decline_value = float(change_str.replace("%", "").replace("+", ""))
+                    
+                    # CRITICAL: Filter out positive values (AI color confusion - red mistaken for green)
+                    if decline_value > 0:
+                        print(f"  ⚠ SKIPPED {stock_name} ({change_str}) - POSITIVE value detected! AI mistook red (gain) for green (loss)")
+                        skipped_count += 1
+                        continue
                     
                     # Only include if decline is greater than 3% (decline_value < -3)
                     if decline_value > -3.0:
