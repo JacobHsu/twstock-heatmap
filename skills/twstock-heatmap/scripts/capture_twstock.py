@@ -132,6 +132,8 @@ def capture_twstock_heatmap(map_type="all", output_path="twstock.png", headless=
         "otc-network": (1, "27"),  # 上櫃網通
         "otc-elec": (1, "28"),  # 上櫃電子組件
         "otc-computer": (1, "25"),  # 上櫃電腦週邊
+        "otc-channel": (1, "29"),  # 上櫃電子通路
+        "otc-electrical": (1, "5"),  # 上櫃電機
         "otc-construction": (1, "14"),  # 上櫃營建
         "otc-other": (1, "20"),  # 上櫃其他
         "otc-info": (1, "30"),  # 上櫃資訊服務
