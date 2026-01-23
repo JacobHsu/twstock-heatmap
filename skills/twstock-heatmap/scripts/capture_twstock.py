@@ -198,16 +198,41 @@ def capture_twstock_heatmap(map_type="all", output_path="twstock.png", headless=
             print("Loading nStock.tw heatmap page...")
             page.goto(url, wait_until="networkidle", timeout=60000)
 
-            # Wait for Nuxt.js hydration and data loading
-            print("Waiting for page to fully render (20 seconds)...")
-            time.sleep(20)
+            # Smart wait: detect actual treemap rendering instead of hard 20s sleep
+            print("Waiting for heatmap to render...")
+            treemap_selectors = [
+                '[class*="treemap"] rect',
+                '[class*="treemap"] canvas',
+                '[class*="heatmap"] rect',
+                'canvas',
+                'svg rect',
+            ]
+            rendered = False
+            for sel in treemap_selectors:
+                try:
+                    page.wait_for_selector(sel, state="visible", timeout=15000)
+                    print(f"  Detected rendered element: {sel}")
+                    rendered = True
+                    break
+                except Exception:
+                    continue
 
-            # Additional wait for any lazy-loaded content
+            if not rendered:
+                # Fallback: wait for network idle as a sign the page is done
+                print("  No treemap element detected, waiting for network idle...")
+                try:
+                    page.wait_for_load_state("networkidle", timeout=15000)
+                except Exception:
+                    pass
+
+            # Brief pause for animations/transitions to complete
+            time.sleep(2)
+
+            # Wait for any loading indicators to disappear
             try:
-                # Wait for any loading indicators to disappear
-                page.wait_for_selector(".loading", state="hidden", timeout=5000)
+                page.wait_for_selector(".loading", state="hidden", timeout=3000)
             except Exception:
-                pass  # No loading indicator found, continue
+                pass
 
             # Check if page loaded successfully
             try:
@@ -231,13 +256,13 @@ def capture_twstock_heatmap(map_type="all", output_path="twstock.png", headless=
                     '[class*="cookie"]', '[class*="consent"]',
                     '.floating', '[style*="position: fixed"]'
                 ];
-                
+
                 selectorsToHide.forEach(selector => {
                     document.querySelectorAll(selector).forEach(el => {
                         el.style.display = 'none';
                     });
                 });
-                
+
                 // Also hide high z-index elements (tooltips, popups)
                 document.querySelectorAll('*').forEach(el => {
                     const style = window.getComputedStyle(el);
@@ -247,11 +272,10 @@ def capture_twstock_heatmap(map_type="all", output_path="twstock.png", headless=
                     }
                 });
             """)
-            time.sleep(1)
 
             # Move mouse away to clear any hover effects
             page.mouse.move(10, 10)
-            time.sleep(1)
+            time.sleep(0.5)
 
             # Take screenshot
             print("Capturing screenshot...")
@@ -259,7 +283,7 @@ def capture_twstock_heatmap(map_type="all", output_path="twstock.png", headless=
             if treemap:
                 # Element-specific screenshot
                 treemap.scroll_into_view_if_needed()
-                time.sleep(1)
+                time.sleep(0.5)
                 screenshot_bytes = treemap.screenshot(type="png")
             else:
                 # Full page with smart clipping
