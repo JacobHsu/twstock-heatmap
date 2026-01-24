@@ -44,25 +44,25 @@ jobs:
           playwright install chromium
           playwright install-deps chromium
       
-      - name: Capture Taiwan Stock Heatmaps
-        if: ${{ github.event.inputs.skip_capture != 'true' }}
-        run: |
-          echo "📊 Capturing all 12 nStock.tw heatmaps..."
-          echo "Output directory: heatmaps/"
-          echo ""
-          
-          # Use the simplified 'all' mode to capture all categories
-          python skills/twstock-heatmap/scripts/capture_twstock.py
-          
-          # Verify screenshots in heatmaps directory
-          echo ""
-          echo "Verifying captured heatmaps:"
-          ls -lh heatmaps/*.png
-      
       - name: Scrape HiStock Top Losers
         run: |
           echo "📉 Scraping histock.tw top losers..."
           python skills/twstock-heatmap/scripts/scrape_histock.py
+
+      - name: Capture Taiwan Stock Heatmaps
+        if: ${{ github.event.inputs.skip_capture != 'true' }}
+        run: |
+          echo "📊 Capturing heatmaps based on top losers industries..."
+          echo "Output directory: heatmaps/"
+          echo ""
+
+          # Dynamically captures only industries from histock_top_losers.json
+          python skills/twstock-heatmap/scripts/capture_twstock.py
+
+          # Verify screenshots in heatmaps directory
+          echo ""
+          echo "Verifying captured heatmaps:"
+          ls -lh heatmaps/*.png
 
       - name: Analyze Heatmaps with AI
         env:

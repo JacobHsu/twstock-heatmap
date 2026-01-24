@@ -66,7 +66,7 @@ git clone https://github.com/JacobHsu/twstock-heatmap.git
 cd twstock-heatmap
 
 # 2. 安裝依賴
-pip install playwright Pillow requests
+pip install playwright Pillow requests beautifulsoup4
 playwright install chromium
 
 # 3. 設定環境變數
@@ -82,67 +82,49 @@ cp .env.example .env
 
 ### 完整流程（本地端執行）
 
-**步驟 1：擷取所有熱力圖**
+**步驟 1：抓取跌幅排行榜**
+```bash
+python skills/twstock-heatmap/scripts/scrape_histock.py
+```
+
+從 HiStock 抓取當日跌幅最大的 50 檔股票，產出 `api/histock_top_losers.json`，包含每檔股票的產業別與市場（上市/上櫃）。
+
+**步驟 2：動態擷取熱力圖**
 ```bash
 python skills/twstock-heatmap/scripts/capture_twstock.py
 ```
 
-這會自動擷取所有 8 個類別並儲存到 `heatmaps/` 資料夾：
-- 📈 TSE Overview (上市總覽)
-- 📊 OTC Overview (上櫃總覽)
-- 🔌 OTC Electronic (櫃買電子)
-- 💎 OTC Semiconductor (櫃買半導體)
-- 🏗️ OTC Construction (櫃買營建)
-- 🌱 TSE Green Energy (上市綠能環保)
-- ✈️ OTC Tourism (上櫃觀光)
-- ♻️ OTC Green Energy (上櫃綠能環保)
+讀取步驟 1 產出的 JSON，統整出涉及的產業別（需至少 2 檔股票），只擷取對應產業的熱力圖。相比固定擷取全部 21 個類別，動態模式通常只需擷取約 10 張，大幅減少分析量。
 
 **執行結果**：
 ```
-📊 Capturing all 8 heatmap categories...
-Output directory: D:\15-stock\twstock-heatmap\heatmaps
-
-============================================================
-[1/8] Capturing: tse
-============================================================
-...
-✅ Successfully captured tse
+  ✓ otc-semi (半導體: 4 stocks)
+  ✓ otc-elec (電子組件: 11 stocks)
+  ✓ tse-semi (半導體: 6 stocks)
+  ✓ tse-elec (電子組件: 5 stocks)
+  ✓ tse-electrical (電機: 3 stocks)
+  ...
+📊 Capturing 10 heatmap categories (from losers JSON)...
 
 ============================================================
 📊 SUMMARY
 ============================================================
-✅ Successful: 8/8
-⏱️  Total time: 3m 25s
+✅ Successful: 10/10
 
 🎉 All heatmaps captured successfully!
 ```
 
-**步驟 2：AI 分析生成 API**
+**步驟 3：AI 分析生成 API**
 ```bash
 python skills/twstock-heatmap/scripts/analyze_twstock.py --auto
 ```
 
-使用 `--auto` 模式會自動掃描 `heatmaps/` 資料夾並分析所有 PNG：
-
-```
-🔍 Auto-scanning heatmaps directory...
-Found 8 heatmap(s):
-  - tse: twstock.png
-  - otc: twstock_otc.png
-  - otc-elec: twstock_otc-elec.png
-  ...
-
-Analyzing tse from heatmaps/twstock.png...
-✓ Loaded 1,971 stock mappings from StockMapping.csv
-...
-
-JSON API saved: api/twstock_top_losers.json
-Analysis complete!
-```
+使用 `--auto` 模式會自動掃描 `heatmaps/` 資料夾並分析所有 PNG。
 
 **輸出檔案**:
-- `heatmaps/*.png` - 8 個熱力圖截圖
-- `api/twstock_top_losers.json` - 包含所有類別的 JSON API
+- `api/histock_top_losers.json` - 跌幅前 50 檔股票（含產業別）
+- `heatmaps/*.png` - 動態產業熱力圖截圖
+- `api/twstock_top_losers.json` - AI 分析結果 JSON API
 - `index.html` - 互動式熱力圖視覺化頁面 (D3.js Treemap)
 - `api/index.html` - 跌幅榜列表展示頁面
 
@@ -183,14 +165,16 @@ python skills/twstock-heatmap/scripts/analyze_twstock.py \
 ```
 twstock-heatmap/
 ├── skills/twstock-heatmap/scripts/
-│   ├── capture_twstock.py      # 截圖腳本
+│   ├── scrape_histock.py       # 跌幅排行抓取腳本
+│   ├── capture_twstock.py      # 動態熱力圖截圖腳本
 │   └── analyze_twstock.py      # AI 分析腳本
 ├── data/
 │   └── StockMapping.csv        # 股票代號資料庫 (1,971 筆)
 ├── heatmaps/
-│   └── *.png                   # 產業熱力圖截圖
+│   └── *.png                   # 動態產業熱力圖截圖
 ├── api/
-│   ├── twstock_top_losers.json # 生成的 API 檔案
+│   ├── histock_top_losers.json # 跌幅前 50 檔（含產業別）
+│   ├── twstock_top_losers.json # AI 分析結果 API
 │   └── index.html              # 跌幅榜列表展示頁面
 ├── index.html                  # 互動式熱力圖視覺化 (主頁)
 └── .github/workflows/
@@ -201,12 +185,13 @@ twstock-heatmap/
 
 ## 🔧 技術細節
 
-### 截圖流程
+### 動態截圖流程
 
-1. Playwright 啟動 Chromium 無頭瀏覽器
-2. 導航至 nStock.tw 熱力圖頁面
-3. 等待 Nuxt.js 完全渲染（~20 秒）
-4. 定位 Canvas 元素並擷取截圖
+1. 讀取 `api/histock_top_losers.json` 提取產業別
+2. 篩選至少 2 檔跌幅股的產業（減少不必要的分析）
+3. Playwright 啟動 Chromium 無頭瀏覽器
+4. 依序導航至對應產業的 nStock.tw 熱力圖頁面
+5. 等待 Canvas 元素渲染完成後擷取截圖
 
 ### AI 分析流程
 
@@ -228,11 +213,12 @@ twstock-heatmap/
 
 ### GitHub Actions 設定
 
-專案已配置自動化工作流程，每個交易日台灣時間 09:30 自動執行：
+專案已配置自動化工作流程，每個交易日台灣時間 09:15 自動執行：
 
-1. 擷取最新熱力圖
-2. AI 分析生成 API
-3. 部署到 GitHub Pages
+1. 抓取 HiStock 跌幅排行榜（前 50 檔）
+2. 依據跌幅股的產業別，動態擷取對應熱力圖（至少 2 檔才擷取）
+3. AI 分析熱力圖生成 API
+4. 部署到 GitHub Pages
 
 **手動觸發**：前往 Actions 標籤 → Run workflow
 

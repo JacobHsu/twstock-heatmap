@@ -10,6 +10,7 @@ import subprocess
 import time
 import os
 import io
+import json
 from pathlib import Path
 import time
 
@@ -85,6 +86,81 @@ def find_treemap_element(page):
     return None
 
 
+
+# Mapping: JSON industry name -> (iid, capture_key_suffix)
+INDUSTRY_MAP = {
+    "半導體": ("24", "semi"),
+    "電子組件": ("28", "elec"),
+    "電機": ("5", "electrical"),
+    "電子通路": ("29", "channel"),
+    "電腦週邊": ("25", "computer"),
+    "營建": ("14", "construction"),
+    "其他": ("20", "other"),
+    "光電": ("26", "opto"),
+    "化學": ("21", "chem"),
+    "生技": ("22", "bio"),
+    "汽車": ("12", "auto"),
+    "電器": ("6", "cable"),
+    "其他電子": ("31", "otherele"),
+    "網通": ("27", "network"),
+    "塑膠": ("3", "plastic"),
+    "航運": ("15", "shipping"),
+    "綠能環保": ("35", "green"),
+    "資訊服務": ("30", "info"),
+    "觀光": ("16", "tourism"),
+}
+
+# nStock heatmap URL configuration
+# t1: 0=TSE (上市), 1=OTC (上櫃)
+# t2=0: otc filter
+# t3=0: additional filter
+# t4=1: display mode
+# t5=0: additional option
+# iid: industry ID
+
+# Industry map parameters: (t1_value, iid_value)
+INDUSTRY_PARAMS = {
+    # === TSE (上市) Categories ===
+    "tse": (0, ""),  # 上市總覽 (Default)
+    "tse-semi": (0, "24"),  # 上市半導體
+    "tse-network": (0, "27"),  # 上市網通
+    "tse-elec": (0, "28"),  # 上市電子組件
+    "tse-computer": (0, "25"),  # 上市電腦週邊
+    "tse-channel": (0, "29"),  # 上市電子通路
+    "tse-plastic": (0, "3"),  # 上市塑膠
+    "tse-electrical": (0, "5"),  # 上市電機
+    "tse-construction": (0, "14"),  # 上市營建
+    "tse-shipping": (0, "15"),  # 上市航運
+    "tse-green": (0, "35"),  # 上市綠能環保
+    "tse-opto": (0, "26"),  # 上市光電
+    "tse-chem": (0, "21"),  # 上市化學
+    "tse-bio": (0, "22"),  # 上市生技
+    "tse-auto": (0, "12"),  # 上市汽車
+    "tse-cable": (0, "6"),  # 上市電器
+    "tse-otherele": (0, "31"),  # 上市其他電子
+    "tse-other": (0, "20"),  # 上市其他
+
+    # === OTC (上櫃) Categories ===
+    "otc": (1, ""),  # 上櫃總覽
+    "otc-semi": (1, "24"),  # 上櫃半導體
+    "otc-network": (1, "27"),  # 上櫃網通
+    "otc-elec": (1, "28"),  # 上櫃電子組件
+    "otc-computer": (1, "25"),  # 上櫃電腦週邊
+    "otc-channel": (1, "29"),  # 上櫃電子通路
+    "otc-electrical": (1, "5"),  # 上櫃電機
+    "otc-construction": (1, "14"),  # 上櫃營建
+    "otc-other": (1, "20"),  # 上櫃其他
+    "otc-info": (1, "30"),  # 上櫃資訊服務
+    "otc-tourism": (1, "16"),  # 上櫃觀光
+    "otc-green": (1, "35"),  # 上櫃綠能環保
+    "otc-opto": (1, "26"),  # 上櫃光電
+    "otc-chem": (1, "21"),  # 上櫃化學
+    "otc-bio": (1, "22"),  # 上櫃生技
+    "otc-cable": (1, "6"),  # 上櫃電器
+    "otc-otherele": (1, "31"),  # 上櫃其他電子
+}
+
+
 def capture_twstock_heatmap(map_type="all", output_path="twstock.png", headless=True):
     """
     Capture nStock.tw heatmap as screenshot using Playwright.
@@ -103,46 +179,8 @@ def capture_twstock_heatmap(map_type="all", output_path="twstock.png", headless=
     from PIL import Image
     import io as iolib
 
-    # nStock heatmap URL configuration
-    # t1: 0=TSE (上市), 1=OTC (上櫃)
-    # t2=0: otc filter
-    # t3=0: additional filter
-    # t4=1: display mode
-    # t5=0: additional option
-    # iid: industry ID
-    
-    # Industry map parameters: (t1_value, iid_value)
-    industry_params = {
-        # === TSE (上市) Categories ===
-        "tse": (0, ""),  # 上市總覽 (Default)
-        "tse-semi": (0, "24"),  # 上市半導體
-        "tse-network": (0, "27"),  # 上市網通
-        "tse-elec": (0, "28"),  # 上市電子組件
-        "tse-computer": (0, "25"),  # 上市電腦週邊
-        "tse-channel": (0, "29"),  # 上市電子通路
-        "tse-plastic": (0, "3"),  # 上市塑膠
-        "tse-electrical": (0, "5"),  # 上市電機
-        "tse-construction": (0, "14"),  # 上市營建
-        "tse-shipping": (0, "15"),  # 上市航運
-        "tse-green": (0, "35"),  # 上市綠能環保
-        
-        # === OTC (上櫃) Categories ===
-        "otc": (1, ""),  # 上櫃總覽
-        "otc-semi": (1, "24"),  # 上櫃半導體
-        "otc-network": (1, "27"),  # 上櫃網通
-        "otc-elec": (1, "28"),  # 上櫃電子組件
-        "otc-computer": (1, "25"),  # 上櫃電腦週邊
-        "otc-channel": (1, "29"),  # 上櫃電子通路
-        "otc-electrical": (1, "5"),  # 上櫃電機
-        "otc-construction": (1, "14"),  # 上櫃營建
-        "otc-other": (1, "20"),  # 上櫃其他
-        "otc-info": (1, "30"),  # 上櫃資訊服務
-        "otc-tourism": (1, "16"),  # 上櫃觀光
-        "otc-green": (1, "35"),  # 上櫃綠能環保
-    }
-
     # Construct full URL
-    t1_value, iid_value = industry_params.get(map_type, industry_params["tse"])
+    t1_value, iid_value = INDUSTRY_PARAMS.get(map_type, INDUSTRY_PARAMS["tse"])
     iid_param = f"iid={iid_value}" if iid_value else "iid"
     url = f"https://www.nstock.tw/market_index/heatmap?t1={t1_value}&t2=0&t3=0&t4=1&t5=0&{iid_param}&nh=0"
 
@@ -428,8 +466,7 @@ def main():
         "-t",
         "--type",
         default="all",
-        choices=["all", "tse", "otc", "tse-semi", "tse-network", "tse-elec", "tse-computer", "tse-plastic", "tse-electrical", "tse-construction", "tse-shipping", "tse-channel", "otc-elec", "otc-semi", "otc-network", "otc-computer", "otc-construction", "otc-other", "otc-info", "tse-green", "otc-tourism", "otc-green"],
-        help="Industry type (default: all - captures all categories)",
+        help="Industry type (default: all - dynamically from losers JSON)",
     )
     parser.add_argument(
         "--no-html",
@@ -457,11 +494,55 @@ def main():
     # Create heatmaps directory if it doesn't exist
     heatmaps_dir.mkdir(exist_ok=True)
 
-    # If 'all' is specified, capture all categories
+    # If 'all' is specified, dynamically determine categories from losers JSON
     if args.type == "all":
-        all_categories = ["tse", "otc", "tse-semi", "tse-network", "tse-elec", "tse-computer", "tse-plastic", "tse-electrical", "tse-construction", "tse-shipping", "tse-channel", "otc-elec", "otc-semi", "otc-network", "otc-computer", "otc-construction", "otc-other", "otc-info", "tse-green", "otc-tourism", "otc-green"]
-        
-        print(f"📊 Capturing all {len(all_categories)} heatmap categories...", flush=True)
+        # Clean old heatmaps before capturing new ones
+        old_pngs = list(heatmaps_dir.glob("*.png"))
+        if old_pngs:
+            print(f"🗑️ Removing {len(old_pngs)} old heatmap(s)...", flush=True)
+            for png in old_pngs:
+                png.unlink()
+
+        json_path = script_dir / "api" / "histock_top_losers.json"
+        if not json_path.exists():
+            print(f"❌ Losers JSON not found: {json_path}", flush=True)
+            sys.exit(1)
+
+        with open(json_path, "r", encoding="utf-8") as f:
+            losers_data = json.load(f)
+
+        # Count stocks per (market, industry) pair
+        from collections import Counter
+        pair_counts = Counter()
+        for stock in losers_data["data"]:
+            pair = (stock["market"], stock["industry"])
+            pair_counts[pair] += 1
+
+        # Map to capture keys (only include industries with >= 2 stocks)
+        MIN_STOCKS = 2
+        all_categories = []
+        for (market, industry), count in sorted(pair_counts.items()):
+            if count < MIN_STOCKS:
+                continue
+            if industry in INDUSTRY_MAP:
+                iid, suffix = INDUSTRY_MAP[industry]
+                key = f"{market}-{suffix}"
+                if key in INDUSTRY_PARAMS:
+                    all_categories.append(key)
+                    print(f"  ✓ {key} ({industry}: {count} stocks)", flush=True)
+                else:
+                    print(f"⚠️ No params for key: {key}, skipping", flush=True)
+            else:
+                print(f"⚠️ Unknown industry: {industry} ({count} stocks), skipping", flush=True)
+
+        all_categories = sorted(set(all_categories))
+
+        if not all_categories:
+            print("❌ No valid categories found from losers JSON", flush=True)
+            sys.exit(1)
+
+        print(f"📊 Capturing {len(all_categories)} heatmap categories (from losers JSON)...", flush=True)
+        print(f"Categories: {', '.join(all_categories)}", flush=True)
         print(f"Output directory: {heatmaps_dir}\n", flush=True)
         
         start_time = time.time()
