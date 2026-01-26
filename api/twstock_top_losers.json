@@ -5,114 +5,91 @@
       {
         "ticker": "4939",
         "name": "亞電",
-        "change": "-5.73%"
+        "change": "-5.62%"
       },
       {
         "ticker": "8043",
         "name": "蜜望實",
-        "change": "-3.43%"
+        "change": "-3.88%"
       },
       {
-        "ticker": "8358",
-        "name": "金居",
-        "change": "-3.46%"
+        "ticker": "5340",
+        "name": "建榮",
+        "change": "-3.49%"
       }
     ],
     "otc-electrical": [
       {
-        "ticker": "4563",
-        "name": "百德",
-        "change": "-5.70%"
-      },
-      {
-        "ticker": "2070",
-        "name": "精湛",
-        "change": "-4.27%"
-      },
-      {
         "ticker": "4561",
         "name": "健椿",
-        "change": "-4.08%"
+        "change": "-3.87%"
       },
       {
         "ticker": "2066",
         "name": "世德",
-        "change": "-3.06%"
+        "change": "-3.40%"
       }
     ],
     "otc-otherele": [
       {
         "ticker": "2006",
         "name": "東和鋼鐵",
-        "change": "-4.96%"
+        "change": "-4.45%"
       }
     ],
-    "otc-semi": [],
     "tse-bio": [],
     "tse-chem": [
       {
         "ticker": "1773",
         "name": "勝一",
-        "change": "-4.44%"
+        "change": "-4.76%"
       },
       {
         "ticker": "4722",
         "name": "國精化",
-        "change": "-3.19%"
-      }
-    ],
-    "tse-computer": [
-      {
-        "ticker": "2352",
-        "name": "佳世達",
-        "change": "-4.25%"
-      },
-      {
-        "ticker": "2356",
-        "name": "英業達",
-        "change": "-3.22%"
+        "change": "-4.06%"
       }
     ],
     "tse-elec": [
       {
         "ticker": "2308",
         "name": "台達電",
-        "change": "-3.57%"
+        "change": "-4.36%"
       },
       {
-        "ticker": "3037",
-        "name": "欣興",
-        "change": "-3.09%"
+        "ticker": "2383",
+        "name": "台光電",
+        "change": "-3.88%"
       }
     ],
     "tse-green": [
       {
         "ticker": "5292",
         "name": "華懋",
-        "change": "-6.17%"
+        "change": "-8.46%"
       },
       {
         "ticker": "6806",
         "name": "森崴能源",
-        "change": "-3.92%"
+        "change": "-3.75%"
       }
     ],
     "tse-opto": [
       {
-        "ticker": "6510",
-        "name": "精測",
-        "change": "-8.40%"
+        "ticker": "3049",
+        "name": "精金",
+        "change": "-8.50%"
       },
       {
         "ticker": "3149",
         "name": "正達",
-        "change": "-4.38%"
+        "change": "-3.87%"
       }
     ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-01-26T01:50:30.185730Z",
-  "generated_at": "2026-01-26T01:50:30.185730Z"
+  "last_updated": "2026-01-26T02:05:47.540771Z",
+  "generated_at": "2026-01-26T02:05:47.540771Z"
 }
