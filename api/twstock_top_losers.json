@@ -1,116 +1,68 @@
 {
   "status": "success",
   "data": {
-    "otc-elec": [
+    "otc-construction": [
       {
-        "ticker": "3294",
-        "name": "英濟",
-        "change": "-3.31%"
+        "ticker": "8080",
+        "name": "泰霖",
+        "change": "-3.56%"
       },
       {
-        "ticker": "8121",
-        "name": "越峰",
-        "change": "-3.43%"
-      },
-      {
-        "ticker": "6134",
-        "name": "萬旭",
-        "change": "-3.93%"
+        "ticker": "4907",
+        "name": "富宇",
+        "change": "-3.17%"
       }
     ],
-    "otc-network": [
+    "otc-elec": [],
+    "otc-electrical": [
       {
-        "ticker": "6190",
-        "name": "萬泰科",
-        "change": "-6.50%"
+        "ticker": "3685",
+        "name": "元創精密",
+        "change": "-5.05%"
       },
       {
-        "ticker": "4903",
-        "name": "聯光通",
-        "change": "-6.48%"
-      },
-      {
-        "ticker": "3491",
-        "name": "昇達科",
-        "change": "-3.12%"
+        "ticker": "4543",
+        "name": "萬在",
+        "change": "-3.62%"
       }
     ],
-    "otc-opto": [
+    "otc-other": [
       {
-        "ticker": "5371",
-        "name": "中光電",
-        "change": "-5.58%"
+        "ticker": "6199",
+        "name": "天品",
+        "change": "-7.69%"
       },
       {
-        "ticker": "6244",
-        "name": "茂迪",
-        "change": "-3.91%"
-      },
-      {
-        "ticker": "3630",
-        "name": "新鉅科",
-        "change": "-3.76%"
+        "ticker": "8935",
+        "name": "邦泰",
+        "change": "-7.36%"
       }
     ],
-    "otc-otherele": [],
     "otc-semi": [
       {
-        "ticker": "5483",
-        "name": "中美晶",
-        "change": "-3.13%"
-      }
-    ],
-    "tse-elec": [
-      {
-        "ticker": "2313",
-        "name": "華通",
-        "change": "-4.23%"
+        "ticker": "6223",
+        "name": "旺矽",
+        "change": "-3.10%"
       },
       {
-        "ticker": "6282",
-        "name": "康舒",
-        "change": "-3.57%"
+        "ticker": "6510",
+        "name": "精測",
+        "change": "-3.04%"
       }
     ],
-    "tse-electrical": [
-      {
-        "ticker": "1514",
-        "name": "亞力",
-        "change": "-3.95%"
-      }
-    ],
+    "tse-elec": [],
+    "tse-electrical": [],
+    "tse-green": [],
     "tse-opto": [
       {
-        "ticker": "3481",
-        "name": "群創",
-        "change": "-5.90%"
+        "ticker": "6209",
+        "name": "今國光",
+        "change": "-7.23%"
       },
       {
-        "ticker": "3576",
-        "name": "聯合再生",
-        "change": "-5.14%"
-      },
-      {
-        "ticker": "2409",
-        "name": "友達",
-        "change": "-4.91%"
-      },
-      {
-        "ticker": "6120",
-        "name": "達運",
-        "change": "-4.27%"
-      },
-      {
-        "ticker": "6116",
-        "name": "彩晶",
-        "change": "-3.71%"
-      }
-    ],
-    "tse-otherele": [
-      {
-        "ticker": "3305",
-        "name": "昇貿",
-        "change": "-3.22%"
+        "ticker": "2489",
+        "name": "瑞軒",
+        "change": "-4.67%"
       }
     ],
     "tse-semi": []
@@ -118,6 +70,6 @@
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-01-27T02:08:31.741629Z",
-  "generated_at": "2026-01-27T02:08:31.741629Z"
+  "last_updated": "2026-01-28T02:08:07.528506Z",
+  "generated_at": "2026-01-28T02:08:07.528506Z"
 }
