@@ -1,31 +1,49 @@
 {
   "status": "success",
   "data": {
-    "otc-construction": [],
-    "otc-elec": [],
-    "otc-other": [
+    "otc-computer": [
       {
-        "ticker": "8342",
-        "name": "益張",
-        "change": "-3.27%"
+        "ticker": "4931",
+        "name": "新盛力",
+        "change": "-3.35%"
+      },
+      {
+        "ticker": "3211",
+        "name": "順達",
+        "change": "-3.11%"
       }
     ],
     "otc-semi": [
       {
-        "ticker": "8299",
-        "name": "群聯",
-        "change": "-5.82%"
+        "ticker": "5347",
+        "name": "世界",
+        "change": "-9.96%"
+      },
+      {
+        "ticker": "6138",
+        "name": "茂達",
+        "change": "-3.26%"
       }
     ],
-    "tse-bio": [],
-    "tse-construction": [],
     "tse-electrical": [],
-    "tse-other": [],
-    "tse-semi": []
+    "tse-network": [
+      {
+        "ticker": "3380",
+        "name": "明泰",
+        "change": "-4.75%"
+      }
+    ],
+    "tse-semi": [
+      {
+        "ticker": "3443",
+        "name": "創意",
+        "change": "-4.25%"
+      }
+    ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-02-03T02:08:10.141692Z",
-  "generated_at": "2026-02-03T02:08:10.141692Z"
+  "last_updated": "2026-02-04T02:02:13.016550Z",
+  "generated_at": "2026-02-04T02:02:13.016550Z"
 }
