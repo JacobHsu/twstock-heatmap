@@ -1,49 +1,69 @@
 {
   "status": "success",
   "data": {
-    "otc-computer": [
+    "otc-elec": [
       {
-        "ticker": "4931",
-        "name": "新盛力",
-        "change": "-3.35%"
-      },
-      {
-        "ticker": "3211",
-        "name": "順達",
-        "change": "-3.11%"
+        "ticker": "3310",
+        "name": "佳穎",
+        "change": "-3.08%"
       }
     ],
     "otc-semi": [
       {
         "ticker": "5347",
         "name": "世界",
-        "change": "-9.96%"
+        "change": "-5.73%"
+      }
+    ],
+    "tse-channel": [
+      {
+        "ticker": "3028",
+        "name": "增你強",
+        "change": "-9.98%"
       },
       {
-        "ticker": "6138",
-        "name": "茂達",
-        "change": "-3.26%"
-      }
-    ],
-    "tse-electrical": [],
-    "tse-network": [
-      {
-        "ticker": "3380",
-        "name": "明泰",
+        "ticker": "3055",
+        "name": "蔚華科",
         "change": "-4.75%"
+      },
+      {
+        "ticker": "2543",
+        "name": "皇昌",
+        "change": "-3.79%"
+      },
+      {
+        "ticker": "6189",
+        "name": "豐藝",
+        "change": "-3.53%"
+      },
+      {
+        "ticker": "3010",
+        "name": "華立",
+        "change": "-3.23%"
       }
     ],
-    "tse-semi": [
+    "tse-chem": [
       {
-        "ticker": "3443",
-        "name": "創意",
-        "change": "-4.25%"
+        "ticker": "4764",
+        "name": "雙鍵",
+        "change": "-5.53%"
       }
-    ]
+    ],
+    "tse-computer": [
+      {
+        "ticker": "2301",
+        "name": "光寶科",
+        "change": "-3.45%"
+      }
+    ],
+    "tse-elec": [],
+    "tse-opto": [],
+    "tse-otherele": [],
+    "tse-semi": []
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-02-04T02:02:13.016550Z",
-  "generated_at": "2026-02-04T02:02:13.016550Z"
+  "last_updated": "2026-02-05T02:07:19.566613Z",
+  "generated_at": "2026-02-05T02:07:19.566613Z"
 }
