@@ -119,11 +119,17 @@
         "change": "-4.53%"
       }
     ],
-    "tse-semi": []
+    "tse-semi": [
+      {
+        "ticker": "2337",
+        "name": "旺宏",
+        "change": "-9.93%"
+      }
+    ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-02-12T02:10:49.426020Z",
-  "generated_at": "2026-02-12T02:10:49.426020Z"
+  "last_updated": "2026-02-13T02:10:37.274838Z",
+  "generated_at": "2026-02-13T02:10:37.274838Z"
 }
