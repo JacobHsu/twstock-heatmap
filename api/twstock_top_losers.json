@@ -23,7 +23,13 @@
         "change": "-4.19%"
       }
     ],
-    "otc-elec": [],
+    "otc-elec": [
+      {
+        "ticker": "6127",
+        "name": "九豪",
+        "change": "-4.19%"
+      }
+    ],
     "otc-electrical": [
       {
         "ticker": "2230",
@@ -53,14 +59,14 @@
         "change": "-6.58%"
       },
       {
-        "ticker": "8086",
-        "name": "宏捷科",
-        "change": "-4.31%"
-      },
-      {
         "ticker": "3264",
         "name": "欣銓",
         "change": "-4.68%"
+      },
+      {
+        "ticker": "8086",
+        "name": "宏捷科",
+        "change": "-4.31%"
       },
       {
         "ticker": "6182",
@@ -130,6 +136,6 @@
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-02-13T02:10:37.274838Z",
-  "generated_at": "2026-02-13T02:10:37.274838Z"
+  "last_updated": "2026-02-16T02:10:30.542786Z",
+  "generated_at": "2026-02-16T02:10:30.542786Z"
 }
