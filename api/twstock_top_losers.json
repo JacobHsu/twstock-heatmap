@@ -8,11 +8,6 @@
         "change": "-8.07%"
       },
       {
-        "ticker": "3708",
-        "name": "上緯投控",
-        "change": "-6.61%"
-      },
-      {
         "ticker": "3218",
         "name": "大學光",
         "change": "-4.24%"
@@ -21,15 +16,14 @@
         "ticker": "1784",
         "name": "訊聯",
         "change": "-4.19%"
-      }
-    ],
-    "otc-elec": [
+      },
       {
-        "ticker": "6127",
-        "name": "九豪",
-        "change": "-4.19%"
+        "ticker": "6620",
+        "name": "漢達",
+        "change": "-3.10%"
       }
     ],
+    "otc-elec": [],
     "otc-electrical": [
       {
         "ticker": "2230",
@@ -59,14 +53,14 @@
         "change": "-6.58%"
       },
       {
-        "ticker": "3264",
-        "name": "欣銓",
-        "change": "-4.68%"
-      },
-      {
         "ticker": "8086",
         "name": "宏捷科",
         "change": "-4.31%"
+      },
+      {
+        "ticker": "3264",
+        "name": "欣銓",
+        "change": "-4.68%"
       },
       {
         "ticker": "6182",
@@ -108,8 +102,8 @@
         "change": "-5.26%"
       },
       {
-        "ticker": "6863",
-        "name": "永道-KY",
+        "ticker": "2434",
+        "name": "統懋",
         "change": "-4.89%"
       }
     ],
@@ -136,6 +130,6 @@
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-02-16T02:10:30.542786Z",
-  "generated_at": "2026-02-16T02:10:30.542786Z"
+  "last_updated": "2026-02-17T02:10:24.207923Z",
+  "generated_at": "2026-02-17T02:10:24.207923Z"
 }
