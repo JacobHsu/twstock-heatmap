@@ -53,14 +53,14 @@
         "change": "-6.58%"
       },
       {
-        "ticker": "8086",
-        "name": "宏捷科",
-        "change": "-4.31%"
-      },
-      {
         "ticker": "3264",
         "name": "欣銓",
         "change": "-4.68%"
+      },
+      {
+        "ticker": "8086",
+        "name": "宏捷科",
+        "change": "-4.31%"
       },
       {
         "ticker": "6182",
@@ -119,17 +119,11 @@
         "change": "-4.53%"
       }
     ],
-    "tse-semi": [
-      {
-        "ticker": "2337",
-        "name": "旺宏",
-        "change": "-9.93%"
-      }
-    ]
+    "tse-semi": []
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-02-19T02:10:42.565999Z",
-  "generated_at": "2026-02-19T02:10:42.565999Z"
+  "last_updated": "2026-02-20T02:10:38.648025Z",
+  "generated_at": "2026-02-20T02:10:38.648025Z"
 }
