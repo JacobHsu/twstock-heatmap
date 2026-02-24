@@ -1,42 +1,44 @@
 {
   "status": "success",
   "data": {
-    "otc-bio": [],
-    "otc-elec": [],
-    "otc-electrical": [],
-    "otc-semi": [],
-    "tse-auto": [],
-    "tse-computer": [],
-    "tse-elec": [
+    "otc-bio": [
       {
-        "ticker": "3653",
-        "name": "健策",
-        "change": "-3.27%"
-      }
-    ],
-    "tse-electrical": [
-      {
-        "ticker": "8996",
-        "name": "高力",
-        "change": "-4.41%"
-      }
-    ],
-    "tse-semi": [
-      {
-        "ticker": "3588",
-        "name": "通嘉",
-        "change": "-5.99%"
+        "ticker": "6785",
+        "name": "昱展新藥",
+        "change": "-9.92%"
       },
       {
-        "ticker": "6104",
-        "name": "創惟",
-        "change": "-4.84%"
+        "ticker": "8279",
+        "name": "生展",
+        "change": "-3.23%"
+      },
+      {
+        "ticker": "4127",
+        "name": "天良",
+        "change": "-3.24%"
       }
-    ]
+    ],
+    "otc-electrical": [
+      {
+        "ticker": "2230",
+        "name": "泰茂",
+        "change": "-9.94%"
+      }
+    ],
+    "otc-green": [
+      {
+        "ticker": "8423",
+        "name": "保綠-KY",
+        "change": "-4.52%"
+      }
+    ],
+    "otc-network": [],
+    "otc-semi": [],
+    "tse-construction": []
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-02-23T02:07:15.953706Z",
-  "generated_at": "2026-02-23T02:07:15.953706Z"
+  "last_updated": "2026-02-24T02:03:38.261370Z",
+  "generated_at": "2026-02-24T02:03:38.261370Z"
 }
