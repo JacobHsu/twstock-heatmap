@@ -1,126 +1,121 @@
 {
   "status": "success",
   "data": {
-    "otc-computer": [
+    "otc-bio": [
       {
-        "ticker": "5289",
-        "name": "宜鼎",
-        "change": "-4.90%"
+        "ticker": "6785",
+        "name": "昱展新藥",
+        "change": "-9.11%"
       }
     ],
-    "otc-elec": [],
-    "otc-electrical": [
+    "otc-elec": [
       {
-        "ticker": "4533",
-        "name": "協易機",
-        "change": "-3.74%"
+        "ticker": "5475",
+        "name": "德宏",
+        "change": "-3.70%"
       },
       {
-        "ticker": "4563",
-        "name": "百德",
-        "change": "-3.04%"
-      }
-    ],
-    "otc-network": [
-      {
-        "ticker": "6588",
-        "name": "東典光電",
-        "change": "-5.38%"
+        "ticker": "3268",
+        "name": "海德威",
+        "change": "-3.67%"
       },
       {
-        "ticker": "6163",
-        "name": "華電網",
-        "change": "-3.55%"
+        "ticker": "6274",
+        "name": "台燿",
+        "change": "-3.46%"
       },
       {
-        "ticker": "4909",
-        "name": "新復興",
-        "change": "-3.20%"
+        "ticker": "3624",
+        "name": "光頡",
+        "change": "-3.25%"
+      },
+      {
+        "ticker": "6173",
+        "name": "信昌電",
+        "change": "-3.00%"
       }
     ],
     "otc-semi": [
       {
-        "ticker": "8299",
-        "name": "群聯",
-        "change": "-6.28%"
+        "ticker": "6643",
+        "name": "M31",
+        "change": "-3.16%"
+      },
+      {
+        "ticker": "6510",
+        "name": "精測",
+        "change": "-3.06%"
       },
       {
         "ticker": "3260",
         "name": "威剛",
-        "change": "-5.59%"
-      },
-      {
-        "ticker": "6223",
-        "name": "旺矽",
-        "change": "-3.96%"
-      }
-    ],
-    "tse-construction": [
-      {
-        "ticker": "2515",
-        "name": "中工",
-        "change": "-9.28%"
-      },
-      {
-        "ticker": "2547",
-        "name": "日勝生",
-        "change": "-9.00%"
-      },
-      {
-        "ticker": "5521",
-        "name": "工信",
-        "change": "-3.78%"
+        "change": "-3.02%"
       }
     ],
     "tse-elec": [
       {
-        "ticker": "2313",
-        "name": "華通",
-        "change": "-6.65%"
+        "ticker": "6213",
+        "name": "聯茂",
+        "change": "-4.43%"
       },
       {
-        "ticker": "6191",
-        "name": "精成科",
-        "change": "-3.63%"
-      }
-    ],
-    "tse-electrical": [
+        "ticker": "2492",
+        "name": "華新科",
+        "change": "-4.16%"
+      },
       {
-        "ticker": "4583",
-        "name": "台灣精銳",
-        "change": "-3.21%"
+        "ticker": "2313",
+        "name": "華通",
+        "change": "-3.10%"
       }
     ],
-    "tse-green": [],
-    "tse-network": [],
+    "tse-green": [
+      {
+        "ticker": "7740",
+        "name": "熙特爾-創",
+        "change": "-3.05%"
+      }
+    ],
+    "tse-network": [
+      {
+        "ticker": "2439",
+        "name": "美律",
+        "change": "-3.86%"
+      }
+    ],
     "tse-opto": [
       {
-        "ticker": "6706",
-        "name": "惠特",
-        "change": "-5.17%"
+        "ticker": "6443",
+        "name": "元晶",
+        "change": "-10.00%"
+      },
+      {
+        "ticker": "6176",
+        "name": "瑞儀",
+        "change": "-9.96%"
+      },
+      {
+        "ticker": "5234",
+        "name": "達興材料",
+        "change": "-9.33%"
+      },
+      {
+        "ticker": "6116",
+        "name": "彩晶",
+        "change": "-5.22%"
       }
     ],
     "tse-semi": [
       {
-        "ticker": "2408",
-        "name": "南亞科",
-        "change": "-3.85%"
-      },
-      {
-        "ticker": "2344",
-        "name": "華邦電",
-        "change": "-3.68%"
-      },
-      {
-        "ticker": "2337",
-        "name": "旺宏",
-        "change": "-3.52%"
+        "ticker": "4961",
+        "name": "天鈺",
+        "change": "-5.14%"
       }
     ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-02-25T02:11:42.143950Z",
-  "generated_at": "2026-02-25T02:11:42.143950Z"
+  "last_updated": "2026-02-26T02:06:17.218169Z",
+  "generated_at": "2026-02-26T02:06:17.218169Z"
 }
