@@ -1,48 +1,82 @@
 {
   "status": "success",
   "data": {
-    "otc-bio": [],
-    "otc-otherele": [],
+    "otc-construction": [
+      {
+        "ticker": "4416",
+        "name": "三圓",
+        "change": "-9.97%"
+      }
+    ],
+    "otc-elec": [
+      {
+        "ticker": "3526",
+        "name": "凡甲",
+        "change": "-4.96%"
+      },
+      {
+        "ticker": "6207",
+        "name": "雷科",
+        "change": "-3.37%"
+      }
+    ],
+    "otc-electrical": [],
+    "otc-green": [
+      {
+        "ticker": "6624",
+        "name": "萬年清",
+        "change": "-4.01%"
+      },
+      {
+        "ticker": "8087",
+        "name": "麗升能源",
+        "change": "-3.88%"
+      }
+    ],
+    "tse-construction": [
+      {
+        "ticker": "5521",
+        "name": "工信",
+        "change": "-9.93%"
+      }
+    ],
     "tse-elec": [
       {
-        "ticker": "6412",
-        "name": "群電",
-        "change": "-4.38%"
-      },
-      {
-        "ticker": "3090",
-        "name": "日電貿",
-        "change": "-3.25%"
+        "ticker": "2467",
+        "name": "志聖",
+        "change": "-3.75%"
       }
     ],
-    "tse-green": [
+    "tse-opto": [
       {
-        "ticker": "6994",
-        "name": "富威電力",
-        "change": "-9.95%"
+        "ticker": "6706",
+        "name": "惠特",
+        "change": "-6.87%"
+      },
+      {
+        "ticker": "6443",
+        "name": "元晶",
+        "change": "-3.80%"
+      },
+      {
+        "ticker": "3563",
+        "name": "牧德",
+        "change": "-3.52%"
       }
     ],
-    "tse-shipping": [
+    "tse-other": [
       {
-        "ticker": "6757",
-        "name": "台灣虎航",
-        "change": "-6.16%"
-      },
-      {
-        "ticker": "2609",
-        "name": "陽明",
-        "change": "-3.93%"
-      },
-      {
-        "ticker": "2615",
-        "name": "萬海",
-        "change": "-3.06%"
+        "ticker": "8033",
+        "name": "雷虎",
+        "change": "-3.65%"
       }
-    ]
+    ],
+    "tse-otherele": [],
+    "tse-semi": []
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-03-05T02:02:08.049354Z",
-  "generated_at": "2026-03-05T02:02:08.049354Z"
+  "last_updated": "2026-03-06T02:08:48.966247Z",
+  "generated_at": "2026-03-06T02:08:48.966247Z"
 }
