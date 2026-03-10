@@ -1,191 +1,42 @@
 {
   "status": "success",
   "data": {
-    "otc-elec": [
+    "otc-bio": [
       {
-        "ticker": "1815",
-        "name": "富喬",
-        "change": "-10.00%"
+        "ticker": "3708",
+        "name": "上緯投控",
+        "change": "-9.79%"
       },
       {
-        "ticker": "5439",
-        "name": "高技",
-        "change": "-9.98%"
-      },
-      {
-        "ticker": "8358",
-        "name": "金居",
-        "change": "-9.88%"
-      },
-      {
-        "ticker": "5340",
-        "name": "建榮",
-        "change": "-9.64%"
+        "ticker": "4127",
+        "name": "天良",
+        "change": "-5.88%"
       }
     ],
-    "otc-network": [
+    "otc-computer": [],
+    "otc-construction": [
       {
-        "ticker": "3081",
-        "name": "聯亞",
-        "change": "-10.00%"
+        "ticker": "4416",
+        "name": "三圓",
+        "change": "-9.96%"
       },
       {
-        "ticker": "3234",
-        "name": "光環",
-        "change": "-10.00%"
-      },
-      {
-        "ticker": "6546",
-        "name": "正基",
-        "change": "-10.00%"
-      },
-      {
-        "ticker": "3491",
-        "name": "昇達科",
-        "change": "-9.92%"
-      },
-      {
-        "ticker": "6163",
-        "name": "華電網",
-        "change": "-9.68%"
+        "ticker": "6212",
+        "name": "理銘",
+        "change": "-3.84%"
       }
     ],
-    "otc-semi": [
+    "tse-bio": [
       {
-        "ticker": "6187",
-        "name": "萬潤",
-        "change": "-10.00%"
-      },
-      {
-        "ticker": "4749",
-        "name": "新應材",
-        "change": "-9.95%"
-      },
-      {
-        "ticker": "6640",
-        "name": "均華",
-        "change": "-9.98%"
-      },
-      {
-        "ticker": "3105",
-        "name": "穩懋",
-        "change": "-9.88%"
-      }
-    ],
-    "tse-computer": [
-      {
-        "ticker": "3017",
-        "name": "奇鋐",
-        "change": "-9.75%"
-      },
-      {
-        "ticker": "2301",
-        "name": "光寶科",
-        "change": "-8.17%"
-      }
-    ],
-    "tse-elec": [
-      {
-        "ticker": "3037",
-        "name": "欣興",
-        "change": "-9.95%"
-      },
-      {
-        "ticker": "8046",
-        "name": "南電",
-        "change": "-9.90%"
-      },
-      {
-        "ticker": "2313",
-        "name": "華通",
-        "change": "-9.85%"
-      },
-      {
-        "ticker": "2367",
-        "name": "燿華",
-        "change": "-9.74%"
-      },
-      {
-        "ticker": "2308",
-        "name": "台達電",
-        "change": "-9.46%"
-      }
-    ],
-    "tse-network": [
-      {
-        "ticker": "2455",
-        "name": "全新",
-        "change": "-9.90%"
-      },
-      {
-        "ticker": "6442",
-        "name": "光聖",
-        "change": "-9.76%"
-      },
-      {
-        "ticker": "2485",
-        "name": "兆赫",
-        "change": "-9.60%"
-      }
-    ],
-    "tse-opto": [
-      {
-        "ticker": "3049",
-        "name": "精金",
-        "change": "-10.00%"
-      },
-      {
-        "ticker": "3563",
-        "name": "牧德",
-        "change": "-10.00%"
-      },
-      {
-        "ticker": "6456",
-        "name": "GIS-KY",
-        "change": "-9.88%"
-      },
-      {
-        "ticker": "6209",
-        "name": "今國光",
-        "change": "-9.88%"
-      },
-      {
-        "ticker": "2486",
-        "name": "一詮",
-        "change": "-9.86%"
-      }
-    ],
-    "tse-semi": [
-      {
-        "ticker": "3529",
-        "name": "力旺",
-        "change": "-10.00%"
-      },
-      {
-        "ticker": "2408",
-        "name": "南亞科",
-        "change": "-9.87%"
-      },
-      {
-        "ticker": "3661",
-        "name": "世芯-KY",
-        "change": "-9.81%"
-      },
-      {
-        "ticker": "2337",
-        "name": "旺宏",
-        "change": "-9.95%"
-      },
-      {
-        "ticker": "6104",
-        "name": "創惟",
-        "change": "-9.43%"
+        "ticker": "4137",
+        "name": "麗豐-KY",
+        "change": "-4.76%"
       }
     ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-03-09T02:06:06.615642Z",
-  "generated_at": "2026-03-09T02:06:06.615642Z"
+  "last_updated": "2026-03-10T02:00:23.089727Z",
+  "generated_at": "2026-03-10T02:00:23.089727Z"
 }
