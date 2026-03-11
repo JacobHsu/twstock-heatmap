@@ -1,42 +1,42 @@
 {
   "status": "success",
   "data": {
-    "otc-bio": [
+    "otc-elec": [
       {
-        "ticker": "3708",
-        "name": "上緯投控",
-        "change": "-9.79%"
-      },
-      {
-        "ticker": "4127",
-        "name": "天良",
-        "change": "-5.88%"
+        "ticker": "8182",
+        "name": "加高",
+        "change": "-5.05%"
       }
     ],
-    "otc-computer": [],
-    "otc-construction": [
+    "otc-opto": [],
+    "tse-construction": [
       {
-        "ticker": "4416",
-        "name": "三圓",
-        "change": "-9.96%"
+        "ticker": "5521",
+        "name": "工信",
+        "change": "-9.73%"
       },
       {
-        "ticker": "6212",
-        "name": "理銘",
-        "change": "-3.84%"
+        "ticker": "3703",
+        "name": "欣陸",
+        "change": "-5.53%"
+      },
+      {
+        "ticker": "2528",
+        "name": "皇普",
+        "change": "-3.07%"
       }
     ],
-    "tse-bio": [
+    "tse-elec": [
       {
-        "ticker": "4137",
-        "name": "麗豐-KY",
-        "change": "-4.76%"
+        "ticker": "6805",
+        "name": "富世達",
+        "change": "-6.28%"
       }
     ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-03-10T02:00:23.089727Z",
-  "generated_at": "2026-03-10T02:00:23.089727Z"
+  "last_updated": "2026-03-11T02:00:14.974455Z",
+  "generated_at": "2026-03-11T02:00:14.974455Z"
 }
