@@ -1,42 +1,16 @@
 {
   "status": "success",
   "data": {
-    "otc-elec": [
-      {
-        "ticker": "8182",
-        "name": "加高",
-        "change": "-5.05%"
-      }
-    ],
-    "otc-opto": [],
-    "tse-construction": [
-      {
-        "ticker": "5521",
-        "name": "工信",
-        "change": "-9.73%"
-      },
-      {
-        "ticker": "3703",
-        "name": "欣陸",
-        "change": "-5.53%"
-      },
-      {
-        "ticker": "2528",
-        "name": "皇普",
-        "change": "-3.07%"
-      }
-    ],
-    "tse-elec": [
-      {
-        "ticker": "6805",
-        "name": "富世達",
-        "change": "-6.28%"
-      }
-    ]
+    "otc-bio": [],
+    "otc-elec": [],
+    "otc-electrical": [],
+    "otc-semi": [],
+    "tse-elec": [],
+    "tse-semi": []
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-03-11T02:00:14.974455Z",
-  "generated_at": "2026-03-11T02:00:14.974455Z"
+  "last_updated": "2026-03-12T02:03:00.549100Z",
+  "generated_at": "2026-03-12T02:03:00.549100Z"
 }
