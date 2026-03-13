@@ -1,16 +1,142 @@
 {
   "status": "success",
   "data": {
-    "otc-bio": [],
-    "otc-elec": [],
-    "otc-electrical": [],
-    "otc-semi": [],
-    "tse-elec": [],
-    "tse-semi": []
+    "otc-bio": [
+      {
+        "ticker": "4130",
+        "name": "健亞",
+        "change": "-9.13%"
+      }
+    ],
+    "otc-construction": [
+      {
+        "ticker": "6219",
+        "name": "富旺",
+        "change": "-9.14%"
+      },
+      {
+        "ticker": "4927",
+        "name": "泰鼎-KY",
+        "change": "-6.42%"
+      },
+      {
+        "ticker": "5455",
+        "name": "昇益",
+        "change": "-4.89%"
+      },
+      {
+        "ticker": "1815",
+        "name": "富喬",
+        "change": "-4.87%"
+      }
+    ],
+    "otc-elec": [
+      {
+        "ticker": "3290",
+        "name": "東浦",
+        "change": "-3.11%"
+      }
+    ],
+    "otc-electrical": [
+      {
+        "ticker": "4523",
+        "name": "永彰",
+        "change": "-3.68%"
+      },
+      {
+        "ticker": "3685",
+        "name": "元創精密",
+        "change": "-3.54%"
+      }
+    ],
+    "otc-green": [
+      {
+        "ticker": "8423",
+        "name": "保綠-KY",
+        "change": "-5.01%"
+      },
+      {
+        "ticker": "6692",
+        "name": "進能服",
+        "change": "-4.24%"
+      }
+    ],
+    "tse-bio": [
+      {
+        "ticker": "6550",
+        "name": "北極星藥業-KY",
+        "change": "-9.90%"
+      },
+      {
+        "ticker": "1795",
+        "name": "美時",
+        "change": "-9.09%"
+      },
+      {
+        "ticker": "6472",
+        "name": "保瑞",
+        "change": "-3.89%"
+      }
+    ],
+    "tse-construction": [
+      {
+        "ticker": "5519",
+        "name": "隆大",
+        "change": "-4.24%"
+      },
+      {
+        "ticker": "2545",
+        "name": "皇翔",
+        "change": "-3.87%"
+      }
+    ],
+    "tse-green": [
+      {
+        "ticker": "6869",
+        "name": "雲豹能源",
+        "change": "-3.72%"
+      }
+    ],
+    "tse-opto": [
+      {
+        "ticker": "2323",
+        "name": "中環",
+        "change": "-6.57%"
+      },
+      {
+        "ticker": "6456",
+        "name": "GIS-KY",
+        "change": "-5.59%"
+      },
+      {
+        "ticker": "3481",
+        "name": "群創",
+        "change": "-5.46%"
+      },
+      {
+        "ticker": "6116",
+        "name": "彩晶",
+        "change": "-4.24%"
+      }
+    ],
+    "tse-otherele": [
+      {
+        "ticker": "6409",
+        "name": "旭隼",
+        "change": "-4.07%"
+      }
+    ],
+    "tse-semi": [
+      {
+        "ticker": "6223",
+        "name": "旺矽",
+        "change": "-3.11%"
+      }
+    ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-03-12T02:03:00.549100Z",
-  "generated_at": "2026-03-12T02:03:00.549100Z"
+  "last_updated": "2026-03-13T02:10:02.888269Z",
+  "generated_at": "2026-03-13T02:10:02.888269Z"
 }
