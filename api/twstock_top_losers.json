@@ -1,55 +1,142 @@
 {
   "status": "success",
   "data": {
-    "otc-computer": [],
-    "otc-construction": [],
+    "otc-bio": [
+      {
+        "ticker": "4130",
+        "name": "健亞",
+        "change": "-6.03%"
+      },
+      {
+        "ticker": "4121",
+        "name": "優盛",
+        "change": "-5.35%"
+      }
+    ],
     "otc-elec": [
       {
-        "ticker": "6290",
-        "name": "良維",
-        "change": "-8.53%"
+        "ticker": "6727",
+        "name": "亞泰金屬",
+        "change": "-3.07%"
       }
     ],
     "otc-electrical": [
       {
-        "ticker": "3685",
-        "name": "元創精密",
-        "change": "-3.71%"
+        "ticker": "3162",
+        "name": "精確",
+        "change": "-3.90%"
+      },
+      {
+        "ticker": "4533",
+        "name": "協易機",
+        "change": "-3.38%"
       }
     ],
-    "otc-green": [],
+    "otc-opto": [
+      {
+        "ticker": "4968",
+        "name": "立積",
+        "change": "-5.00%"
+      },
+      {
+        "ticker": "3339",
+        "name": "泰谷",
+        "change": "-3.58%"
+      }
+    ],
     "otc-otherele": [
       {
-        "ticker": "6739",
-        "name": "竹陞科技",
-        "change": "-4.14%"
+        "ticker": "3498",
+        "name": "陽程",
+        "change": "-3.52%"
       }
     ],
     "otc-semi": [
       {
-        "ticker": "5351",
-        "name": "鈺創",
-        "change": "-3.20%"
+        "ticker": "3529",
+        "name": "力旺",
+        "change": "-4.98%"
       }
     ],
-    "tse-chem": [
+    "tse-auto": [
       {
-        "ticker": "4770",
-        "name": "上品",
-        "change": "-3.27%"
+        "ticker": "2207",
+        "name": "和泰車",
+        "change": "-4.92%"
       }
     ],
-    "tse-otherele": [
+    "tse-bio": [
       {
-        "ticker": "2404",
-        "name": "漢唐",
-        "change": "-3.63%"
+        "ticker": "6550",
+        "name": "北極星藥業-KY",
+        "change": "-4.82%"
+      },
+      {
+        "ticker": "4164",
+        "name": "承業醫",
+        "change": "-3.92%"
+      }
+    ],
+    "tse-channel": [
+      {
+        "ticker": "3209",
+        "name": "全科",
+        "change": "-3.90%"
+      },
+      {
+        "ticker": "3010",
+        "name": "華立",
+        "change": "-3.23%"
+      }
+    ],
+    "tse-elec": [
+      {
+        "ticker": "2313",
+        "name": "華通",
+        "change": "-4.01%"
+      },
+      {
+        "ticker": "2367",
+        "name": "燿華",
+        "change": "-3.24%"
+      },
+      {
+        "ticker": "2492",
+        "name": "華新科",
+        "change": "-3.13%"
+      }
+    ],
+    "tse-opto": [
+      {
+        "ticker": "3576",
+        "name": "聯合再生",
+        "change": "-5.99%"
+      },
+      {
+        "ticker": "3714",
+        "name": "富采",
+        "change": "-4.88%"
+      },
+      {
+        "ticker": "6456",
+        "name": "GIS-KY",
+        "change": "-4.63%"
+      },
+      {
+        "ticker": "2406",
+        "name": "國碩",
+        "change": "-4.05%"
+      },
+      {
+        "ticker": "2489",
+        "name": "瑞軒",
+        "change": "-3.50%"
       }
     ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-03-17T02:07:25.245564Z",
-  "generated_at": "2026-03-17T02:07:25.245564Z"
+  "last_updated": "2026-03-18T02:10:27.665047Z",
+  "generated_at": "2026-03-18T02:10:27.665047Z"
 }
