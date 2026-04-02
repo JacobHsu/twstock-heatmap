@@ -1,11 +1,82 @@
 {
   "status": "success",
   "data": {
-    "otc-electrical": []
+    "otc-elec": [
+      {
+        "ticker": "6127",
+        "name": "九豪",
+        "change": "-5.74%"
+      },
+      {
+        "ticker": "8182",
+        "name": "加高",
+        "change": "-3.43%"
+      }
+    ],
+    "otc-otherele": [
+      {
+        "ticker": "3508",
+        "name": "位速",
+        "change": "-9.98%"
+      },
+      {
+        "ticker": "3552",
+        "name": "同致",
+        "change": "-5.53%"
+      },
+      {
+        "ticker": "4760",
+        "name": "勤凱",
+        "change": "-4.14%"
+      }
+    ],
+    "otc-semi": [
+      {
+        "ticker": "5347",
+        "name": "世界",
+        "change": "-3.81%"
+      },
+      {
+        "ticker": "6510",
+        "name": "精測",
+        "change": "-3.72%"
+      }
+    ],
+    "tse-computer": [],
+    "tse-elec": [],
+    "tse-green": [
+      {
+        "ticker": "6994",
+        "name": "富威電力",
+        "change": "-8.65%"
+      },
+      {
+        "ticker": "5292",
+        "name": "華懋",
+        "change": "-3.49%"
+      }
+    ],
+    "tse-semi": [
+      {
+        "ticker": "2228",
+        "name": "劍麟",
+        "change": "-7.88%"
+      },
+      {
+        "ticker": "2449",
+        "name": "京元電子",
+        "change": "-4.99%"
+      },
+      {
+        "ticker": "2303",
+        "name": "聯電",
+        "change": "-3.48%"
+      }
+    ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-04-01T01:58:27.837458Z",
-  "generated_at": "2026-04-01T01:58:27.837458Z"
+  "last_updated": "2026-04-02T02:05:10.997889Z",
+  "generated_at": "2026-04-02T02:05:10.997889Z"
 }
