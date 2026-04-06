@@ -3,6 +3,11 @@
   "data": {
     "otc-elec": [
       {
+        "ticker": "6127",
+        "name": "九豪",
+        "change": "-7.24%"
+      },
+      {
         "ticker": "6584",
         "name": "南俊國際",
         "change": "-6.55%"
@@ -21,11 +26,6 @@
         "ticker": "8358",
         "name": "金居",
         "change": "-5.34%"
-      },
-      {
-        "ticker": "6173",
-        "name": "信昌電",
-        "change": "-4.19%"
       }
     ],
     "otc-network": [
@@ -89,11 +89,6 @@
         "change": "-5.66%"
       },
       {
-        "ticker": "2476",
-        "name": "鉅祥",
-        "change": "-5.84%"
-      },
-      {
         "ticker": "6223",
         "name": "旺矽",
         "change": "-4.68%"
@@ -136,11 +131,6 @@
         "ticker": "3533",
         "name": "嘉澤",
         "change": "-3.76%"
-      },
-      {
-        "ticker": "2059",
-        "name": "川湖",
-        "change": "-3.18%"
       }
     ],
     "tse-green": [
@@ -172,11 +162,6 @@
         "change": "-4.21%"
       },
       {
-        "ticker": "2301",
-        "name": "光寶科",
-        "change": "-3.68%"
-      },
-      {
         "ticker": "3380",
         "name": "明泰",
         "change": "-3.13%"
@@ -204,6 +189,11 @@
         "change": "-5.23%"
       },
       {
+        "ticker": "6510",
+        "name": "精測",
+        "change": "-4.70%"
+      },
+      {
         "ticker": "2489",
         "name": "瑞軒",
         "change": "-3.59%"
@@ -211,14 +201,19 @@
     ],
     "tse-semi": [
       {
-        "ticker": "2303",
-        "name": "聯電",
-        "change": "-6.62%"
+        "ticker": "6147",
+        "name": "頎邦",
+        "change": "-9.39%"
       },
       {
         "ticker": "2449",
         "name": "京元電子",
         "change": "-7.66%"
+      },
+      {
+        "ticker": "2303",
+        "name": "聯電",
+        "change": "-6.62%"
       },
       {
         "ticker": "2408",
@@ -230,6 +225,6 @@
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-04-03T02:09:06.617409Z",
-  "generated_at": "2026-04-03T02:09:06.617409Z"
+  "last_updated": "2026-04-06T02:09:15.140427Z",
+  "generated_at": "2026-04-06T02:09:15.140427Z"
 }
