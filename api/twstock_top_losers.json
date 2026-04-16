@@ -1,114 +1,24 @@
 {
   "status": "success",
   "data": {
-    "otc-bio": [],
-    "otc-elec": [
+    "otc-electrical": [],
+    "otc-otherele": [],
+    "otc-semi": [],
+    "tse-chem": [],
+    "tse-elec": [],
+    "tse-electrical": [],
+    "tse-green": [
       {
-        "ticker": "3043",
-        "name": "科風",
-        "change": "-6.97%"
-      },
-      {
-        "ticker": "6584",
-        "name": "南俊國際",
-        "change": "-4.15%"
-      }
-    ],
-    "otc-otherele": [
-      {
-        "ticker": "3498",
-        "name": "陽程",
-        "change": "-3.85%"
-      },
-      {
-        "ticker": "6173",
-        "name": "信昌電",
-        "change": "-3.89%"
-      }
-    ],
-    "otc-semi": [
-      {
-        "ticker": "5351",
-        "name": "鈺創",
-        "change": "-5.16%"
-      },
-      {
-        "ticker": "5443",
-        "name": "均豪",
-        "change": "-3.84%"
-      },
-      {
-        "ticker": "8299",
-        "name": "群聯",
-        "change": "-3.97%"
-      }
-    ],
-    "tse-chem": [
-      {
-        "ticker": "1735",
-        "name": "日勝化",
-        "change": "-5.40%"
-      },
-      {
-        "ticker": "1710",
-        "name": "東聯",
-        "change": "-3.78%"
-      },
-      {
-        "ticker": "1721",
-        "name": "三晃",
-        "change": "-3.25%"
-      }
-    ],
-    "tse-elec": [
-      {
-        "ticker": "4919",
-        "name": "新唐",
-        "change": "-4.66%"
-      },
-      {
-        "ticker": "2421",
-        "name": "建準",
-        "change": "-4.46%"
-      },
-      {
-        "ticker": "6274",
-        "name": "台燿",
-        "change": "-4.28%"
-      },
-      {
-        "ticker": "2492",
-        "name": "華新科",
-        "change": "-4.13%"
-      }
-    ],
-    "tse-electrical": [
-      {
-        "ticker": "5288",
-        "name": "豐祥-KY",
-        "change": "-9.91%"
-      },
-      {
-        "ticker": "1597",
-        "name": "直得",
-        "change": "-6.69%"
+        "ticker": "1608",
+        "name": "華榮",
+        "change": "-4.40%"
       }
     ],
     "tse-opto": [
       {
-        "ticker": "2426",
-        "name": "鼎元",
-        "change": "-6.52%"
-      },
-      {
-        "ticker": "2489",
-        "name": "瑞軒",
-        "change": "-5.57%"
-      },
-      {
-        "ticker": "3673",
-        "name": "TPK-KY",
-        "change": "-9.91%"
+        "ticker": "6456",
+        "name": "GIS-KY",
+        "change": "-6.70%"
       }
     ],
     "tse-semi": []
@@ -116,6 +26,6 @@
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-04-15T02:07:56.447507Z",
-  "generated_at": "2026-04-15T02:07:56.447507Z"
+  "last_updated": "2026-04-16T02:07:57.529951Z",
+  "generated_at": "2026-04-16T02:07:57.529951Z"
 }
