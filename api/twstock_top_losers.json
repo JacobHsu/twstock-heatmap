@@ -2,58 +2,64 @@
   "status": "success",
   "data": {
     "otc-bio": [],
-    "otc-network": [
-      {
-        "ticker": "3221",
-        "name": "台嘉碩",
-        "change": "-3.61%"
-      }
-    ],
-    "otc-opto": [],
-    "otc-other": [],
-    "otc-semi": [
-      {
-        "ticker": "6640",
-        "name": "均華",
-        "change": "-4.61%"
-      }
-    ],
-    "tse-bio": [
-      {
-        "ticker": "6657",
-        "name": "華安",
-        "change": "-6.54%"
-      }
-    ],
+    "otc-elec": [],
+    "otc-semi": [],
+    "tse-bio": [],
+    "tse-construction": [],
     "tse-elec": [],
+    "tse-network": [],
     "tse-opto": [
-      {
-        "ticker": "3008",
-        "name": "大立光",
-        "change": "-8.15%"
-      },
       {
         "ticker": "3576",
         "name": "聯合再生",
-        "change": "-3.77%"
-      },
+        "change": "-5.46%"
+      }
+    ],
+    "tse-otherele": [
       {
-        "ticker": "3481",
-        "name": "群創",
-        "change": "-3.11%"
+        "ticker": "2474",
+        "name": "可成",
+        "change": "-5.06%"
       }
     ],
     "tse-semi": [
       {
         "ticker": "2337",
         "name": "旺宏",
-        "change": "-4.67%"
+        "change": "-8.39%"
+      },
+      {
+        "ticker": "2344",
+        "name": "華邦電",
+        "change": "-3.07%"
+      },
+      {
+        "ticker": "3034",
+        "name": "聯詠",
+        "change": "-5.55%"
+      }
+    ],
+    "tse-shipping": [
+      {
+        "ticker": "2606",
+        "name": "裕民",
+        "change": "-3.84%"
+      },
+      {
+        "ticker": "2637",
+        "name": "慧洋-KY",
+        "change": "-3.69%"
+      },
+      {
+        "ticker": "2612",
+        "name": "中航",
+        "change": "-3.33%"
       }
     ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-04-17T02:08:08.703997Z",
-  "generated_at": "2026-04-17T02:08:08.703997Z"
+  "last_updated": "2026-04-20T02:10:59.826276Z",
+  "generated_at": "2026-04-20T02:10:59.826276Z"
 }
