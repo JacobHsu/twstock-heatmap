@@ -1,84 +1,174 @@
 {
   "status": "success",
   "data": {
-    "otc-bio": [],
-    "otc-channel": [
+    "otc-computer": [
       {
-        "ticker": "3224",
-        "name": "三顧",
-        "change": "-3.42%"
+        "ticker": "6441",
+        "name": "廣錠",
+        "change": "-8.41%"
+      },
+      {
+        "ticker": "5289",
+        "name": "宜鼎",
+        "change": "-5.32%"
+      },
+      {
+        "ticker": "5438",
+        "name": "東友",
+        "change": "-3.21%"
       }
     ],
     "otc-elec": [
       {
-        "ticker": "1516",
-        "name": "川飛",
-        "change": "-9.96%"
+        "ticker": "3624",
+        "name": "光頡",
+        "change": "-4.13%"
       },
       {
-        "ticker": "4939",
-        "name": "亞電",
-        "change": "-5.26%"
+        "ticker": "6584",
+        "name": "南俊國際",
+        "change": "-4.10%"
+      },
+      {
+        "ticker": "6284",
+        "name": "佳邦",
+        "change": "-3.33%"
       }
     ],
-    "otc-electrical": [],
-    "otc-other": [],
     "otc-otherele": [
       {
         "ticker": "4577",
         "name": "達航科技",
-        "change": "-3.31%"
+        "change": "-8.83%"
+      },
+      {
+        "ticker": "3093",
+        "name": "港建*",
+        "change": "-6.25%"
+      },
+      {
+        "ticker": "1785",
+        "name": "光洋科",
+        "change": "-4.88%"
+      },
+      {
+        "ticker": "5536",
+        "name": "聖暉*",
+        "change": "-4.18%"
       }
     ],
     "otc-semi": [
       {
-        "ticker": "6510",
-        "name": "精測",
-        "change": "-4.13%"
-      },
-      {
         "ticker": "8299",
         "name": "群聯",
-        "change": "-3.62%"
+        "change": "-8.21%"
+      },
+      {
+        "ticker": "6510",
+        "name": "精測",
+        "change": "-5.23%"
       }
     ],
     "tse-chem": [
       {
-        "ticker": "1735",
-        "name": "日勝化",
-        "change": "-4.69%"
+        "ticker": "4720",
+        "name": "德淵",
+        "change": "-6.87%"
+      },
+      {
+        "ticker": "4755",
+        "name": "三福化",
+        "change": "-4.48%"
+      },
+      {
+        "ticker": "1725",
+        "name": "元禎",
+        "change": "-4.32%"
+      },
+      {
+        "ticker": "1721",
+        "name": "三晃",
+        "change": "-3.58%"
+      },
+      {
+        "ticker": "1717",
+        "name": "長興",
+        "change": "-3.42%"
+      }
+    ],
+    "tse-computer": [],
+    "tse-construction": [
+      {
+        "ticker": "2540",
+        "name": "愛山林",
+        "change": "-5.08%"
+      },
+      {
+        "ticker": "1442",
+        "name": "名軒",
+        "change": "-4.37%"
+      },
+      {
+        "ticker": "2534",
+        "name": "宏盛",
+        "change": "-3.14%"
+      },
+      {
+        "ticker": "2530",
+        "name": "華建",
+        "change": "-3.12%"
       }
     ],
     "tse-elec": [
       {
         "ticker": "3026",
         "name": "禾伸堂",
-        "change": "-6.56%"
+        "change": "-9.95%"
       },
       {
         "ticker": "2059",
         "name": "川湖",
-        "change": "-4.32%"
+        "change": "-6.00%"
       }
     ],
     "tse-opto": [
       {
-        "ticker": "3576",
-        "name": "聯合再生",
-        "change": "-3.63%"
+        "ticker": "6168",
+        "name": "宏齊",
+        "change": "-6.86%"
+      },
+      {
+        "ticker": "2426",
+        "name": "鼎元",
+        "change": "-3.69%"
+      },
+      {
+        "ticker": "3049",
+        "name": "精金",
+        "change": "-3.17%"
+      },
+      {
+        "ticker": "3008",
+        "name": "大立光",
+        "change": "-3.08%"
       }
     ],
     "tse-semi": [
       {
         "ticker": "2408",
         "name": "南亞科",
-        "change": "-3.82%"
+        "change": "-8.29%"
+      },
+      {
+        "ticker": "2337",
+        "name": "旺宏",
+        "change": "-7.78%"
       }
     ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-04-30T02:11:38.479095Z",
-  "generated_at": "2026-04-30T02:11:38.479095Z"
+  "last_updated": "2026-05-01T02:10:14.713038Z",
+  "generated_at": "2026-05-01T02:10:14.713038Z"
 }
