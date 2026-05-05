@@ -1,56 +1,126 @@
 {
   "status": "success",
   "data": {
-    "otc-bio": [
-      {
-        "ticker": "6617",
-        "name": "共信-KY",
-        "change": "-4.93%"
-      },
-      {
-        "ticker": "6535",
-        "name": "順藥",
-        "change": "-3.61%"
-      }
-    ],
     "otc-elec": [
       {
-        "ticker": "6173",
-        "name": "信昌電",
-        "change": "-4.43%"
+        "ticker": "3526",
+        "name": "凡甲",
+        "change": "-3.30%"
       }
     ],
-    "otc-opto": [
+    "otc-electrical": [
       {
-        "ticker": "4933",
-        "name": "友輝",
-        "change": "-4.07%"
-      }
-    ],
-    "tse-chem": [
-      {
-        "ticker": "1710",
-        "name": "東聯",
-        "change": "-5.14%"
+        "ticker": "4563",
+        "name": "百德",
+        "change": "-5.08%"
       },
       {
-        "ticker": "1722",
-        "name": "台肥",
-        "change": "-4.53%"
+        "ticker": "4510",
+        "name": "高鋒",
+        "change": "-3.57%"
       }
     ],
-    "tse-construction": [
+    "otc-network": [
       {
-        "ticker": "2548",
-        "name": "華固",
+        "ticker": "6163",
+        "name": "華電網",
+        "change": "-3.42%"
+      }
+    ],
+    "otc-other": [],
+    "otc-otherele": [
+      {
+        "ticker": "6739",
+        "name": "竹陞科技",
+        "change": "-6.84%"
+      },
+      {
+        "ticker": "6146",
+        "name": "耕興",
+        "change": "-5.45%"
+      },
+      {
+        "ticker": "1785",
+        "name": "光洋科",
+        "change": "-3.82%"
+      },
+      {
+        "ticker": "4760",
+        "name": "勤凱",
         "change": "-3.17%"
       }
     ],
-    "tse-elec": []
+    "otc-semi": [
+      {
+        "ticker": "6223",
+        "name": "旺矽",
+        "change": "-4.84%"
+      },
+      {
+        "ticker": "4749",
+        "name": "新應材",
+        "change": "-3.49%"
+      },
+      {
+        "ticker": "5274",
+        "name": "信驊",
+        "change": "-3.10%"
+      }
+    ],
+    "tse-computer": [
+      {
+        "ticker": "3017",
+        "name": "奇鋐",
+        "change": "-6.58%"
+      }
+    ],
+    "tse-elec": [
+      {
+        "ticker": "6805",
+        "name": "富世達",
+        "change": "-9.93%"
+      },
+      {
+        "ticker": "3653",
+        "name": "健策",
+        "change": "-9.24%"
+      },
+      {
+        "ticker": "3533",
+        "name": "嘉澤",
+        "change": "-5.17%"
+      }
+    ],
+    "tse-electrical": [
+      {
+        "ticker": "3167",
+        "name": "大量",
+        "change": "-5.62%"
+      }
+    ],
+    "tse-opto": [
+      {
+        "ticker": "3406",
+        "name": "玉晶光",
+        "change": "-3.33%"
+      },
+      {
+        "ticker": "2489",
+        "name": "瑞軒",
+        "change": "-3.21%"
+      }
+    ],
+    "tse-semi": [
+      {
+        "ticker": "3105",
+        "name": "穩懋",
+        "change": "-3.41%"
+      }
+    ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-05-04T02:04:27.030190Z",
-  "generated_at": "2026-05-04T02:04:27.030190Z"
+  "last_updated": "2026-05-05T02:11:26.457691Z",
+  "generated_at": "2026-05-05T02:11:26.457691Z"
 }
