@@ -1,117 +1,43 @@
 {
   "status": "success",
   "data": {
+    "otc-bio": [],
     "otc-elec": [
       {
-        "ticker": "6127",
-        "name": "九豪",
-        "change": "-9.79%"
+        "ticker": "6235",
+        "name": "華孚",
+        "change": "-6.98%"
       },
       {
-        "ticker": "3388",
-        "name": "崇越電",
-        "change": "-8.59%"
-      }
-    ],
-    "otc-opto": [
-      {
-        "ticker": "8064",
-        "name": "東捷",
-        "change": "-6.93%"
+        "ticker": "4542",
+        "name": "科嶠",
+        "change": "-6.26%"
       },
       {
-        "ticker": "3691",
-        "name": "碩禾",
-        "change": "-4.42%"
+        "ticker": "1603",
+        "name": "華電",
+        "change": "-5.01%"
+      },
+      {
+        "ticker": "1538",
+        "name": "正峰",
+        "change": "-4.54%"
       }
     ],
     "otc-other": [
       {
-        "ticker": "8905",
-        "name": "裕國",
-        "change": "-3.31%"
+        "ticker": "8342",
+        "name": "益張",
+        "change": "-3.04%"
       }
     ],
-    "otc-semi": [
-      {
-        "ticker": "7734",
-        "name": "印能科技",
-        "change": "-4.49%"
-      },
-      {
-        "ticker": "8299",
-        "name": "群聯",
-        "change": "-3.24%"
-      }
-    ],
-    "tse-computer": [],
-    "tse-elec": [
-      {
-        "ticker": "6213",
-        "name": "聯茂",
-        "change": "-3.32%"
-      }
-    ],
-    "tse-electrical": [
-      {
-        "ticker": "4576",
-        "name": "大銀微系統",
-        "change": "-5.35%"
-      },
-      {
-        "ticker": "9802",
-        "name": "鈺齊-KY",
-        "change": "-5.05%"
-      },
-      {
-        "ticker": "1532",
-        "name": "勤美",
-        "change": "-4.55%"
-      },
-      {
-        "ticker": "4583",
-        "name": "台灣精銳",
-        "change": "-3.26%"
-      },
-      {
-        "ticker": "8374",
-        "name": "羅昇",
-        "change": "-3.03%"
-      }
-    ],
-    "tse-opto": [
-      {
-        "ticker": "5243",
-        "name": "乙盛-KY",
-        "change": "-6.55%"
-      },
-      {
-        "ticker": "4960",
-        "name": "誠美材",
-        "change": "-6.07%"
-      },
-      {
-        "ticker": "3673",
-        "name": "TPK-KY",
-        "change": "-5.17%"
-      },
-      {
-        "ticker": "6278",
-        "name": "台表科",
-        "change": "-4.17%"
-      },
-      {
-        "ticker": "6706",
-        "name": "惠特",
-        "change": "-3.46%"
-      }
-    ],
-    "tse-otherele": [],
-    "tse-semi": []
+    "tse-bio": [],
+    "tse-opto": [],
+    "tse-otherele": []
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-05-20T02:10:30.508232Z",
-  "generated_at": "2026-05-20T02:10:30.508232Z"
+  "last_updated": "2026-05-21T02:05:11.465867Z",
+  "generated_at": "2026-05-21T02:05:11.465867Z"
 }
