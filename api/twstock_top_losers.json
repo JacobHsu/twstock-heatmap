@@ -3,51 +3,89 @@
   "data": {
     "otc-elec": [
       {
-        "ticker": "6175",
-        "name": "立敦",
-        "change": "-5.47%"
-      },
-      {
-        "ticker": "6207",
-        "name": "雷科",
-        "change": "-5.65%"
+        "ticker": "3624",
+        "name": "光頡",
+        "change": "-5.73%"
       },
       {
         "ticker": "5475",
         "name": "德宏",
-        "change": "-4.37%"
+        "change": "-4.68%"
       },
       {
-        "ticker": "3624",
-        "name": "光頡",
-        "change": "-3.27%"
+        "ticker": "6175",
+        "name": "立敦",
+        "change": "-3.89%"
       },
       {
-        "ticker": "8043",
-        "name": "蜜望實",
-        "change": "-3.18%"
+        "ticker": "3388",
+        "name": "崇越電",
+        "change": "-3.82%"
+      },
+      {
+        "ticker": "6284",
+        "name": "佳邦",
+        "change": "-3.63%"
       }
     ],
-    "otc-electrical": [
+    "otc-network": [],
+    "otc-semi": [
       {
-        "ticker": "4561",
-        "name": "健椿",
-        "change": "-5.35%"
+        "ticker": "8299",
+        "name": "群聯",
+        "change": "-4.78%"
       },
       {
-        "ticker": "4510",
-        "name": "高鋒",
-        "change": "-4.29%"
+        "ticker": "3131",
+        "name": "弘塑",
+        "change": "-3.17%"
       }
     ],
-    "otc-semi": [],
-    "tse-computer": [],
-    "tse-elec": [],
-    "tse-semi": []
+    "tse-computer": [
+      {
+        "ticker": "2352",
+        "name": "佳世達",
+        "change": "-9.30%"
+      },
+      {
+        "ticker": "6235",
+        "name": "華孚",
+        "change": "-5.30%"
+      }
+    ],
+    "tse-elec": [
+      {
+        "ticker": "2492",
+        "name": "華新科",
+        "change": "-7.23%"
+      },
+      {
+        "ticker": "2472",
+        "name": "立隆電",
+        "change": "-5.52%"
+      },
+      {
+        "ticker": "6805",
+        "name": "富世達",
+        "change": "-4.79%"
+      },
+      {
+        "ticker": "2327",
+        "name": "國巨*",
+        "change": "-3.07%"
+      }
+    ],
+    "tse-opto": [
+      {
+        "ticker": "8105",
+        "name": "凌巨",
+        "change": "-3.34%"
+      }
+    ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-06-03T02:17:05.441766Z",
-  "generated_at": "2026-06-03T02:17:05.441766Z"
+  "last_updated": "2026-06-04T02:16:32.806179Z",
+  "generated_at": "2026-06-04T02:16:32.806179Z"
 }
