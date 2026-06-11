@@ -5,191 +5,269 @@
       {
         "ticker": "3577",
         "name": "泓格",
-        "change": "-9.60%"
-      },
-      {
-        "ticker": "5426",
-        "name": "振發",
-        "change": "-8.32%"
-      },
-      {
-        "ticker": "5386",
-        "name": "青雲",
-        "change": "-3.28%"
-      },
-      {
-        "ticker": "5289",
-        "name": "宜鼎",
-        "change": "-3.26%"
+        "change": "-5.53%"
       }
     ],
-    "otc-green": [
+    "otc-elec": [
       {
-        "ticker": "8390",
-        "name": "金益鼎",
-        "change": "-4.63%"
+        "ticker": "6584",
+        "name": "南俊國際",
+        "change": "-6.15%"
+      },
+      {
+        "ticker": "4542",
+        "name": "科嶠",
+        "change": "-6.11%"
+      },
+      {
+        "ticker": "6207",
+        "name": "雷科",
+        "change": "-5.57%"
+      },
+      {
+        "ticker": "3388",
+        "name": "崇越電",
+        "change": "-3.69%"
       }
     ],
     "otc-network": [
       {
-        "ticker": "3081",
-        "name": "聯亞",
-        "change": "-9.83%"
+        "ticker": "4979",
+        "name": "華星光",
+        "change": "-7.93%"
       },
       {
         "ticker": "3163",
         "name": "波若威",
-        "change": "-9.67%"
+        "change": "-5.54%"
       },
       {
-        "ticker": "3234",
-        "name": "光環",
-        "change": "-5.62%"
+        "ticker": "3081",
+        "name": "聯亞",
+        "change": "-5.34%"
       },
       {
-        "ticker": "4908",
-        "name": "前鼎",
-        "change": "-5.85%"
+        "ticker": "7717",
+        "name": "萊德光電-KY",
+        "change": "-4.89%"
+      }
+    ],
+    "otc-otherele": [
+      {
+        "ticker": "3580",
+        "name": "友威科",
+        "change": "-5.53%"
       },
       {
-        "ticker": "4979",
-        "name": "華星光",
-        "change": "-5.35%"
+        "ticker": "3498",
+        "name": "陽程",
+        "change": "-4.06%"
       }
     ],
     "otc-semi": [
       {
         "ticker": "4991",
         "name": "環宇-KY",
-        "change": "-8.19%"
+        "change": "-5.56%"
       },
       {
         "ticker": "4971",
         "name": "IET-KY",
-        "change": "-8.07%"
+        "change": "-4.75%"
       },
       {
-        "ticker": "6291",
-        "name": "沛亨",
-        "change": "-4.71%"
+        "ticker": "3131",
+        "name": "弘塑",
+        "change": "-3.22%"
       },
       {
-        "ticker": "5347",
-        "name": "世界",
-        "change": "-3.41%"
-      },
-      {
-        "ticker": "6510",
-        "name": "精測",
-        "change": "-3.39%"
+        "ticker": "6683",
+        "name": "雍智科技",
+        "change": "-3.19%"
       }
     ],
-    "tse-computer": [
+    "tse-auto": [
       {
-        "ticker": "3017",
-        "name": "奇鋐",
-        "change": "-5.30%"
+        "ticker": "6605",
+        "name": "帝寶",
+        "change": "-4.74%"
+      }
+    ],
+    "tse-bio": [
+      {
+        "ticker": "6861",
+        "name": "睿生光電",
+        "change": "-5.36%"
       },
       {
-        "ticker": "2356",
-        "name": "英業達",
-        "change": "-3.11%"
+        "ticker": "1795",
+        "name": "美時",
+        "change": "-3.71%"
       },
       {
-        "ticker": "3706",
-        "name": "神達",
-        "change": "-3.05%"
+        "ticker": "6446",
+        "name": "藥華藥",
+        "change": "-3.65%"
+      }
+    ],
+    "tse-chem": [
+      {
+        "ticker": "4722",
+        "name": "國精化",
+        "change": "-6.57%"
+      },
+      {
+        "ticker": "1710",
+        "name": "東聯",
+        "change": "-6.31%"
+      }
+    ],
+    "tse-construction": [
+      {
+        "ticker": "5521",
+        "name": "工信",
+        "change": "-8.44%"
+      },
+      {
+        "ticker": "2540",
+        "name": "愛山林",
+        "change": "-4.52%"
+      },
+      {
+        "ticker": "5522",
+        "name": "遠雄",
+        "change": "-4.50%"
+      },
+      {
+        "ticker": "1442",
+        "name": "名軒",
+        "change": "-3.92%"
+      },
+      {
+        "ticker": "2501",
+        "name": "國建",
+        "change": "-3.57%"
       }
     ],
     "tse-elec": [
       {
-        "ticker": "6781",
-        "name": "AES-KY",
-        "change": "-5.67%"
+        "ticker": "3653",
+        "name": "健策",
+        "change": "-7.76%"
       },
       {
-        "ticker": "2308",
-        "name": "台達電",
-        "change": "-4.96%"
+        "ticker": "2492",
+        "name": "華新科",
+        "change": "-7.48%"
       },
       {
-        "ticker": "3037",
-        "name": "欣興",
-        "change": "-4.74%"
+        "ticker": "2368",
+        "name": "金像電",
+        "change": "-5.98%"
       },
       {
         "ticker": "8046",
         "name": "南電",
-        "change": "-4.59%"
+        "change": "-5.07%"
       },
       {
-        "ticker": "3042",
-        "name": "晶技",
-        "change": "-3.54%"
+        "ticker": "3037",
+        "name": "欣興",
+        "change": "-4.41%"
       }
     ],
     "tse-network": [
       {
         "ticker": "2455",
         "name": "全新",
-        "change": "-9.74%"
+        "change": "-9.14%"
+      },
+      {
+        "ticker": "2345",
+        "name": "智邦",
+        "change": "-5.07%"
       },
       {
         "ticker": "6442",
         "name": "光聖",
-        "change": "-7.61%"
-      },
-      {
-        "ticker": "3380",
-        "name": "明泰",
-        "change": "-5.45%"
-      },
-      {
-        "ticker": "5371",
-        "name": "中光電",
-        "change": "-3.82%"
+        "change": "-4.76%"
       }
     ],
     "tse-opto": [
       {
-        "ticker": "6443",
-        "name": "元晶",
-        "change": "-9.94%"
+        "ticker": "2486",
+        "name": "一詮",
+        "change": "-5.48%"
       },
       {
-        "ticker": "2426",
-        "name": "鼎元",
-        "change": "-4.69%"
+        "ticker": "3576",
+        "name": "聯合再生",
+        "change": "-5.20%"
       },
       {
         "ticker": "6116",
         "name": "彩晶",
-        "change": "-3.84%"
+        "change": "-4.86%"
+      },
+      {
+        "ticker": "3149",
+        "name": "正達",
+        "change": "-4.50%"
+      },
+      {
+        "ticker": "3059",
+        "name": "華晶科",
+        "change": "-4.04%"
       }
     ],
     "tse-otherele": [
       {
-        "ticker": "2474",
-        "name": "可成",
-        "change": "-5.22%"
+        "ticker": "8021",
+        "name": "尖點",
+        "change": "-8.27%"
+      },
+      {
+        "ticker": "3665",
+        "name": "貿聯-KY",
+        "change": "-5.33%"
+      },
+      {
+        "ticker": "4585",
+        "name": "達明",
+        "change": "-4.34%"
+      },
+      {
+        "ticker": "2360",
+        "name": "致茂",
+        "change": "-4.07%"
+      },
+      {
+        "ticker": "3030",
+        "name": "德律",
+        "change": "-3.95%"
       }
     ],
     "tse-semi": [
       {
-        "ticker": "2303",
-        "name": "聯電",
-        "change": "-3.13%"
-      },
-      {
         "ticker": "3189",
         "name": "景碩",
-        "change": "-3.36%"
+        "change": "-8.78%"
+      },
+      {
+        "ticker": "2379",
+        "name": "瑞昱",
+        "change": "-4.80%"
+      },
+      {
+        "ticker": "2454",
+        "name": "聯發科",
+        "change": "-3.85%"
       }
     ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-06-10T02:11:03.766126Z",
-  "generated_at": "2026-06-10T02:11:03.766126Z"
+  "last_updated": "2026-06-11T02:22:55.094731Z",
+  "generated_at": "2026-06-11T02:22:55.094731Z"
 }
