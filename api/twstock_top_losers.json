@@ -3,43 +3,83 @@
   "data": {
     "otc-bio": [
       {
-        "ticker": "5523",
-        "name": "豐謙",
-        "change": "-9.92%"
+        "ticker": "4168",
+        "name": "醣聯",
+        "change": "-3.73%"
+      }
+    ],
+    "otc-construction": [
+      {
+        "ticker": "4113",
+        "name": "聯上",
+        "change": "-3.88%"
       },
       {
-        "ticker": "1795",
-        "name": "美時",
-        "change": "-6.25%"
-      }
-    ],
-    "otc-elec": [
+        "ticker": "5511",
+        "name": "德昌",
+        "change": "-3.93%"
+      },
       {
-        "ticker": "5439",
-        "name": "高技",
-        "change": "-3.17%"
+        "ticker": "5508",
+        "name": "永信建",
+        "change": "-3.16%"
       }
     ],
-    "otc-semi": [
+    "otc-other": [],
+    "tse-computer": [
       {
-        "ticker": "7734",
-        "name": "印能科技",
-        "change": "-5.35%"
+        "ticker": "4938",
+        "name": "和碩",
+        "change": "-5.49%"
       }
     ],
-    "tse-auto": [],
+    "tse-construction": [
+      {
+        "ticker": "1438",
+        "name": "三地開發",
+        "change": "-9.71%"
+      },
+      {
+        "ticker": "2597",
+        "name": "潤弘",
+        "change": "-3.67%"
+      },
+      {
+        "ticker": "5522",
+        "name": "遠雄",
+        "change": "-3.37%"
+      },
+      {
+        "ticker": "2548",
+        "name": "華固",
+        "change": "-3.30%"
+      }
+    ],
     "tse-elec": [
       {
-        "ticker": "2383",
-        "name": "台光電",
-        "change": "-3.33%"
+        "ticker": "2385",
+        "name": "群光",
+        "change": "-9.32%"
+      },
+      {
+        "ticker": "6805",
+        "name": "富世達",
+        "change": "-3.56%"
       }
     ],
-    "tse-other": []
+    "tse-opto": [],
+    "tse-other": [
+      {
+        "ticker": "9941",
+        "name": "裕融",
+        "change": "-3.44%"
+      }
+    ],
+    "tse-semi": []
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-06-12T02:08:45.174319Z",
-  "generated_at": "2026-06-12T02:08:45.174319Z"
+  "last_updated": "2026-06-15T02:15:44.323957Z",
+  "generated_at": "2026-06-15T02:15:44.323957Z"
 }
