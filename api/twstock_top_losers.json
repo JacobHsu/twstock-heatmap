@@ -3,83 +3,111 @@
   "data": {
     "otc-bio": [
       {
-        "ticker": "4168",
-        "name": "醣聯",
-        "change": "-3.73%"
+        "ticker": "6574",
+        "name": "霈方",
+        "change": "-3.78%"
       }
     ],
-    "otc-construction": [
+    "otc-elec": [
       {
-        "ticker": "4113",
-        "name": "聯上",
-        "change": "-3.88%"
+        "ticker": "8043",
+        "name": "蜜望實",
+        "change": "-9.38%"
       },
       {
-        "ticker": "5511",
-        "name": "德昌",
-        "change": "-3.93%"
+        "ticker": "6217",
+        "name": "中探針",
+        "change": "-3.58%"
       },
       {
-        "ticker": "5508",
-        "name": "永信建",
-        "change": "-3.16%"
+        "ticker": "3357",
+        "name": "臺慶科",
+        "change": "-3.26%"
       }
     ],
-    "otc-other": [],
-    "tse-computer": [
+    "otc-electrical": [
       {
-        "ticker": "4938",
-        "name": "和碩",
-        "change": "-5.49%"
+        "ticker": "4534",
+        "name": "慶騰",
+        "change": "-7.58%"
+      },
+      {
+        "ticker": "8255",
+        "name": "朋程",
+        "change": "-4.37%"
       }
     ],
-    "tse-construction": [
+    "otc-opto": [
       {
-        "ticker": "1438",
-        "name": "三地開發",
-        "change": "-9.71%"
+        "ticker": "6244",
+        "name": "茂迪",
+        "change": "-6.11%"
       },
       {
-        "ticker": "2597",
-        "name": "潤弘",
-        "change": "-3.67%"
-      },
-      {
-        "ticker": "5522",
-        "name": "遠雄",
-        "change": "-3.37%"
-      },
-      {
-        "ticker": "2548",
-        "name": "華固",
-        "change": "-3.30%"
+        "ticker": "4933",
+        "name": "友輝",
+        "change": "-4.62%"
       }
     ],
+    "otc-otherele": [],
     "tse-elec": [
+      {
+        "ticker": "2401",
+        "name": "凌陽",
+        "change": "-8.42%"
+      },
+      {
+        "ticker": "2472",
+        "name": "立隆電",
+        "change": "-7.77%"
+      },
+      {
+        "ticker": "3026",
+        "name": "禾伸堂",
+        "change": "-4.76%"
+      },
       {
         "ticker": "2385",
         "name": "群光",
-        "change": "-9.32%"
+        "change": "-3.77%"
       },
       {
-        "ticker": "6805",
-        "name": "富世達",
-        "change": "-3.56%"
+        "ticker": "8046",
+        "name": "南電",
+        "change": "-3.30%"
       }
     ],
-    "tse-opto": [],
-    "tse-other": [
+    "tse-otherele": [
       {
-        "ticker": "9941",
-        "name": "裕融",
-        "change": "-3.44%"
+        "ticker": "2404",
+        "name": "漢唐",
+        "change": "-8.33%"
+      },
+      {
+        "ticker": "6139",
+        "name": "亞翔",
+        "change": "-7.45%"
+      },
+      {
+        "ticker": "6691",
+        "name": "洋基工程",
+        "change": "-5.54%"
+      },
+      {
+        "ticker": "3665",
+        "name": "貿聯-KY",
+        "change": "-4.41%"
+      },
+      {
+        "ticker": "6196",
+        "name": "帆宣",
+        "change": "-4.71%"
       }
-    ],
-    "tse-semi": []
+    ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-06-15T02:15:44.323957Z",
-  "generated_at": "2026-06-15T02:15:44.323957Z"
+  "last_updated": "2026-06-16T02:18:14.437631Z",
+  "generated_at": "2026-06-16T02:18:14.437631Z"
 }
