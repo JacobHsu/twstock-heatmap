@@ -2,37 +2,99 @@
   "status": "success",
   "data": {
     "otc-chem": [],
-    "otc-elec": [],
     "otc-electrical": [
       {
         "ticker": "7709",
         "name": "榮田",
-        "change": "-9.25%"
+        "change": "-7.92%"
+      },
+      {
+        "ticker": "4568",
+        "name": "科際精密",
+        "change": "-3.22%"
       }
     ],
-    "otc-green": [],
     "otc-opto": [
+      {
+        "ticker": "6419",
+        "name": "京晨科",
+        "change": "-7.94%"
+      },
+      {
+        "ticker": "5392",
+        "name": "能率",
+        "change": "-3.45%"
+      },
+      {
+        "ticker": "3441",
+        "name": "聯一光",
+        "change": "-3.59%"
+      },
       {
         "ticker": "6498",
         "name": "久禾光",
-        "change": "-3.61%"
+        "change": "-3.16%"
       }
     ],
-    "otc-otherele": [
+    "otc-semi": [],
+    "tse-auto": [
       {
-        "ticker": "6654",
-        "name": "天正國際",
-        "change": "-4.83%"
+        "ticker": "1319",
+        "name": "東陽",
+        "change": "-3.21%"
       }
     ],
     "tse-computer": [],
-    "tse-elec": [],
-    "tse-semi": [],
-    "tse-shipping": []
+    "tse-construction": [
+      {
+        "ticker": "2543",
+        "name": "皇昌",
+        "change": "-5.05%"
+      },
+      {
+        "ticker": "2548",
+        "name": "華固",
+        "change": "-4.16%"
+      },
+      {
+        "ticker": "2535",
+        "name": "達欣工",
+        "change": "-3.10%"
+      }
+    ],
+    "tse-opto": [
+      {
+        "ticker": "3576",
+        "name": "聯合再生",
+        "change": "-6.00%"
+      },
+      {
+        "ticker": "2406",
+        "name": "國碩",
+        "change": "-3.72%"
+      },
+      {
+        "ticker": "4960",
+        "name": "誠美材",
+        "change": "-3.26%"
+      },
+      {
+        "ticker": "3049",
+        "name": "精金",
+        "change": "-3.02%"
+      }
+    ],
+    "tse-semi": [
+      {
+        "ticker": "3443",
+        "name": "創意",
+        "change": "-4.23%"
+      }
+    ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-06-18T02:17:01.190627Z",
-  "generated_at": "2026-06-18T02:17:01.190627Z"
+  "last_updated": "2026-06-19T02:23:43.410389Z",
+  "generated_at": "2026-06-19T02:23:43.410389Z"
 }
