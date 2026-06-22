@@ -1,100 +1,92 @@
 {
   "status": "success",
   "data": {
-    "otc-chem": [],
-    "otc-electrical": [
+    "otc-construction": [
       {
-        "ticker": "7709",
-        "name": "榮田",
-        "change": "-7.92%"
+        "ticker": "5508",
+        "name": "永信建",
+        "change": "-8.10%"
       },
       {
-        "ticker": "4568",
-        "name": "科際精密",
-        "change": "-3.22%"
+        "ticker": "4907",
+        "name": "富宇",
+        "change": "-4.94%"
+      },
+      {
+        "ticker": "3188",
+        "name": "鑫龍騰",
+        "change": "-4.60%"
+      },
+      {
+        "ticker": "4113",
+        "name": "聯上",
+        "change": "-3.74%"
+      },
+      {
+        "ticker": "3489",
+        "name": "森寶",
+        "change": "-3.26%"
       }
     ],
-    "otc-opto": [
+    "otc-elec": [
       {
-        "ticker": "6419",
-        "name": "京晨科",
-        "change": "-7.94%"
-      },
-      {
-        "ticker": "5392",
-        "name": "能率",
-        "change": "-3.45%"
-      },
-      {
-        "ticker": "3441",
-        "name": "聯一光",
-        "change": "-3.59%"
-      },
-      {
-        "ticker": "6498",
-        "name": "久禾光",
-        "change": "-3.16%"
+        "ticker": "3236",
+        "name": "千如",
+        "change": "-3.94%"
       }
     ],
-    "otc-semi": [],
     "tse-auto": [
       {
-        "ticker": "1319",
-        "name": "東陽",
-        "change": "-3.21%"
+        "ticker": "2243",
+        "name": "宏旭-KY",
+        "change": "-9.96%"
+      },
+      {
+        "ticker": "1568",
+        "name": "倉佑",
+        "change": "-3.25%"
       }
     ],
-    "tse-computer": [],
     "tse-construction": [
       {
-        "ticker": "2543",
-        "name": "皇昌",
-        "change": "-5.05%"
+        "ticker": "6177",
+        "name": "達麗",
+        "change": "-7.63%"
       },
       {
-        "ticker": "2548",
-        "name": "華固",
-        "change": "-4.16%"
+        "ticker": "2501",
+        "name": "國建",
+        "change": "-6.89%"
       },
       {
-        "ticker": "2535",
-        "name": "達欣工",
-        "change": "-3.10%"
+        "ticker": "2524",
+        "name": "京城",
+        "change": "-6.87%"
+      },
+      {
+        "ticker": "1808",
+        "name": "潤隆",
+        "change": "-5.42%"
+      },
+      {
+        "ticker": "2537",
+        "name": "聯上發",
+        "change": "-6.25%"
       }
     ],
-    "tse-opto": [
+    "tse-elec": [],
+    "tse-opto": [],
+    "tse-other": [
       {
-        "ticker": "3576",
-        "name": "聯合再生",
-        "change": "-6.00%"
-      },
-      {
-        "ticker": "2406",
-        "name": "國碩",
-        "change": "-3.72%"
-      },
-      {
-        "ticker": "4960",
-        "name": "誠美材",
-        "change": "-3.26%"
-      },
-      {
-        "ticker": "3049",
-        "name": "精金",
-        "change": "-3.02%"
-      }
-    ],
-    "tse-semi": [
-      {
-        "ticker": "3443",
-        "name": "創意",
-        "change": "-4.23%"
+        "ticker": "2348",
+        "name": "海悅",
+        "change": "-7.03%"
       }
     ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-06-19T02:23:43.410389Z",
-  "generated_at": "2026-06-19T02:23:43.410389Z"
+  "last_updated": "2026-06-22T02:15:00.518012Z",
+  "generated_at": "2026-06-22T02:15:00.518012Z"
 }
