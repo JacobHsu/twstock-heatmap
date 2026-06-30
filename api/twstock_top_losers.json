@@ -1,52 +1,19 @@
 {
   "status": "success",
   "data": {
-    "otc-bio": [
-      {
-        "ticker": "6649",
-        "name": "台生材",
-        "change": "-4.29%"
-      }
-    ],
-    "otc-computer": [],
-    "otc-elec": [
-      {
-        "ticker": "8043",
-        "name": "蜜望實",
-        "change": "-3.25%"
-      }
-    ],
-    "otc-network": [
-      {
-        "ticker": "3260",
-        "name": "威剛",
-        "change": "-3.18%"
-      }
-    ],
     "otc-semi": [
       {
-        "ticker": "6488",
-        "name": "環球晶",
-        "change": "-3.63%"
+        "ticker": "6291",
+        "name": "沛亨",
+        "change": "-3.57%"
       }
     ],
-    "tse-elec": [
+    "tse-auto": [],
+    "tse-bio": [
       {
-        "ticker": "8046",
-        "name": "南電",
-        "change": "-3.11%"
-      }
-    ],
-    "tse-opto": [
-      {
-        "ticker": "3008",
-        "name": "大立光",
-        "change": "-5.61%"
-      },
-      {
-        "ticker": "3406",
-        "name": "玉晶光",
-        "change": "-4.71%"
+        "ticker": "6472",
+        "name": "保瑞",
+        "change": "-3.54%"
       }
     ],
     "tse-semi": []
@@ -54,6 +21,6 @@
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-06-29T02:09:32.539976Z",
-  "generated_at": "2026-06-29T02:09:32.539976Z"
+  "last_updated": "2026-06-30T02:02:19.871192Z",
+  "generated_at": "2026-06-30T02:02:19.871192Z"
 }
