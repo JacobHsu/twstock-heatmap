@@ -1,26 +1,67 @@
 {
   "status": "success",
   "data": {
-    "otc-semi": [
+    "otc-channel": [
       {
-        "ticker": "6291",
-        "name": "沛亨",
-        "change": "-3.57%"
+        "ticker": "3360",
+        "name": "尚立",
+        "change": "-4.84%"
+      },
+      {
+        "ticker": "8032",
+        "name": "光菱",
+        "change": "-3.49%"
       }
     ],
-    "tse-auto": [],
-    "tse-bio": [
+    "otc-computer": [
       {
-        "ticker": "6472",
-        "name": "保瑞",
-        "change": "-3.54%"
+        "ticker": "5386",
+        "name": "青雲",
+        "change": "-9.95%"
+      },
+      {
+        "ticker": "5289",
+        "name": "宜鼎",
+        "change": "-7.43%"
       }
     ],
-    "tse-semi": []
+    "otc-semi": [],
+    "tse-chem": [],
+    "tse-computer": [],
+    "tse-elec": [],
+    "tse-network": [],
+    "tse-opto": [],
+    "tse-semi": [
+      {
+        "ticker": "2344",
+        "name": "華邦電",
+        "change": "-7.22%"
+      },
+      {
+        "ticker": "2408",
+        "name": "南亞科",
+        "change": "-6.29%"
+      },
+      {
+        "ticker": "2337",
+        "name": "旺宏",
+        "change": "-6.43%"
+      },
+      {
+        "ticker": "6770",
+        "name": "力積電",
+        "change": "-6.14%"
+      },
+      {
+        "ticker": "8016",
+        "name": "矽創",
+        "change": "-5.55%"
+      }
+    ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-06-30T02:02:19.871192Z",
-  "generated_at": "2026-06-30T02:02:19.871192Z"
+  "last_updated": "2026-07-01T02:10:09.089123Z",
+  "generated_at": "2026-07-01T02:10:09.089123Z"
 }
