@@ -1,67 +1,61 @@
 {
   "status": "success",
   "data": {
-    "otc-channel": [
+    "otc-computer": [],
+    "otc-semi": [
       {
-        "ticker": "3360",
-        "name": "尚立",
-        "change": "-4.84%"
+        "ticker": "7751",
+        "name": "竑騰",
+        "change": "-3.10%"
       },
       {
-        "ticker": "8032",
-        "name": "光菱",
-        "change": "-3.49%"
-      }
-    ],
-    "otc-computer": [
-      {
-        "ticker": "5386",
-        "name": "青雲",
-        "change": "-9.95%"
+        "ticker": "8299",
+        "name": "群聯",
+        "change": "-3.06%"
       },
       {
-        "ticker": "5289",
-        "name": "宜鼎",
-        "change": "-7.43%"
+        "ticker": "5347",
+        "name": "世界",
+        "change": "-3.42%"
       }
     ],
-    "otc-semi": [],
-    "tse-chem": [],
-    "tse-computer": [],
-    "tse-elec": [],
-    "tse-network": [],
-    "tse-opto": [],
+    "tse-construction": [
+      {
+        "ticker": "2530",
+        "name": "華建",
+        "change": "-4.20%"
+      }
+    ],
+    "tse-elec": [
+      {
+        "ticker": "3037",
+        "name": "欣興",
+        "change": "-4.51%"
+      }
+    ],
+    "tse-otherele": [
+      {
+        "ticker": "3030",
+        "name": "德律",
+        "change": "-9.75%"
+      }
+    ],
     "tse-semi": [
-      {
-        "ticker": "2344",
-        "name": "華邦電",
-        "change": "-7.22%"
-      },
       {
         "ticker": "2408",
         "name": "南亞科",
-        "change": "-6.29%"
+        "change": "-4.27%"
       },
       {
-        "ticker": "2337",
-        "name": "旺宏",
-        "change": "-6.43%"
-      },
-      {
-        "ticker": "6770",
-        "name": "力積電",
-        "change": "-6.14%"
-      },
-      {
-        "ticker": "8016",
-        "name": "矽創",
-        "change": "-5.55%"
+        "ticker": "2344",
+        "name": "華邦電",
+        "change": "-3.68%"
       }
     ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-07-01T02:10:09.089123Z",
-  "generated_at": "2026-07-01T02:10:09.089123Z"
+  "last_updated": "2026-07-02T02:04:57.889556Z",
+  "generated_at": "2026-07-02T02:04:57.889556Z"
 }
