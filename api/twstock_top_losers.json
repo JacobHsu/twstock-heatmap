@@ -1,61 +1,96 @@
 {
   "status": "success",
   "data": {
-    "otc-computer": [],
-    "otc-semi": [
+    "otc-computer": [
       {
-        "ticker": "7751",
-        "name": "竑騰",
-        "change": "-3.10%"
-      },
-      {
-        "ticker": "8299",
-        "name": "群聯",
-        "change": "-3.06%"
-      },
-      {
-        "ticker": "5347",
-        "name": "世界",
-        "change": "-3.42%"
+        "ticker": "5289",
+        "name": "宜鼎",
+        "change": "-4.95%"
       }
     ],
-    "tse-construction": [
+    "otc-elec": [
       {
-        "ticker": "2530",
-        "name": "華建",
-        "change": "-4.20%"
+        "ticker": "6584",
+        "name": "南俊國際",
+        "change": "-4.57%"
+      }
+    ],
+    "otc-other": [
+      {
+        "ticker": "5481",
+        "name": "新華",
+        "change": "-3.48%"
+      }
+    ],
+    "otc-semi": [
+      {
+        "ticker": "3529",
+        "name": "力旺",
+        "change": "-6.38%"
+      },
+      {
+        "ticker": "3105",
+        "name": "穩懋",
+        "change": "-3.10%"
       }
     ],
     "tse-elec": [
       {
-        "ticker": "3037",
-        "name": "欣興",
-        "change": "-4.51%"
+        "ticker": "2467",
+        "name": "志聖",
+        "change": "-5.62%"
+      }
+    ],
+    "tse-opto": [
+      {
+        "ticker": "4960",
+        "name": "誠美材",
+        "change": "-4.43%"
+      },
+      {
+        "ticker": "3149",
+        "name": "正達",
+        "change": "-3.31%"
       }
     ],
     "tse-otherele": [
       {
-        "ticker": "3030",
-        "name": "德律",
-        "change": "-9.75%"
+        "ticker": "2464",
+        "name": "盟立",
+        "change": "-5.44%"
       }
     ],
     "tse-semi": [
       {
-        "ticker": "2408",
-        "name": "南亞科",
-        "change": "-4.27%"
+        "ticker": "3711",
+        "name": "日月光投控",
+        "change": "-5.69%"
       },
       {
-        "ticker": "2344",
-        "name": "華邦電",
-        "change": "-3.68%"
+        "ticker": "3443",
+        "name": "創意",
+        "change": "-4.78%"
+      },
+      {
+        "ticker": "3661",
+        "name": "世芯-KY",
+        "change": "-4.59%"
+      },
+      {
+        "ticker": "2449",
+        "name": "京元電子",
+        "change": "-4.17%"
+      },
+      {
+        "ticker": "3529",
+        "name": "力旺",
+        "change": "-3.04%"
       }
     ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-07-02T02:04:57.889556Z",
-  "generated_at": "2026-07-02T02:04:57.889556Z"
+  "last_updated": "2026-07-03T05:07:01.277911Z",
+  "generated_at": "2026-07-03T05:07:01.277911Z"
 }
