@@ -1,125 +1,158 @@
 {
   "status": "success",
   "data": {
-    "otc-bio": [
+    "otc-electrical": [
       {
-        "ticker": "4747",
-        "name": "強生",
-        "change": "-3.68%"
+        "ticker": "4513",
+        "name": "福裕",
+        "change": "-8.99%"
+      },
+      {
+        "ticker": "7709",
+        "name": "榮田",
+        "change": "-6.80%"
       }
     ],
     "otc-opto": [
       {
-        "ticker": "3230",
-        "name": "錦明",
-        "change": "-9.84%"
+        "ticker": "3615",
+        "name": "安可",
+        "change": "-6.15%"
       },
       {
         "ticker": "7402",
         "name": "邑錡",
-        "change": "-4.97%"
-      }
-    ],
-    "otc-other": [
-      {
-        "ticker": "5450",
-        "name": "南良",
-        "change": "-8.91%"
+        "change": "-5.65%"
       },
       {
-        "ticker": "4541",
-        "name": "晟田",
-        "change": "-8.05%"
+        "ticker": "5371",
+        "name": "中光電",
+        "change": "-5.81%"
+      },
+      {
+        "ticker": "8064",
+        "name": "東捷",
+        "change": "-5.19%"
+      },
+      {
+        "ticker": "6234",
+        "name": "高僑",
+        "change": "-4.45%"
+      }
+    ],
+    "otc-semi": [
+      {
+        "ticker": "6488",
+        "name": "環球晶",
+        "change": "-9.67%"
+      },
+      {
+        "ticker": "6147",
+        "name": "頎邦",
+        "change": "-7.63%"
+      },
+      {
+        "ticker": "6138",
+        "name": "茂達",
+        "change": "-4.41%"
       }
     ],
     "tse-auto": [
       {
         "ticker": "2231",
         "name": "為升",
-        "change": "-5.80%"
+        "change": "-7.80%"
+      },
+      {
+        "ticker": "1563",
+        "name": "巧新",
+        "change": "-4.14%"
       }
     ],
-    "tse-bio": [],
-    "tse-computer": [],
     "tse-construction": [
       {
         "ticker": "2923",
         "name": "鼎固-KY",
-        "change": "-8.18%"
+        "change": "-9.28%"
       },
       {
-        "ticker": "5515",
-        "name": "建國",
-        "change": "-4.06%"
-      },
-      {
-        "ticker": "5522",
-        "name": "遠雄",
-        "change": "-3.06%"
+        "ticker": "1436",
+        "name": "華友聯",
+        "change": "-3.47%"
       }
     ],
-    "tse-electrical": [
+    "tse-elec": [
       {
-        "ticker": "1515",
-        "name": "力山",
-        "change": "-8.69%"
+        "ticker": "4958",
+        "name": "臻鼎-KY",
+        "change": "-9.83%"
       },
       {
-        "ticker": "4526",
-        "name": "東台",
-        "change": "-5.03%"
+        "ticker": "8046",
+        "name": "南電",
+        "change": "-7.27%"
       },
       {
-        "ticker": "4576",
-        "name": "大銀微系統",
-        "change": "-5.23%"
+        "ticker": "6213",
+        "name": "聯茂",
+        "change": "-6.53%"
+      },
+      {
+        "ticker": "2492",
+        "name": "華新科",
+        "change": "-5.50%"
       }
     ],
     "tse-green": [
       {
         "ticker": "7610",
         "name": "聯友金屬-創",
-        "change": "-3.32%"
+        "change": "-9.80%"
       }
     ],
     "tse-opto": [
       {
-        "ticker": "3006",
-        "name": "晶豪科",
-        "change": "-5.07%"
+        "ticker": "2466",
+        "name": "冠西電",
+        "change": "-9.95%"
+      },
+      {
+        "ticker": "3149",
+        "name": "正達",
+        "change": "-6.31%"
       },
       {
         "ticker": "2406",
         "name": "國碩",
-        "change": "-4.96%"
+        "change": "-5.52%"
       }
     ],
-    "tse-shipping": [
+    "tse-semi": [
       {
-        "ticker": "2634",
-        "name": "漢翔",
-        "change": "-9.93%"
+        "ticker": "2344",
+        "name": "華邦電",
+        "change": "-6.43%"
       },
       {
-        "ticker": "2645",
-        "name": "長榮航太",
-        "change": "-9.76%"
+        "ticker": "2408",
+        "name": "南亞科",
+        "change": "-5.16%"
       },
       {
-        "ticker": "2630",
-        "name": "亞航",
-        "change": "-8.99%"
+        "ticker": "2337",
+        "name": "旺宏",
+        "change": "-5.55%"
       },
       {
-        "ticker": "2208",
-        "name": "台船",
-        "change": "-5.15%"
+        "ticker": "6770",
+        "name": "力積電",
+        "change": "-4.12%"
       }
     ]
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-07-22T04:48:25.063481Z",
-  "generated_at": "2026-07-22T04:48:25.063481Z"
+  "last_updated": "2026-07-23T04:45:22.124133Z",
+  "generated_at": "2026-07-23T04:45:22.124133Z"
 }
