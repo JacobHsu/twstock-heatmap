@@ -2,17 +2,20 @@
   "status": "success",
   "data": {
     "otc-bio": [],
-    "otc-electrical": [],
-    "otc-network": [],
+    "otc-computer": [],
+    "otc-elec": [],
+    "otc-other": [],
     "tse-auto": [],
-    "tse-computer": [],
+    "tse-bio": [],
     "tse-construction": [],
-    "tse-elec": [],
+    "tse-opto": [],
+    "tse-other": [],
+    "tse-otherele": [],
     "tse-semi": []
   },
   "version": "2.0",
   "market": "taiwan",
   "source": "nstock.tw",
-  "last_updated": "2026-08-03T04:56:50.196194Z",
-  "generated_at": "2026-08-03T04:56:50.196194Z"
+  "last_updated": "2026-08-04T04:44:08.975152Z",
+  "generated_at": "2026-08-04T04:44:08.975152Z"
 }
