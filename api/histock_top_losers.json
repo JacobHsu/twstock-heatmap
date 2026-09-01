@@ -4,394 +4,394 @@
   "count": 49,
   "data": [
     {
-      "ticker": "1531",
-      "name": "高林股",
-      "price": "12.1",
-      "change": "-11.68%",
-      "industry": "電機",
-      "market": "tse"
-    },
-    {
-      "ticker": "3209",
-      "name": "全科",
-      "price": "45.85",
-      "change": "-11.66%",
-      "industry": "電子通路",
-      "market": "tse"
-    },
-    {
-      "ticker": "3037",
-      "name": "欣興",
-      "price": "999",
-      "change": "-10.00%",
-      "industry": "電子組件",
-      "market": "tse"
-    },
-    {
-      "ticker": "6415",
-      "name": "矽力*-KY",
-      "price": "412.5",
-      "change": "-9.93%",
-      "industry": "半導體",
-      "market": "tse"
-    },
-    {
       "ticker": "2491",
       "name": "吉祥全",
-      "price": "50.8",
-      "change": "-9.93%",
+      "price": "45.75",
+      "change": "-9.94%",
       "industry": "光電",
       "market": "tse"
     },
     {
-      "ticker": "7795",
-      "name": "長廣",
-      "price": "508",
-      "change": "-9.93%",
+      "ticker": "5321",
+      "name": "美而快",
+      "price": "78.2",
+      "change": "-9.80%",
       "industry": "",
-      "market": ""
-    },
-    {
-      "ticker": "6715",
-      "name": "嘉基",
-      "price": "318.5",
-      "change": "-9.90%",
-      "industry": "電子組件",
-      "market": "tse"
-    },
-    {
-      "ticker": "7751",
-      "name": "竑騰",
-      "price": "1615",
-      "change": "-9.78%",
-      "industry": "半導體",
       "market": "otc"
     },
     {
-      "ticker": "6446",
-      "name": "藥華藥",
-      "price": "1395",
+      "ticker": "3605",
+      "name": "宏致",
+      "price": "125.5",
       "change": "-9.71%",
-      "industry": "生技",
-      "market": "tse"
-    },
-    {
-      "ticker": "7769",
-      "name": "鴻勁",
-      "price": "5860",
-      "change": "-9.71%",
-      "industry": "半導體",
-      "market": "tse"
-    },
-    {
-      "ticker": "4416",
-      "name": "三圓",
-      "price": "12.7",
-      "change": "-9.61%",
-      "industry": "營建",
-      "market": "otc"
-    },
-    {
-      "ticker": "3490",
-      "name": "單井",
-      "price": "45.5",
-      "change": "-9.54%",
-      "industry": "光電",
-      "market": "otc"
-    },
-    {
-      "ticker": "4127",
-      "name": "天良",
-      "price": "71.3",
-      "change": "-9.52%",
-      "industry": "生技",
-      "market": "otc"
-    },
-    {
-      "ticker": "6418",
-      "name": "詠昇",
-      "price": "34.35",
-      "change": "-9.25%",
-      "industry": "電子組件",
-      "market": "otc"
-    },
-    {
-      "ticker": "3189",
-      "name": "景碩",
-      "price": "819",
-      "change": "-8.90%",
-      "industry": "半導體",
-      "market": "tse"
-    },
-    {
-      "ticker": "1597",
-      "name": "直得",
-      "price": "138.5",
-      "change": "-8.88%",
-      "industry": "電機",
-      "market": "tse"
-    },
-    {
-      "ticker": "2327",
-      "name": "國巨*",
-      "price": "545",
-      "change": "-8.71%",
       "industry": "電子組件",
       "market": "tse"
     },
     {
-      "ticker": "3491",
-      "name": "昇達科",
-      "price": "1380",
-      "change": "-8.61%",
-      "industry": "網通",
-      "market": "otc"
-    },
-    {
-      "ticker": "6584",
-      "name": "南俊國際",
-      "price": "629",
-      "change": "-7.77%",
-      "industry": "電子組件",
-      "market": "otc"
-    },
-    {
-      "ticker": "1709",
-      "name": "和益",
-      "price": "33.45",
-      "change": "-7.47%",
-      "industry": "化學",
-      "market": "tse"
-    },
-    {
-      "ticker": "3631",
-      "name": "晟楠",
-      "price": "40.9",
-      "change": "-7.47%",
-      "industry": "電子組件",
-      "market": "otc"
-    },
-    {
-      "ticker": "3485",
-      "name": "敘豐",
-      "price": "217",
-      "change": "-7.26%",
-      "industry": "",
-      "market": ""
-    },
-    {
-      "ticker": "6108",
-      "name": "競國",
-      "price": "23.85",
-      "change": "-7.20%",
-      "industry": "電子組件",
-      "market": "tse"
-    },
-    {
-      "ticker": "8996",
-      "name": "高力",
-      "price": "1175",
-      "change": "-7.11%",
-      "industry": "電機",
-      "market": "tse"
-    },
-    {
-      "ticker": "3066",
-      "name": "李洲",
-      "price": "25.55",
-      "change": "-7.09%",
-      "industry": "光電",
-      "market": "otc"
-    },
-    {
-      "ticker": "6226",
-      "name": "光鼎",
-      "price": "31.6",
-      "change": "-7.06%",
+      "ticker": "3543",
+      "name": "州巧",
+      "price": "48.3",
+      "change": "-9.38%",
       "industry": "光電",
       "market": "tse"
     },
     {
-      "ticker": "4558",
-      "name": "寶緯",
-      "price": "17.4",
-      "change": "-6.70%",
-      "industry": "電機",
-      "market": "otc"
-    },
-    {
-      "ticker": "3609",
-      "name": "三一東林",
+      "ticker": "4716",
+      "name": "大立",
       "price": "17.55",
+      "change": "-9.07%",
+      "industry": "化學",
+      "market": "otc"
+    },
+    {
+      "ticker": "8436",
+      "name": "大江",
+      "price": "115.5",
+      "change": "-8.33%",
+      "industry": "生技",
+      "market": "otc"
+    },
+    {
+      "ticker": "2033",
+      "name": "佳大",
+      "price": "23.9",
+      "change": "-8.08%",
+      "industry": "",
+      "market": "tse"
+    },
+    {
+      "ticker": "9941",
+      "name": "裕融",
+      "price": "80",
+      "change": "-7.94%",
+      "industry": "其他",
+      "market": "tse"
+    },
+    {
+      "ticker": "3078",
+      "name": "僑威",
+      "price": "48.45",
       "change": "-6.65%",
       "industry": "電子組件",
       "market": "otc"
     },
     {
-      "ticker": "3354",
-      "name": "律勝",
-      "price": "23.65",
-      "change": "-6.52%",
-      "industry": "電子組件",
+      "ticker": "6620",
+      "name": "漢達",
+      "price": "86.8",
+      "change": "-6.57%",
+      "industry": "生技",
       "market": "otc"
     },
     {
-      "ticker": "2751",
-      "name": "王座",
-      "price": "51.9",
-      "change": "-6.49%",
-      "industry": "觀光餐旅",
+      "ticker": "3176",
+      "name": "基亞",
+      "price": "35.15",
+      "change": "-6.27%",
+      "industry": "生技",
       "market": "otc"
     },
     {
-      "ticker": "00708L",
-      "name": "期元大S&P黃金正2",
-      "price": "82.7",
-      "change": "-6.18%",
-      "industry": "",
-      "market": ""
-    },
-    {
-      "ticker": "6488",
-      "name": "環球晶",
-      "price": "912",
-      "change": "-6.17%",
-      "industry": "半導體",
-      "market": "otc"
-    },
-    {
-      "ticker": "4927",
-      "name": "泰鼎-KY",
-      "price": "40.35",
-      "change": "-6.16%",
-      "industry": "電子組件",
-      "market": "tse"
-    },
-    {
-      "ticker": "6435",
-      "name": "大中",
-      "price": "244",
-      "change": "-6.15%",
-      "industry": "半導體",
-      "market": "otc"
-    },
-    {
-      "ticker": "3711",
-      "name": "日月光投控",
-      "price": "584",
-      "change": "-5.96%",
-      "industry": "半導體",
-      "market": "tse"
-    },
-    {
-      "ticker": "2492",
-      "name": "華新科",
-      "price": "295",
-      "change": "-5.90%",
-      "industry": "電子組件",
-      "market": "tse"
-    },
-    {
-      "ticker": "6213",
-      "name": "聯茂",
-      "price": "548",
-      "change": "-5.84%",
-      "industry": "電子組件",
-      "market": "tse"
-    },
-    {
-      "ticker": "6643",
-      "name": "M31",
-      "price": "411.5",
-      "change": "-5.84%",
-      "industry": "半導體",
-      "market": "otc"
-    },
-    {
-      "ticker": "6541",
-      "name": "泰福-KY",
-      "price": "34",
-      "change": "-5.82%",
+      "ticker": "6446",
+      "name": "藥華藥",
+      "price": "1310",
+      "change": "-6.09%",
       "industry": "生技",
       "market": "tse"
     },
     {
-      "ticker": "7734",
-      "name": "印能科技",
-      "price": "2825",
-      "change": "-5.68%",
+      "ticker": "3135",
+      "name": "凌航",
+      "price": "173",
+      "change": "-5.21%",
       "industry": "半導體",
-      "market": "otc"
-    },
-    {
-      "ticker": "3317",
-      "name": "尼克森",
-      "price": "63",
-      "change": "-5.55%",
-      "industry": "半導體",
-      "market": "otc"
-    },
-    {
-      "ticker": "3529",
-      "name": "力旺",
-      "price": "2400",
-      "change": "-5.51%",
-      "industry": "半導體",
-      "market": "otc"
-    },
-    {
-      "ticker": "3055",
-      "name": "蔚華科",
-      "price": "120.5",
-      "change": "-5.49%",
-      "industry": "電子通路",
       "market": "tse"
     },
     {
-      "ticker": "00909",
-      "name": "國泰數位支付服務",
-      "price": "45.23",
-      "change": "-5.42%",
+      "ticker": "3052",
+      "name": "夆典",
+      "price": "10.6",
+      "change": "-4.93%",
+      "industry": "營建",
+      "market": "tse"
+    },
+    {
+      "ticker": "3006",
+      "name": "晶豪科",
+      "price": "278.5",
+      "change": "-4.79%",
+      "industry": "半導體",
+      "market": "tse"
+    },
+    {
+      "ticker": "4747",
+      "name": "強生*",
+      "price": "26.05",
+      "change": "-4.75%",
+      "industry": "生技",
+      "market": "otc"
+    },
+    {
+      "ticker": "6692",
+      "name": "進能服",
+      "price": "23.15",
+      "change": "-4.73%",
+      "industry": "綠能環保",
+      "market": "otc"
+    },
+    {
+      "ticker": "3229",
+      "name": "晟鈦",
+      "price": "50.9",
+      "change": "-4.68%",
+      "industry": "電子組件",
+      "market": "tse"
+    },
+    {
+      "ticker": "1727",
+      "name": "中華化",
+      "price": "95.3",
+      "change": "-4.60%",
+      "industry": "化學",
+      "market": "tse"
+    },
+    {
+      "ticker": "2408",
+      "name": "南亞科",
+      "price": "518",
+      "change": "-4.60%",
+      "industry": "半導體",
+      "market": "tse"
+    },
+    {
+      "ticker": "6541",
+      "name": "泰福-KY",
+      "price": "32.5",
+      "change": "-4.41%",
+      "industry": "生技",
+      "market": "tse"
+    },
+    {
+      "ticker": "3540",
+      "name": "曜越",
+      "price": "24.4",
+      "change": "-4.31%",
+      "industry": "電腦週邊",
+      "market": "otc"
+    },
+    {
+      "ticker": "4148",
+      "name": "全宇生技-KY",
+      "price": "31.05",
+      "change": "-4.17%",
+      "industry": "生技",
+      "market": "tse"
+    },
+    {
+      "ticker": "6499",
+      "name": "益安",
+      "price": "74.3",
+      "change": "-4.13%",
+      "industry": "生技",
+      "market": "otc"
+    },
+    {
+      "ticker": "6547",
+      "name": "高端疫苗",
+      "price": "61.3",
+      "change": "-4.07%",
+      "industry": "生技",
+      "market": "otc"
+    },
+    {
+      "ticker": "8421",
+      "name": "旭源",
+      "price": "13.1",
+      "change": "-4.03%",
+      "industry": "其他",
+      "market": "otc"
+    },
+    {
+      "ticker": "1783",
+      "name": "和康生",
+      "price": "39.7",
+      "change": "-3.99%",
+      "industry": "生技",
+      "market": "tse"
+    },
+    {
+      "ticker": "6272",
+      "name": "驊陞",
+      "price": "25.15",
+      "change": "-3.82%",
+      "industry": "電子組件",
+      "market": "tse"
+    },
+    {
+      "ticker": "6919",
+      "name": "康霈*",
+      "price": "91.2",
+      "change": "-3.80%",
+      "industry": "生技",
+      "market": "tse"
+    },
+    {
+      "ticker": "6245",
+      "name": "立端",
+      "price": "78.8",
+      "change": "-3.67%",
+      "industry": "網通",
+      "market": "otc"
+    },
+    {
+      "ticker": "6205",
+      "name": "詮欣",
+      "price": "68.5",
+      "change": "-3.66%",
+      "industry": "電子組件",
+      "market": "tse"
+    },
+    {
+      "ticker": "2540",
+      "name": "愛山林",
+      "price": "48.1",
+      "change": "-3.61%",
+      "industry": "營建",
+      "market": "tse"
+    },
+    {
+      "ticker": "8923",
+      "name": "時報",
+      "price": "18.75",
+      "change": "-3.60%",
       "industry": "",
-      "market": ""
+      "market": "otc"
     },
     {
-      "ticker": "6103",
-      "name": "合邦",
-      "price": "44.5",
-      "change": "-5.32%",
+      "ticker": "2344",
+      "name": "華邦電",
+      "price": "176",
+      "change": "-3.56%",
       "industry": "半導體",
-      "market": "otc"
-    },
-    {
-      "ticker": "2464",
-      "name": "盟立",
-      "price": "180",
-      "change": "-5.26%",
-      "industry": "其他電子",
       "market": "tse"
     },
     {
-      "ticker": "2466",
-      "name": "冠西電",
-      "price": "99",
-      "change": "-5.26%",
+      "ticker": "5432",
+      "name": "新門",
+      "price": "151.5",
+      "change": "-3.50%",
+      "industry": "綠能環保",
+      "market": "otc"
+    },
+    {
+      "ticker": "6670",
+      "name": "復盛應用",
+      "price": "277.5",
+      "change": "-3.48%",
+      "industry": "",
+      "market": "tse"
+    },
+    {
+      "ticker": "4707",
+      "name": "磐亞",
+      "price": "32.25",
+      "change": "-3.44%",
+      "industry": "化學",
+      "market": "otc"
+    },
+    {
+      "ticker": "3504",
+      "name": "揚明光",
+      "price": "87.2",
+      "change": "-3.43%",
       "industry": "光電",
       "market": "tse"
     },
     {
-      "ticker": "5392",
-      "name": "能率",
-      "price": "45.8",
-      "change": "-5.18%",
-      "industry": "光電",
+      "ticker": "5013",
+      "name": "強新",
+      "price": "28.55",
+      "change": "-3.38%",
+      "industry": "",
       "market": "otc"
     },
     {
-      "ticker": "4989",
-      "name": "榮科",
-      "price": "64.7",
-      "change": "-5.13%",
+      "ticker": "6593",
+      "name": "台灣銘板",
+      "price": "31.75",
+      "change": "-3.35%",
+      "industry": "",
+      "market": "otc"
+    },
+    {
+      "ticker": "1303",
+      "name": "南亞",
+      "price": "234.5",
+      "change": "-3.30%",
+      "industry": "",
+      "market": "tse"
+    },
+    {
+      "ticker": "3450",
+      "name": "聯鈞",
+      "price": "625",
+      "change": "-3.25%",
+      "industry": "半導體",
+      "market": "tse"
+    },
+    {
+      "ticker": "1784",
+      "name": "訊聯",
+      "price": "60.5",
+      "change": "-3.20%",
+      "industry": "生技",
+      "market": "otc"
+    },
+    {
+      "ticker": "2609",
+      "name": "陽明",
+      "price": "57.6",
+      "change": "-3.19%",
+      "industry": "航運",
+      "market": "tse"
+    },
+    {
+      "ticker": "2023",
+      "name": "燁輝",
+      "price": "13.7",
+      "change": "-3.18%",
+      "industry": "",
+      "market": "tse"
+    },
+    {
+      "ticker": "6770",
+      "name": "力積電",
+      "price": "70.8",
+      "change": "-3.01%",
+      "industry": "半導體",
+      "market": "tse"
+    },
+    {
+      "ticker": "6472",
+      "name": "保瑞",
+      "price": "420",
+      "change": "-3.00%",
+      "industry": "生技",
+      "market": "tse"
+    },
+    {
+      "ticker": "6865",
+      "name": "偉康科技",
+      "price": "25.9",
+      "change": "-3.00%",
+      "industry": "",
+      "market": "otc"
+    },
+    {
+      "ticker": "2457",
+      "name": "飛宏",
+      "price": "22.7",
+      "change": "-2.99%",
       "industry": "電子組件",
       "market": "tse"
     }
